@@ -23,3 +23,5 @@ print a,b,c,d,"\r\n"
 words = ["one", "two", "three", "four"]
 print words, "\r\n"
 words.index("three")
+
+
