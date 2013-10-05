@@ -44,7 +44,7 @@ gem 'diff-lcs'
 gem 'ffi'
 gem 'libv8'
 gem 'rest-client'
-gem 'rspec-rails'
+# gem 'rspec-rails'
 gem 'treetop'
 gem  'railties'
 
@@ -55,6 +55,8 @@ end
 group :test do
     gem 'rspec'
     gem 'webrat'
+
+    gem 'spork'
 end
 
 
