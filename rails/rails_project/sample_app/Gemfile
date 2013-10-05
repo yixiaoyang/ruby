@@ -36,13 +36,25 @@ end
 gem 'execjs'
 gem 'therubyracer'
 
+
+gem 'autotest'
+gem 'autotest-fsevent'
+gem 'autotest-growl'
+gem 'diff-lcs'
+gem 'ffi'
+gem 'libv8'
+gem 'rest-client'
+gem 'rspec-rails'
+gem 'treetop'
+gem  'railties'
+
 group :development do
-    gem 'rspec-rails', '2.0.1'
+    gem 'rspec-rails'
 end
 
 group :test do
-    gem 'rspec', '2.0.1'
-    gem 'webrat', '0.7.1'
+    gem 'rspec'
+    gem 'webrat'
 end
 
 
