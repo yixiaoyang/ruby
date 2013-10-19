@@ -1,7 +1,15 @@
 SampleApp::Application.routes.draw do
-  get "pages/about"
-  get "pages/home"
-  get "pages/contact"
+  #get "pages/about"
+  #get "pages/home"
+  #get "pages/contact"
+  
+  # use named router, 19Oct13
+  match '/about',    to: 'pages#about',    via: 'get'
+  match '/home',    to: 'pages#home',    via: 'get'
+  match '/contact',    to: 'pages#contact',    via: 'get'
+  
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
