@@ -9,6 +9,16 @@
     <div class="container">
        <%= render 'layouts/header' %>
        
+       <!--
+       在 Rails 中转向页面后显示一个信息的功能是通过 flash 变量实现的，flash 就像
+       闪存一样，只是暂时存储的数据。flash 变量的值其实是一个 Hash
+        flash[:success] = "Welcome to the Sample App!"
+          ==> <div class="alert alert-success">Welcome to the Sample App!</div>
+       -->
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+       
       <section>
       <%= yield %>
       </section>

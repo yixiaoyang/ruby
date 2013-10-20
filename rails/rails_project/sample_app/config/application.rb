@@ -27,5 +27,11 @@ module SampleApp
    
    # bootstrap
    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+   
+   # Force all access to the app over SSL, use Strict-Transport-Security,
+   # and use secure cookies.
+   # 需要服务器支持
+   #config.force_ssl = true
+  
   end
 end
