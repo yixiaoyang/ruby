@@ -1,8 +1,15 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+  # 因为 resources :users 不仅使 /users/1 地址可以访问了，而且还为示例程序的 Users 
+  # 资源提供了符合 REST 架构的一系列动作5，以及用来获取相应 URL 地址的具名路由（named 
+  # route）所以有resources后可以删除get "users/new"
+  
+  #get "users/new"
   #get "pages/about"
   #get "pages/home"
   #get "pages/contact"
+
+  # add REST resource
+  resources :users  
   
   # use named router, 19Oct13
   root to: 'pages#home'
@@ -12,7 +19,6 @@ SampleApp::Application.routes.draw do
   match '/signup',    to: 'users#new',            via: 'get'
   
 
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
