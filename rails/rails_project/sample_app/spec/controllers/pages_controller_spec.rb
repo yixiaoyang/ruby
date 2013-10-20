@@ -1,48 +1,53 @@
 require 'spec_helper'
 
 describe PagesController do
-  render_views
+  subject { page }
+  
+  it "should have the right links on the layout" do
+    visit home_path
+    click_link "About"
+    expect(page).to have_title(full_title('About'))
+    click_link "Contact"
+    expect(page).to # fill in
+    click_link "Home"
+    click_link "Sign up now!"
+    expect(page).to # fill in
+  end
+  
 
-describe "GET 'about'" do
-    it "returns http success" do
-      get 'about'
-      response.should be_success
+    describe "Home page" do
+      it "should have the content 'Home'" do
+        visit home_path
+        expect(page).to have_content('Home')
+      end
+      it "should have the title 'Home'" do
+        visit home_path
+        expect(page).to have_title("Ruby on Rails Tutorial Sample App | Home")
+      end
+   end
+
+  describe "Contact page" do
+    it "should have the content 'Contact'" do
+      visit contact_path
+      expect(page).to have_content('Contact')
     end
-    
-    # test if content of <title></title> tag is "Ruby on Rails Sample App | Home"
-    it "should have the right title" do
-      get 'about'
-      response.should have_selector( "title",
-                                    :content => "Ruby on Rails Sample App | About")
-      #response.should have_selector("title:contains('Ruby on Rails Sample App | About')")
+
+    it "should have the title 'Contact'" do
+      visit contact_path
+      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Contact")
     end
   end
 
-  describe "GET 'home'" do
-    it "returns http success" do
-      get 'home'
-      response.should be_success
-    end
-    
-    # test if content of <title></title> tag is "Ruby on Rails Sample App | Home"
-    it "should have the right title" do
-      get 'home'
-      response.should have_selector("title", 
-                                   :content => "Ruby on Rails Sample App | Home")
-    end
-  end
+  describe "About page" do
 
-  describe "GET 'contact'" do
-    it "returns http success" do
-      get 'contact'
-      response.should be_success
+    it "should have the content 'About'" do
+      visit about_path
+      expect(page).to have_content('About')
     end
-    
-    # test if content of <title></title> tag is "Ruby on Rails Sample App | Home"
-    it "should have the right title" do
-      get 'contact'
-      response.should have_selector("title", 
-                                   :content => "Ruby on Rails Sample App | Contact")
+
+    it "should have the title 'About'" do
+      visit about_path
+      expect(page).to have_title("Ruby on Rails Tutorial Sample App | About")
     end
   end
 end

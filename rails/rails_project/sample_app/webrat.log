@@ -1,0 +1,15 @@
+# Logfile created on 2013-10-20 11:48:55 +0800 by logger.rb/31641
+D, [2013-10-20T11:48:55.194008 #3393] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:48:55.230877 #3393] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:50:33.848374 #3432] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:50:33.954549 #3432] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:54:18.938736 #3656] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:54:18.966860 #3656] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:54:46.370654 #3774] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:54:46.478358 #3774] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:55:41.404699 #3782] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:55:41.431184 #3782] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:59:12.689391 #3814] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T11:59:12.715430 #3814] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T12:00:48.833535 #3842] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2013-10-20T12:00:48.936916 #3842] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}

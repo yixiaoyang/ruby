@@ -1,12 +1,15 @@
 SampleApp::Application.routes.draw do
+  get "users/new"
   #get "pages/about"
   #get "pages/home"
   #get "pages/contact"
   
   # use named router, 19Oct13
-  match '/about',    to: 'pages#about',    via: 'get'
-  match '/home',    to: 'pages#home',    via: 'get'
-  match '/contact',    to: 'pages#contact',    via: 'get'
+  root to: 'pages#home'
+  match '/about',     to: 'pages#about',    via: 'get'
+  match '/home',      to: 'pages#home',    via: 'get'
+  match '/contact',   to: 'pages#contact',    via: 'get'
+  match '/signup',    to: 'users#new',            via: 'get'
   
 
   
