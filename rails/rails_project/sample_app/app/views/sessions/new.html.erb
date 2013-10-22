@@ -1,0 +1,26 @@
+<% provide(:title, "Sign in")%>
+<h1>Sign in</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <!--生成表单。注册表单和登录表单的区别在于，程序中没有 Session 模型，因此也就没有类似@user的变量
+        对于form_for(@user)，Rails 会自动向 /users 地址发送 POST 请求。对于登录表单，我们则要明确的、
+        指定资源的名称以及相应的 URL 地址 -->
+        
+    <!--提交登录表单后会生成params Hash,其中 params[:session][:email] 和 params[:session][:password]
+      分别对应了 Email 和密码字段{ session: { password: "", email: "" } }
+    -->
+    <%= form_for(:session, url:sessions_path) do |f| %>
+    
+      
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      
+      <%= f.submit "Sign in", class:"btn btn-large btn-primary"%>
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <% end %>
+  </div>
+</div>

@@ -24,7 +24,7 @@
     
     <!--逐行显示错误信息-->
     <ul>
-      <% user.errors.full_message.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
       <li>#  <%= message %></li>
       <% end %>
     </ul>

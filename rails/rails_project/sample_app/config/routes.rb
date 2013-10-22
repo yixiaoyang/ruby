@@ -11,6 +11,9 @@ SampleApp::Application.routes.draw do
   # add REST resource
   resources :users  
   
+  #没必要显示或编辑 session，为 resources 方法指定:only 选项new、create 和 destroy 动作
+  resources :sessions, only:[:new, :create, :destroy]
+  
   # use named router, 19Oct13
   root to: 'pages#home'
   match '/about',     to: 'pages#about',    via: 'get'

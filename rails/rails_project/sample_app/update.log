@@ -1,0 +1,79 @@
+项目git：https://github.com/yixiaoyang/ruby
+为熟悉Rails的基本特性创建的工程，本博文仅作更新记录。
+
+（1）2013.10.1-2013.10.5
+  1.创建rails Demo/First工程，了解基本的REST操作及MVC架构。
+  2.创建demo工程的数据资源间的多重关联
+  3.创建rails Sample工程  
+  4.创建Sample工程的rspec自动化测试
+  5.instant '@title' virible with Embedded Ruby method.
+  6.pass title check test using spec-rails
+  7.Eliminating duplication with layouts for Home/Contact/About pages
+  截图：
+  
+  
+（3）2013.10.19-2013.10.20
+  1.添加users控制器和相关测试脚本。
+  2.添加用户密码验证
+  3.添加user资源：遵从 Rails 使用的 REST 架构，将数据视为资源
+  4.添加user show控制及视图
+  5.添加统一Gravatar头像
+  6.修正具名路由错误：在user/id视图下header的链接路由出错，系具名路由功能没有完善造成
+  7.添加user create功能：添加完成后使用flash提示，ssl需要服务器配置支持暂未部署
+  8.使用更加健壮的数据查找参数：防止用户篡改user中的其他字段，提高安全性
+  截图：
+
+
+
+
+commit 7ac4e480f217dc0c312f348896f7c9feef7f697a
+Author: xiaoyang <hityixiaoyang@gmail.com>
+Date: Sat Oct 5 22:47:16 2013 +0800
+
+1.add log msg
+
+
+1.instant '@title' virible with Embedded Ruby method.
+2.pass title check test using spec-rails
+3.Eliminating duplication with layouts for Home/Contact/About pages
+
+commit 400633561ba1601a3e90c0fea7c9919ea266c18f
+Author: xiaoyang <hityixiaoyang@gmail.com>
+Date: Sat Oct 5 20:33:38 2013 +0800
+
+1.update unittest/autotest/rspec for sampele app
+
+commit dbbce52d9b4f81c4160bc9a3950191d33312e58b
+Author: xiaoyang <hityixiaoyang@gmail.com>
+Date: Sat Oct 5 20:32:18 2013 +0800
+
+1.remove old broken session log file
+
+commit 8f03ee94bac224b655671cfb4243a28a42335859
+Author: xiaoyang <hityixiaoyang@gmail.com>
+Date: Sat Oct 5 20:29:44 2013 +0800
+
+1.move the sesson log file
+
+commit 3e5068ca97c9ed7dcb82bf979566803574b182b2
+Author: xiaoyang <hityixiaoyang@gmail.com>
+Date: Sat Oct 5 20:28:03 2013 +0800
+
+1.delete old broken sample project
+
+commit f883079911f6c175f26ffe4bd73b3ee7decca532
+Author: xiaoyang <hityixiaoyang@gmail.com>
+Date: Fri Oct 4 18:13:58 2013 +0800
+
+1.add sample project:rails autotest, views
+
+commit 2d4d86284c6cf97eb2661483523d15ad1123eb1e
+Author: xiaoyang <hityixiaoyang@gmail.com>
+Date: Thu Oct 3 14:47:35 2013 +0800
+
+1.add demo app:rails basic MVC model, multi associations of model
+
+
+
+
+
