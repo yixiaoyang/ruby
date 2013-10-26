@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.54'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <span class='insen'>Prev</span> ]
+
+			[ <a href='/'>Index</a> ]
+
+	[ <span class='insen'>Next</span> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>Rails Session</h1>
+
+<p>
+Created 星期六 26 十月 2013<br>
+</p>
+
+<p>
+http协议是无状态协议，而使用session可以实现对客户端的会话进行管理。对每一次新的请求，rails应用都会查看session状态，如用户是否登录（匿名访问）等。<br>
+本例为实现用户的登录和注销，自定义了Sessions_controller和coockie值，将sessions 作为rails资源指定了 :only new、create 和 destroy 操作以实现登录，记住登录和注销功能。<br>
+</p>
+
+<p>
+（1）会话数据初始化：在每次User model实例化时都生成一个随机token串，供会话使用，本例使用base64算法工具。<br>
+class User &lt; ActiveRecord::Base<br>
+  ...<br>
+  before_create :create_remember_token<br>
+</p>
+
+<p>
+  def User.encrypt(token)<br>
+    Digest::SHA1.hexdigest(token.to_s)<br>
+  end<br>
+</p>
+
+<p>
+  def User.new_remember_token<br>
+    SecureRandom.urlsafe_base64<br>
+  end  <br>
+</p>
+    
+<p>
+  private<br>
+    def create_remember_token<br>
+      self.remember_token = User.encrypt(User.new_remember_token)<br>
+    end<br>
+end<br>
+</p>
+
+
+<p>
+（2）用户注册：User_controller控制的用户注册操作create完成后，新用户的信息将被存入数据库，此时数据库中user的会话token是没有加密的。<br>
+</p>
+
+<p>
+（3）注册完成，直接登录：调用sessions_helper sign_in方法自动登录。<br>
+用户注册及自动登录代码片段：<br>
+<em>class UsersController &lt; ApplicationController</em><br>
+<em>  # 添加session相关资源module</em><br>
+<em>  protect_from_forgery with: :exception</em><br>
+<em>  include SessionsHelper</em><br>
+</p>
+  
+<p>
+<em>  def new</em><br>
+<em>  @user = User.new</em><br>
+<em>  end</em><br>
+</p>
+
+<p>
+<em>  def create</em><br>
+<em>    @user = User.new(user_params)</em><br>
+<em>    if @user.save</em><br>
+<em>      flash[:success] = "Creat Account Success,Welcome #{@user[:name]}!"</em><br>
+</p>
+      
+<p>
+<em>      # 创建成功，处理session，定向到用户主界面</em><br>
+<em>      sign_in @user</em><br>
+<em>      redirect_to @user</em><br>
+<em>    else</em><br>
+<em>      render 'new'</em><br>
+<em>    end</em><br>
+<em>  end</em><br>
+</p>
+
+<p>
+（4）sign in登录方法：使用一个惟一的的随机串（使用base64生成保证冲突很小）作为下次会话的token存入浏览器cookie。然后将这个token加密（SHA1）存入数据库。 数据库只保存加密的token是因为，即便整个数据库都泄露了，攻击者也无法使用token登入网站。为了让token更安全，我们计划每次会话都生成不一样的token，这样即使会话被劫持了（攻击者偷取 cookie 伪装成某个用户登录），用户下次登录时前一个会话就会失效（幸灾乐祸的想想CSDN去年泄密门的事情吧你就懂了）。<br>
+存入浏览器的cookie：<br>
+</p>
+
+
+
+<p>
+（5）下次自动登录：下次自动登录的用户就可以从 浏览器cookie 中取出token，加密后查询对比数据库，调用sign in方法自动登录，@第（4）步。<br>
+</p>
+
+<p>
+（6）sign out方法：首先经由路由到sessions controller的destroy操作，destroy调用sign out，它只需要作两件事，删除cookie数据、删除用户数据<br>
+delete logout操作的session处理示例：<br>
+<em>--- !ruby/hash:ActionController::Parameters</em><br>
+<em>_method: delete</em><br>
+<em>authenticity_token: vZwmQCRSmkJbBl8CsSAARTFNVu4PtW58J3dv3qK7oN0=</em><br>
+<em>controller: sessions</em><br>
+<em>action: destroy</em><br>
+</p>
+
+<p>
+实现sign in， sign out的完整session_helper实现：<br>
+</p>
+
+
+<p>
+（7）进一步的保障会话安全，推荐使用ssl<br>
+<div style='padding-left: 30pt'>
+<em>In Rails 3.1 and later, this could be accomplished by always forcing SSL connection in your application config file:</em><br>
+<em>config.force_ssl = true</em><br>
+</div>
+</p>
+
+
+
+
+
+
+<p>
+1.session token每次登录都产生变化：，当每次user登录成功之后（通过注册完成或者登录完成），都将生成新的session token的密文存入数据库以保证每次登录的session token都不一样，<br>
+</p>
+
+<p>
+<img src="../%E5%9B%BE%E7%89%87/%E9%80%89%E5%8C%BA_017.png" alt=""><br>
+</p>
+
+
+<p>
+因为sessions 资源指定了 :only new、create 和 destroy 动作，所以在次指明 destroy 动作要使用 DELETE 请求<br>
+ match '/signout',   to: 'sessions#destroy',     via: 'delete'<br>
+</p>
+
+
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Backlinks -->
+
+	Backlinks:
+
+<!-- End Backlinks -->
+
+	</body>
+
+</html>

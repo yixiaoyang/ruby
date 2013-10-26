@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  # 添加session相关资源module
+  protect_from_forgery with: :exception
+  include SessionsHelper
+  
   def new
   @user = User.new
   end
@@ -17,7 +21,10 @@ class UsersController < ApplicationController
     #@user = User.find_by(user_params);
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Creat Account Success!"
+      flash[:success] = "Creat Account Success,Welcome #{@user[:name]}!"
+      
+      # 创建成功，处理session，定向到用户主界面
+      sign_in @user
       redirect_to @user
     else
       render 'new'

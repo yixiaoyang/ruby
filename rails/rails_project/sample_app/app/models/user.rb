@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   
   # 把 Email 地址转换成全小写形式，确保唯一性
   before_save { self.email = email.downcase }
+  
+  # 真实的应用程序都会自动登入刚注册的用户（这样做的一个副作用就是创建了一个新的记忆权标），
+  # 但是我们不想这么做，我们要用一种更好的方式，确保从一开始用户就有可用的记忆权标。为此，
+  # 我们要使用回调函数生成权标
+  before_create :create_remember_token
 
   
   # check email,Ruby 中的常量都是以大写字母开头的
@@ -56,4 +61,17 @@ class User < ActiveRecord::Base
   # password check
   has_secure_password
   validates :password, length: { minimum: 6 }
+    
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end  
+    
+  private
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 end

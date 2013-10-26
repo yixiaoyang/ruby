@@ -5,12 +5,42 @@
       <% #image_tag("logo.png", :alt => "Sample app", :class => "round")%>
       <nav class="round">
         <ul class="nav pull-right">
-        <li><%= link_to "Home", home_path%></li>
-        <li><%= link_to "About", about_path%></li>
-        <li><%= link_to "Contact", contact_path%></li>
-        
-        <li><%= link_to "Sign up", signup_path%></li>
-        <li><%= link_to "Sign in", new_session_path%></li> 
+          <li><%= link_to "Home", home_path%></li>
+          <li><%= link_to "About", about_path%></li>
+          <li><%= link_to "Contact", contact_path%></li>
+          <li><%= link_to "Sign up", signup_path%></li> 
+          <!-- 下拉菜单需要引入bootstrap的js文件 -->
+          <!-- The drop down menu 
+          <ul class="nav pull-right">
+            <li>Sign Up2</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+              <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+              </div>
+            </li>
+          </ul>
+        -->
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <% if signed_in? %>
+                <%= "#{current_user[:name]}" %>
+                <% else%>
+                Account
+                <% end %> 
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <% if signed_in? %>
+                <li><%= link_to "Profile", "#"%></li>  
+                <li><%= link_to "Settings", "#"%></li>  
+                <li class="divider"></li>
+                <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+               <% else %>
+                 <li><%= link_to "Sign in", signin_path%></li> 
+               <% end %>               
+            </ul>
+          </li>
         </ul>
       </nav>
     </div>
