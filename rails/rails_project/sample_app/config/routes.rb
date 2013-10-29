@@ -19,9 +19,11 @@ SampleApp::Application.routes.draw do
   match '/about',     to: 'pages#about',    via: 'get'
   match '/home',      to: 'pages#home',     via: 'get'
   match '/contact',   to: 'pages#contact',    via: 'get'
+  match '/users/:id/edit',  to: 'users#edit',        via: 'get'
   match '/signup',    to: 'users#new',        via: 'get'
   match '/signin',    to: 'sessions#new',     via: 'get'
   
+
   # 因为sessions 资源指定了 :only new、create 和 destroy 动作
   # 所以在次指明 destroy 动作要使用 DELETE 请求
   match '/signout',   to: 'sessions#destroy',     via: 'delete'

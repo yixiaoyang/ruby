@@ -46,4 +46,20 @@ module SessionsHelper
     self.current_user = nil
     cookies.delete(:remember_token)
   end
+  
+  def current_user?(user)
+    current_user == user
+  end
+
+  def save_location
+    # request 对象的 fullpath 方法获取了所请求页面的完整地址 
+    # 使用rails的session管理，仅在get方法中使用，保证提交表单时(post)不会存储转向地址
+    session[:return_to] = request.fullpath if request.get?
+  end
+
+  def redirect_back_or(default)
+    redirect_to (session[:return_to] || default)
+    session.delete(:return_to)
+  end
+  
 end

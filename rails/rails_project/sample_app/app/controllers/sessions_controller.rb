@@ -20,7 +20,9 @@ class SessionsController < ApplicationController
       
       # 处理session，定向到用户主界面
       sign_in user
-      redirect_to user
+
+      # 跳转到登录前的页面
+      redirect_back_or user
     else
       # 用 flash.now 替换 flash。flash.now 就是专门用来在重新渲染的页面中显示
       # Flash 消息的，在发送新的请求之后，Flash 消息便会消失
