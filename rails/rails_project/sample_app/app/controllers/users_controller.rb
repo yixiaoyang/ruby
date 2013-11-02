@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
 
   # 登录检测的先前过滤器
-  before_action :signed_in_check, only:[:edit, :update, :show]
+  before_action :signed_in_check, only:[:edit, :update, :show, :index]
   # 检测权限的先前过滤器
   before_action :correct_user_check,  only:[:edit, :update, :show]
 
@@ -71,6 +71,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all
+  end
 
   private
     # 使用健壮参数而非User.find_by(params[:id]);
