@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # 登录检测的先前过滤器
   before_action :signed_in_check, only:[:edit, :update, :show, :index]
   # 检测权限的先前过滤器
-  before_action :correct_user_check,  only:[:edit, :update, :show]
+  before_action :correct_user_check,  only:[:edit, :update]
 
   def new
   @user = User.new
@@ -15,6 +15,16 @@ class UsersController < ApplicationController
   
   ###  
   def show
+    if @user.nil?
+      # 因为correct_check过滤器中定义了@user，这里不需要重复查询了
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = "User id #{params[:id]} not found"
+        redirect_to not_found_url
+      else
+      end
+    end
     # 用户只能访问自己的user信息, 一种unRuby的实现...
     #if @current_user[:id].to_s != params[:id].to_s
     #  flash[:notice] = "Fobidden access to user #{params[:id]}"
@@ -57,6 +67,7 @@ class UsersController < ApplicationController
   def edit
     # 因为correct_check过滤器中定义了@user，这里不需要重复查询了
     # @user = User.find_by(params[:id])
+    p "edit controller"
   end
 
   def update
@@ -72,7 +83,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    # params由will_paginate自动生成，默认取回30个条目
+    @users = User.paginate(page: params[:page], per_page:10)
   end
 
   private
@@ -93,7 +105,7 @@ class UsersController < ApplicationController
     end
 
     def correct_user_check
-      @user = User.find_by(params[:id])
+      @user = User.find_by(:id => params[:id])
       # 使用current_user?方法，its Ruby~
       redirect_to root_path unless current_user?(@user)
     end

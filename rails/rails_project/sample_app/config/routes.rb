@@ -19,6 +19,8 @@ SampleApp::Application.routes.draw do
   match '/about',     to: 'pages#about',      via: 'get'
   match '/home',      to: 'pages#home',       via: 'get'
   match '/contact',   to: 'pages#contact',    via: 'get'
+  match '/not_found',   to: 'pages#404',      via: 'get'
+  
   match '/users',     to: 'users#index',      via: 'get'
   match '/users/:id/edit',  to: 'users#edit', via: 'get'
   match '/signup',    to: 'users#new',        via: 'get'

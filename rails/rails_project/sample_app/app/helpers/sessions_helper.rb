@@ -20,6 +20,8 @@ module SessionsHelper
     # Active Record提供update_attribute()方法可以将Model对象的某个属性保存到数据库。
     # 
     user.update_attribute(:remember_token, User.encrypt(remember_token))
+    
+    puts "#{user.name} signed in as current user"
     self.current_user = user
   end
   
