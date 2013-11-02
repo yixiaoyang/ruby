@@ -5,9 +5,11 @@ class UsersController < ApplicationController
   
 
   # 登录检测的先前过滤器
-  before_action :signed_in_check, only:[:edit, :update, :show, :index]
+  before_action :signed_in_check, only:[:edit, :update, :show, :index, :destroy]
   # 检测权限的先前过滤器
   before_action :correct_user_check,  only:[:edit, :update]
+  # 删除前确认是管理员
+  before_action :admin_user_check, only: :destroy
 
   def new
   @user = User.new
@@ -86,6 +88,14 @@ class UsersController < ApplicationController
     # params由will_paginate自动生成，默认取回30个条目
     @users = User.paginate(page: params[:page], per_page:10)
   end
+  
+  def destroy
+    user = User.find(params[:id])
+    p user
+    user.destroy
+    flash[:success] = "User destroyed"
+    redirect_to users_url
+  end
 
   private
     # 使用健壮参数而非User.find_by(params[:id]);
@@ -105,8 +115,13 @@ class UsersController < ApplicationController
     end
 
     def correct_user_check
+      # 注意find的用法和find_by的区别
       @user = User.find_by(:id => params[:id])
       # 使用current_user?方法，its Ruby~
       redirect_to root_path unless current_user?(@user)
+    end
+    
+    def admin_user_check
+       redirect_to root_path unless current_user.admin?
     end
 end

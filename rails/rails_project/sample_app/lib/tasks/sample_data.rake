@@ -6,7 +6,9 @@ namespace :db do
     User.create!(name:"User",
                  email:"user@ex.com",
                  password:"123456",
-                 password_confirmation:"123456")
+                 password_confirmation:"123456",
+                 # 把第一个用户设置为管理员
+                 admin:true)
     50.times do |n|
       name = "user#{n}"
       email = "user#{n}@ex.com"
