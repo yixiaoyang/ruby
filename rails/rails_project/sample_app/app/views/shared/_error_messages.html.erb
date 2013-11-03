@@ -1,5 +1,5 @@
 <!--any? 方法就是取反 empty? 的返回值，如果对象中有内容就返回 true，没内容则返回 false -->
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
       <!-- 
@@ -19,12 +19,12 @@
         <%= pluralize(@user.errors.count, "error") %>
       返回值就是 "0 errors"、"1 error" 或 "2 errors"等，单复数形式取决于错误的数量。这样就可以避免类似 "1 errors" 这种低级的错误了（这是网络中常见的错误之一）。
       -->
-      Error Messages Count <%= pluralize(@user.errors.count, "error")%>
+      Error Messages Count <%= pluralize(object.errors.count, "error")%>
     </div>
     
     <!--逐行显示错误信息-->
     <ul>
-      <% @user.errors.full_messages.each do |message| %>
+      <% object.errors.full_messages.each do |message| %>
       <li>#  <%= message %></li>
       <% end %>
     </ul>

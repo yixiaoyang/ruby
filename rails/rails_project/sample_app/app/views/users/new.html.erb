@@ -7,7 +7,7 @@
     
       <!--在下面的代码中渲染的局部视图名为 shared/error_messages，这里用到了 Rails 的一个约定：
           如果局部视图要在多个控制器中使用，则把它存放在专门的 shared 目录下-->
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name%>
       

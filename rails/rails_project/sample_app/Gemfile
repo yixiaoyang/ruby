@@ -57,20 +57,26 @@ group :test do
     gem 'webrat'
 
     gem 'spork'
-end
 
+    gem 'selenium-webdriver'
+    gem 'capybara'
+    gem 'factory_girl_rails'
+    gem 'cucumber-rails'
+    gem 'database_cleaner', github: 'bmabey/database_cleaner'
+end
 
 # add bootstrap css
 gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'faker'
 
 # paginate
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

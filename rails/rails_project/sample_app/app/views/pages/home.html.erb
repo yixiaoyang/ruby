@@ -1,11 +1,23 @@
-<% provide(:title, 'Home') %>
-<h1>Home</h1>
-<p>
-<%= link_to "Sign Up Now!", signup_path, :class => "btn btn-large btn-primary"%>
-<br><br><br>
-This is home page for Sample Application<br>
-(1).create on 2Oct13<br>
-(2).fill the layout on 19Oct13<br>
-(3).add head img
-(4).add password check
-</p>
+<%= provide(:title, @title) %>
+<h1><%= @title %></h1>
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span3">
+      <section>
+        <%= render 'shared/my_info' %>
+      </section>
+      
+    </aside>
+    <span class="span9">
+     <section>
+        <%= render 'shared/micropost_form' %>
+     </section>
+     <%= render 'shared/feed' %> 
+    </span>
+  </div>
+<% else %>
+  <p>
+  <%= link_to "Sign Up Now!", signup_path, :class => "btn btn-large btn-primary"%>
+  <br>
+<% end%>
+

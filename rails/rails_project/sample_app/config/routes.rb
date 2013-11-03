@@ -11,8 +11,11 @@ SampleApp::Application.routes.draw do
   # add REST resource
   resources :users  
   
-  #没必要显示或编辑 session，为 resources 方法指定:only 选项new、create 和 destroy 动作
+  # 没必要显示或编辑 session，为 resources 方法指定:only 选项new、create 和 destroy 动作
   resources :sessions, only:[:new, :create, :destroy]
+  
+  # micropost resources
+  resources :microposts, only: [:create, :destroy]
   
   # use named router, 19Oct13
   root to: 'pages#home'
@@ -25,14 +28,12 @@ SampleApp::Application.routes.draw do
   match '/users/:id/edit',  to: 'users#edit', via: 'get'
   match '/signup',    to: 'users#new',        via: 'get'
   match '/signin',    to: 'sessions#new',     via: 'get'
-  
 
   # 因为sessions 资源指定了 :only new、create 和 destroy 动作
   # 所以在次指明 destroy 动作要使用 DELETE 请求
   match '/signout',   to: 'sessions#destroy',     via: 'delete'
-  
-  
 
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

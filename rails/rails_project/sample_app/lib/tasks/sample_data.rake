@@ -11,13 +11,19 @@ namespace :db do
                  admin:true)
     50.times do |n|
       name = "user#{n}"
-      email = "user#{n}@ex.com"
+      email = "user#{n}@ex.com" 
       password = "123456"
       User.create!(name:name,
                    email:email,
                    password:password,
-                   password_confirmation:password
-                   )
-      end
+                   password_confirmation:password )
     end
-  end
+     
+    # 批量生成micropost数据
+    users = User.all(limit:5)
+    20.times do
+      content = Faker::Lorem.sentence(5)
+      users.each { |user| user.microposts.create!(content: content) }
+    end   
+ end
+end

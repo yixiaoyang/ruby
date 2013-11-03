@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # dependent设置依赖关系，删除user时，其所属的micropost也会被destroy
+  has_many :microposts , dependent: :destroy
+
   # check name
   validates :name, presence:true, length: { maximum: 64 }
   
@@ -70,6 +73,12 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end  
     
+  def feed
+    # 问号可以确保 id 的值在传入底层的 SQL 查询语句之前做了适当的转义
+    # 避免“SQL 注入”这种严重的安全隐患
+    Micropost.where("user_id = ?", id)
+  end
+  
   private
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)

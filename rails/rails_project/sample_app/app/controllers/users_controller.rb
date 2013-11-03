@@ -27,6 +27,8 @@ class UsersController < ApplicationController
       else
       end
     end
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 10)
+    
     # 用户只能访问自己的user信息, 一种unRuby的实现...
     #if @current_user[:id].to_s != params[:id].to_s
     #  flash[:notice] = "Fobidden access to user #{params[:id]}"
@@ -86,7 +88,7 @@ class UsersController < ApplicationController
 
   def index
     # params由will_paginate自动生成，默认取回30个条目
-    @users = User.paginate(page: params[:page], per_page:10)
+    @users = User.paginate(page: params[:page], per_page: 10)
   end
   
   def destroy
@@ -106,14 +108,6 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
     
-    def signed_in_check
-      unless signed_in?
-        # 记录检查前的页面url，以便在完成登录后跳转
-        save_location
-        redirect_to signin_url, notice:"Sign in please"    
-      end
-    end
-
     def correct_user_check
       # 注意find的用法和find_by的区别
       @user = User.find_by(:id => params[:id])

@@ -64,4 +64,11 @@ module SessionsHelper
     session.delete(:return_to)
   end
   
+  def signed_in_check
+    unless signed_in?
+      # 记录检查前的页面url，以便在完成登录后跳转
+      save_location
+      redirect_to signin_url, notice:"Sign in please"    
+    end
+  end
 end

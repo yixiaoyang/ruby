@@ -1,13 +1,20 @@
 <% provide(:title, @user.name)%>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
+  <aside class="span3">
+    <%= render 'shared/my_info' %>
   </aside>
+  
+  <div class="span9 ">
+    <%if @user.microposts.any? %>
+      <h3>Micropost ( <%= @user.microposts.count %> )</h3>
+       <ol class="microposts">
+         <!-- 局部视图存放在微博对应的视图文件夹中 --> 
+         <%= render @microposts %>
+       </ol>
+       <!-- 翻页支持 -->
+       <%= will_paginate @microposts %>
+    <%end%>
+  </div>
 </div>
 <p>Find me in app/views/users/show.html.erb<br>
 name:<%= @user.name%>, email:<%= @user.email%></p>
