@@ -4,6 +4,7 @@ class MicropostsController < ApplicationController
   include SessionsHelper
   
   before_action :signed_in_check, only:[:create, :destroy]
+  before_action :micropost_user_check, only:[:destroy]
   
   def index
   end
@@ -22,10 +23,22 @@ class MicropostsController < ApplicationController
   end
   
   def destroy
+    micropost = current_user.microposts.find_by(:id => params[:id])
+    micropost.destroy
+    flash[:success] = "Post destroyed"
+    redirect_to current_users_path
   end
   
   private
     def micropost_params
       params.require(:micropost).permit(:content)
+    end
+    
+    def micropost_user_check
+      micropost = current_user.microposts.find_by(:id => params[:id])
+      if  micropost.nil?
+        flash[:error] = "Not your post, destroy failed"
+        redirect_to current_users_path
+      end
     end
 end

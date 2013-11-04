@@ -93,7 +93,6 @@ class UsersController < ApplicationController
   
   def destroy
     user = User.find(params[:id])
-    p user
     user.destroy
     flash[:success] = "User destroyed"
     redirect_to users_url

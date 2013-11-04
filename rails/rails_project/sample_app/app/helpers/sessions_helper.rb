@@ -71,4 +71,8 @@ module SessionsHelper
       redirect_to signin_url, notice:"Sign in please"    
     end
   end
+  
+  def current_users_path
+    users_path + "/" + current_user[:id].to_s
+  end
 end
