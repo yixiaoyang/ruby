@@ -36,9 +36,13 @@ class MicropostsController < ApplicationController
     
     def micropost_user_check
       micropost = current_user.microposts.find_by(:id => params[:id])
-      if  micropost.nil?
+      rescue
         flash[:error] = "Not your post, destroy failed"
         redirect_to current_users_path
       end
+      #if  micropost.nil?
+      #  flash[:error] = "Not your post, destroy failed"
+      #  redirect_to current_users_path
+      #end
     end
 end
