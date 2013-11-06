@@ -1,7 +1,20 @@
 class User < ActiveRecord::Base
   # dependent设置依赖关系，删除user时，其所属的micropost也会被destroy
   has_many :microposts , dependent: :destroy
+  
+  # 需要告知rails外键的变化
+  has_many :follow_relationships, foreign_key: "follower_id", dependent: :destroy
+  # 使用followed_users表示其关注的用户的集合即source指定的followed集合
+  has_many :followed_users, through: :follow_relationships, source: :followed
 
+  # 创建一个model‘类’reverse_relationships表示被关注者id是user.id的集合
+  has_many :reverse_follow_relationships, foreign_key: "followed_id",
+                                   class_name:  "FollowRelationship",
+                                   dependent:   :destroy
+  # 关注User的用户列表，对于:followers 属性而言，Rails 会把“followers”转成单数形式，
+  # 自动寻找名为 follower_id 的外键
+  has_many :followers, through: :reverse_follow_relationships, source: :follower
+  
   # check name
   validates :name, presence:true, length: { maximum: 64 }
   
@@ -77,6 +90,21 @@ class User < ActiveRecord::Base
     # 问号可以确保 id 的值在传入底层的 SQL 查询语句之前做了适当的转义
     # 避免“SQL 注入”这种严重的安全隐患
     Micropost.where("user_id = ?", id)
+  end
+  
+  
+  # 一个user是否关注了other_user
+  def following?(other_user)
+    follow_relationships.find_by(followed_id: other_user.id)
+  end
+
+  # 加!一般表示可能有异常抛出
+  def follow!(other_user)
+    follow_relationships.create!(followed_id: other_user.id)
+  end
+  
+  def unfollow!(other_user)
+    follow_relationships.create!(followed_id: other_user.id).destroy
   end
   
   private

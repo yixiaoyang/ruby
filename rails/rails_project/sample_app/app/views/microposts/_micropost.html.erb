@@ -7,7 +7,7 @@
   <% if !@user.nil? && current_user?(@user) %>
     <%=link_to "Delete", micropost, method: :delete, 
                                     data:{ confirm:"You sure?" },
-                                    title: micropost.conten   %>
+                                    title: micropost.content   %>
   <% end%>
 
 </li> 

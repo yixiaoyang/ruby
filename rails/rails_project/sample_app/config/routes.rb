@@ -8,14 +8,20 @@ SampleApp::Application.routes.draw do
   #get "pages/home"
   #get "pages/contact"
 
-  # add REST resource
-  resources :users  
+  # add REST resource,响应get，得到类似 /users/1/following 和 /users/1/followers的url
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   
   # 没必要显示或编辑 session，为 resources 方法指定:only 选项new、create 和 destroy 动作
   resources :sessions, only:[:new, :create, :destroy]
   
   # micropost resources
   resources :microposts, only: [:create, :destroy]
+  
+  resources :follow_relationships , only: [:create, :destroy]
   
   # use named router, 19Oct13
   root to: 'pages#home'

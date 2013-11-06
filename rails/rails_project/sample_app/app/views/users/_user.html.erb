@@ -4,4 +4,6 @@
 <% if current_user.admin? && !current_user?(user) %>
   | <%= link_to "delete", user, method: :delete, data:{ confirm:"You sure?" }   %>
 <% end %>
+| <%= link_to "Follow",  follow_relationships, method: :create %>
+| <%= link_to "Unfollow", follow_relationships, method: :delete, data:{ confirm:"You sure?" }  %>
 </li>
