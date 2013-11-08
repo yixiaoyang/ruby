@@ -11,7 +11,7 @@ SampleApp::Application.routes.draw do
   # add REST resource,响应get，得到类似 /users/1/following 和 /users/1/followers的url
   resources :users do
     member do
-      get :following, :followers
+      get :following, :listener
     end
   end
   
@@ -30,8 +30,10 @@ SampleApp::Application.routes.draw do
   match '/contact',   to: 'pages#contact',    via: 'get'
   match '/not_found',   to: 'pages#404',      via: 'get'
   
-  match '/users',     to: 'users#index',      via: 'get'
-  match '/users/:id/edit',  to: 'users#edit', via: 'get'
+  #match '/users',     to: 'users#index',      via: 'get'
+  #match '/users/:id/edit',  to: 'users#edit', via: 'get'
+  #match '/users/:id/following',   to: 'users#following',  via: 'get'
+  #match '/users/:id/listener',    to: 'users#listener',   via: 'get'
   match '/signup',    to: 'users#new',        via: 'get'
   match '/signin',    to: 'sessions#new',     via: 'get'
 

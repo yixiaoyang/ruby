@@ -97,6 +97,22 @@ class UsersController < ApplicationController
     flash[:success] = "User destroyed"
     redirect_to users_url
   end
+  
+  
+  def listener
+    @title = "Listener"
+    @user = User.find(params[:id])
+    p @user.followers
+    @users = @user.followers.paginate(page: params[:page], per_page:10)
+    render 'show_follow'
+  end
+  
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page], per_page:10)
+    render 'show_follow'
+  end
 
   private
     # 使用健壮参数而非User.find_by(params[:id]);

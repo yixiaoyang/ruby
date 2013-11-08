@@ -1,0 +1,26 @@
+<%= provide(:title, @title) %>
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span3">
+      <section>
+        <%= render 'shared/my_info' %>
+      </section>
+    </aside>
+    <span class="span9">
+      <% if !@user.nil? %>
+       <h3><%= "#{@title} ( #{@users.count} ) " %></h3>
+       <ul class="users">
+        <%= render @users %>
+       </ul>
+      <% else%>
+        <h3><%= "#{@title} ( 0 ) " %></h3>
+        No users.<br>
+      <% end %>
+    </span>
+  </div>
+<% else %>
+  <p>
+  <%= link_to "Sign Up Now!", signup_path, :class => "btn btn-large btn-primary"%>
+  <br>
+<% end%>
+
