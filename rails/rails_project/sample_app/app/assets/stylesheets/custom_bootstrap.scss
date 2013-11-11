@@ -229,6 +229,11 @@ a.signup_button {
       &:last-child{
         border-bottom: 1px solid $grayLighter;
       }
+      
+      div { 
+        float:right;
+        display:inline;  
+      }
   }
 }
 
@@ -265,3 +270,5 @@ a.signup_button {
 .follow_title{
   font-size: 1.8em; 
 }
+
+

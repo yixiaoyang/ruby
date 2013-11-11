@@ -4,6 +4,14 @@
 <% if current_user.admin? && !current_user?(user) %>
   | <%= link_to "delete", user, method: :delete, data:{ confirm:"You sure?" }   %>
 <% end %>
-| <%= link_to "Follow",  user, method: :create %>
-| <%= link_to "Unfollow", user, method: :delete, data:{ confirm:"You sure?" }  %>
+<% unless current_user?(user)%>
+	<div id="follow_form">
+		<% if current_user.following?(user) %>
+			<!-- 此处会查找_unfollow.thml.erb子视图  -->
+			<%= render 'unfollow', followed_user: user  %>
+		<% else %>
+			<%= render 'follow', followed_user: user %>
+		<% end %>
+  </div>
+<% end %>
 </li>

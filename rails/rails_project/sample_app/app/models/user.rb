@@ -92,7 +92,6 @@ class User < ActiveRecord::Base
     Micropost.where("user_id = ?", id)
   end
   
-  
   # 一个user是否关注了other_user
   def following?(other_user)
     follow_relationships.find_by(followed_id: other_user.id)
@@ -100,13 +99,19 @@ class User < ActiveRecord::Base
 
   # 加!一般表示可能有异常抛出
   def follow!(other_user)
+    begin
     follow_relationships.create!(followed_id: other_user.id)
+    rescue ActiveRecord::RecordNotUnique
+    else  
+    end
+    
   end
   
   def unfollow!(other_user)
-    follow_relationships.create!(followed_id: other_user.id).destroy
+    relationship = follow_relationships.find_by(followed_id: other_user.id)
+    relationship.destroy unless relationship.nil?
   end
-  
+ 
   private
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
