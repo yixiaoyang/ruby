@@ -1,3 +1,4 @@
+<% @user = user %>
 <li>
 <%= link_to gravatar_for(user), user%>
 <%= link_to user.name, user %>
@@ -5,13 +6,6 @@
   | <%= link_to "delete", user, method: :delete, data:{ confirm:"You sure?" }   %>
 <% end %>
 <% unless current_user?(user)%>
-	<div id="follow_form">
-		<% if current_user.following?(user) %>
-			<!-- 此处会查找_unfollow.thml.erb子视图  -->
-			<%= render 'unfollow', followed_user: user  %>
-		<% else %>
-			<%= render 'follow', followed_user: user %>
-		<% end %>
-  </div>
+<%= render 'shared/follow_form' %>
 <% end %>
 </li>

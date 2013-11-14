@@ -1,0 +1,10 @@
+<div id="follow_form_<%=@user.id%>">
+  <% if current_user.following?(@user) %>
+    <!-- 此处会查找_unfollow.thml.erb子视图  -->
+    <% p "curent user #{current_user.name} following #{@user.name}"%>
+    <%= render 'shared/unfollow' %>
+  <% else %>
+    <% p "curent user #{current_user.name} not following #{@user.name}"%>
+    <%= render 'shared/follow' %>
+  <% end %>
+</div>

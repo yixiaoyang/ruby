@@ -1,4 +1,0 @@
-<%= form_for(current_user.follow_relationships.find_by(followed_id: followed_user), html: { method: :delete }) do |f| %>
-  <!--发送的是 DELETE 请求，销毁“关系-->
-  <%= f.submit "Unfollow", class: "btn btn-small" %>
-<% end %>
