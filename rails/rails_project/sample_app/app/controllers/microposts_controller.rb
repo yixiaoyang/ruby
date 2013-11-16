@@ -28,6 +28,7 @@ class MicropostsController < ApplicationController
     flash[:success] = "Post destroyed"
     redirect_to current_users_path
   end
+ 
   
   private
     def micropost_params

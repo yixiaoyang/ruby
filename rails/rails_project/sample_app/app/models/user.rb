@@ -89,7 +89,8 @@ class User < ActiveRecord::Base
   def feed
     # 问号可以确保 id 的值在传入底层的 SQL 查询语句之前做了适当的转义
     # 避免“SQL 注入”这种严重的安全隐患
-    Micropost.where("user_id = ?", id)
+    # Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
   
   # 一个user是否关注了other_user
