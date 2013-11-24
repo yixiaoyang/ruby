@@ -12,6 +12,23 @@ RubyRss4Kindle::Application.routes.draw do
   match '/contact',   to: 'pages#contact',    via: 'get'
   match '/not_found',   to: 'pages#404',      via: 'get'
   
+  # add REST resource,响应get，得到类似 /users/1/following 和 /users/1/followers的url
+  resources :users do
+    member do
+      get :following, :listener
+    end
+  end
+ 
+  # 没必要显示或编辑 session，为 resources 方法指定:only 选项new、create 和 destroy 动作
+  resources :sessions, only:[:new, :create, :destroy]
+  
+  
+  match '/signup',    to: 'users#new',        via: 'get'
+  match '/signin',    to: 'sessions#new',     via: 'get'
+  # 因为sessions 资源指定了 :only new、create 和 destroy 动作
+  # 所以在次指明 destroy 动作要使用 DELETE 请求
+  match '/signout',   to: 'sessions#destroy',     via: 'delete'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

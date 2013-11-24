@@ -1,0 +1,14 @@
+<% @user ||= current_user %>
+<div class="myinfo">
+  <dl>
+  <section>
+    <h1>
+      <%= link_to gravatar_for(@user), @user %>
+      <%= link_to "#{@user.name}", current_user %>
+    </h1>
+  </section>
+  </dl>
+  <ul>
+    <%= render 'shared/stat' %>
+  </ul>
+</div>

@@ -1,22 +1,22 @@
 <%= provide(:title, @title) %>
 <h1><%= @title %></h1>
-
-<div class="row">
-  <aside class="span3">
-    <section>
-      My Channels
-    </section>
-  </aside>
-  <span class="span9">
-   <section>
-      My RSS
-   </section>
-   All Feads
-  </span>
-</div>
-
-<p>
-<%= link_to "Sign Up Now!", "#", :class => "btn btn-large btn-primary"%>
-<br>
-
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span3">
+      <section>
+        <%= render 'shared/my_info' %>
+      </section>
+    </aside>
+    <span class="span9">
+     <section>
+        Channels
+     </section>
+        Feeds
+    </span>
+  </div>
+<% else %>
+  <p>
+  <%= link_to "Sign Up Now!", signup_path, :class => "btn btn-large btn-primary"%>
+  <br>
+<% end%>
 
