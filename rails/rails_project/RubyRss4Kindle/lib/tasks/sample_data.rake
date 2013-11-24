@@ -3,6 +3,7 @@ namespace :db do
   # 保证raker获取到rails环境信息包括User模型
   task populate: :environment do
     make_users
+    make_channels
   end
 end
 
@@ -22,5 +23,19 @@ def make_users
                  email:email,
                  password:password,
                  password_confirmation:password )
+  end
+end
+
+
+def make_channels  
+  15.times do |n|
+    title = "Channel#{n}"
+    description = "Description for Channel #{n}"
+    url = "www.baidu.com/news/rss/channel/#{n}"
+    user_id = n%10+1
+    Channel.create!(url:url,
+                    title:title,
+                    user_id:user_id,
+                    description:description)
   end
 end

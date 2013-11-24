@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # user has channels
+  has_many :channels, foreign_key: "user_id"
+  
   # check name
   validates :name, presence:true, length: { maximum: 64 }
   
@@ -75,13 +78,11 @@ class User < ActiveRecord::Base
   
   # 一个user是否关注了other_user
   def following?(other_user)
-    
   end
   
   # 加!一般表示可能有异常抛出
   def follow!(other_user)
     begin
-      
     rescue ActiveRecord::RecordNotUnique
     else  
     end

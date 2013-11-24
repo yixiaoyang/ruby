@@ -1,0 +1,7 @@
+<%= form_for @channel  do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="channel_form_field">
+    <%= f.text_area :url, placeholder: "RSS channel...", rows: 1 %>
+    <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
 
   # 登录检测的先前过滤器
-  before_action :signed_in_check, only:[:edit, :update, :show, :index, :destroy]
+  before_action :signed_in_check, only:[:edit, :update, :show, :index, :destroy, :following]
   # 检测权限的先前过滤器
   before_action :correct_user_check,  only:[:edit, :update]
   # 删除前确认是管理员
@@ -71,7 +71,15 @@ class UsersController < ApplicationController
   end
  
   def following
-    @title = "Following"
+    @title = "My Channels"
+    @user = current_user
+    @channels = @user.channels
+    @channel = @user.channels.build
+    
+    p @channel
+    
+    save_location
+    render 'show_channels'
   end
 
   private

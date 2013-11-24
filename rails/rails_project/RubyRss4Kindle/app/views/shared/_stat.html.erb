@@ -1,12 +1,8 @@
-<li>
-  <strong>12</strong><br>
-  <%=link_to "Posted", "#{users_path}/#{@user[:id]}"%>
+<li> 
+  <strong><%= @user.channels.count %></strong><br>
+  <%=link_to "Channels", following_user_path(@user.id)  %>
 </li>
 <li>
   <strong>13</strong><br>
-  <%=link_to "Listener",  listener_user_path(@user.id)  %>
-</li>
-<li> 
-  <strong>14</strong><br>
-  <%=link_to "Following", following_user_path(@user.id)  %>
+  <%=link_to "Friends",  friends_user_path(@user.id)  %>
 </li>

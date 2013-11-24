@@ -1,0 +1,10 @@
+<% @channel = channel %>
+<li>
+<%= channel.title %><br>
+<%= channel.url %><br>
+<%= channel.description %><br>
+
+<% if current_user.admin? && !current_user?(@user) %>
+  | <%= link_to "delete", channel, method: :delete, data:{ confirm:"You sure?" }   %>
+<% end %>
+</li>
