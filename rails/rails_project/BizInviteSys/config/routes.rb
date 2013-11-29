@@ -9,6 +9,17 @@ BizInviteSys::Application.routes.draw do
   
   match '/about',     to: 'pages#about',      via: 'get'
   match '/home',      to: 'pages#home',       via: 'get'
+  match '/signup',    to: 'users#new',        via: 'get'
+  match '/signin',    to: 'sessions#new',     via: 'get'
+  match '/signout',   to: 'sessions#destroy',     via: 'delete'
+  
+  resources :users do
+    member do
+      get :status
+    end
+  end
+  
+  resources :sessions, only:[:new, :create, :destroy]
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

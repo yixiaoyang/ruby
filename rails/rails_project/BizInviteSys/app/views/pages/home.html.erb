@@ -1,20 +1,19 @@
 <%= provide(:title, @title) %>
-<h1><%= @title %></h1>
+<% if signed_in? %>
   <div class="row">
     <aside class="span3">
       <section>
-        Invi..
+        <%= render 'shared/my_info' %>
       </section>
     </aside>
     <span class="span9">
-     <section>
+      <section>
         My stuff..
-     </section>
+      </section>
     </span>
-  </div> 
-<!--
-  <p>
-<%= link_to "Sign In Now!", "#", :class => "btn btn-large btn-primary"%>
-<br>
--->
+  </div>
+<% else %>
+  <h3>We're Waiting for Your </h3><br>
+  <%= link_to "Sign In Now!", "#", :class => "btn btn-large btn-primary"%><br>
+<% end %>
 

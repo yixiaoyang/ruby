@@ -4,7 +4,6 @@
 $grayMediumLight: #eaeaea;
 
 /* universal */
-
 html {
   overflow-y: scroll;
 }
@@ -57,6 +56,9 @@ p {
 
 
 /* header */
+.navbar-inverse .navbar-inner {
+    /*background-image: linear-gradient(to bottom, $greenDarker,$greenDarker);*/
+}
 
 #logo {
   float: left;

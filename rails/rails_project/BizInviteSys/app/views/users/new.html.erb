@@ -1,0 +1,33 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <!--生成表单-->
+    <%= form_for(@user) do |f| %>
+    
+      <!--在下面的代码中渲染的局部视图名为 shared/error_messages，这里用到了 Rails 的一个约定：
+          如果局部视图要在多个控制器中使用，则把它存放在专门的 shared 目录下-->
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :name %>
+      <%= f.text_field :name%>
+      
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      
+      <!--
+       生成代码：
+         <label for="user_password_confirmation">Confirmation</label>
+         <input id="user_password_confirmation" name="user[password_confirmation]" type="password" />
+         <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create my account" />
+      -->
+      <%= f.label :password_confirmation, "Confirmation"%>
+      <%= f.password_field :password_confirmation%>
+      
+      <%= f.submit "Create my account", class:"btn btn-large btn-primary"%>
+    <% end %>
+  </div>
+</div>
+
