@@ -13,6 +13,8 @@ BizInviteSys::Application.routes.draw do
   match '/signin',    to: 'sessions#new',     via: 'get'
   match '/signout',   to: 'sessions#destroy',     via: 'delete'
   
+  match '/not_found',   to: 'pages#404',      via: 'get'
+  
   resources :users do
     member do
       get :status
@@ -69,4 +71,5 @@ BizInviteSys::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  # match "*path",  to:'pages#404',      via: 'get'
 end
