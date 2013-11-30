@@ -23,7 +23,8 @@
 SEX_WORDS = ["male","female"]
 DEGREE_WORDS = ["Bachelor","Master","Doctor"]
 CATEGORY_WORDS = ["Should", "General", "Other"]
-
+PROFILE_CAT = ["School","Society"]
+PROFILE_STATS = ["Pass","Pending","Reject"]
 namespace :db do
   desc "Generate Data for Project"
   task populate: :environment do
@@ -43,8 +44,13 @@ namespace :db do
   desc "Generate skills for Project"
   task skills:  :environment do
     make_skills
+    make_skill_items
   end
-
+  
+  desc "Generate profiles for Project"
+  task profiles:  :environment do
+    make_profiles
+  end
 end
 
 def make_users
@@ -58,6 +64,7 @@ def make_users
     name = "user#{n}"
     email = "user#{n}@biz.com" 
     password = "123456"
+    profile_id = rand()
     User.create!(name:name,
                  email:email,
                  password:password,
@@ -66,7 +73,7 @@ def make_users
 end
 
 def make_personalDetails
-  50.times do |n|
+  20.times do |n|
     name = Faker::Name.first_name+"."+ Faker::Name.last_name
     # 18..38
     age = rand(20) + 18 
@@ -74,11 +81,13 @@ def make_personalDetails
     sex = SEX_WORDS[rand(2)+0]
     mobile =  Faker::PhoneNumber.phone_number
     email = Faker::Internet.email
+    
     PersonalDetail.create!(name:name,
                  age:age,
                  sex:sex,
                  email:email,
-                 mobile:mobile )
+                 mobile:mobile,
+                 profile_id:n)
   end
 end
 
@@ -89,7 +98,8 @@ def make_educations
     description =  Faker::Lorem.sentence(word_count=15)
     Education.create!(timeZone:timeZone,
                       degree:degree,
-                      description:description)
+                      description:description,
+                      profile_id:n)
   end
 end
 
@@ -103,4 +113,26 @@ def make_skills
                       category:category,
                       description:description)
   end
+end
+
+def make_skill_items
+  10.times do |prodile_id|
+    6.times do |n|
+      skill_id = n;
+      SkillItem.create!(profile_id:prodile_id,
+                    skill_id:n)
+    end
+  end
+end
+
+def make_profiles
+  20.times do |n|
+    category = PROFILE_CAT[rand(2)+0]
+    score = rand(10) + 60
+    stat = PROFILE_STATS[rand(3)+0]
+    Profile.create!(score:score,
+                  category:category,
+                  stat:stat,
+                  user_id:n)
+                 end
 end

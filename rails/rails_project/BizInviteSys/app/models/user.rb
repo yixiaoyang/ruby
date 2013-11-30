@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # 一个用户有多个profile，每个profile在用户被删除后都自动被删除
+  has_many :profiles, dependent: :destroy
+  
   # check name
   validates :name, presence:true, length: { maximum: 64 }
   
@@ -8,10 +11,9 @@ class User < ActiveRecord::Base
   # for session token
   before_create :create_remember_token
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, 
              uniqueness: { case_sensitive: false }
-  validates :email, presence:true
+  #validates :email, presence:true
   
   # password check
   has_secure_password

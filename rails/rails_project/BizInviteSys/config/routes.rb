@@ -1,6 +1,4 @@
 BizInviteSys::Application.routes.draw do
-  resources :profiles
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -24,6 +22,8 @@ BizInviteSys::Application.routes.draw do
   end
   
   resources :sessions, only:[:new, :create, :destroy]
+
+  resources :profiles
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

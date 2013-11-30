@@ -4,7 +4,6 @@ class CreateSkills < ActiveRecord::Migration
       t.string :category
       t.integer :score
       t.string :description
-      t.integer :profile_id
 
       t.timestamps
     end
