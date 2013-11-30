@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @profile.category %>
+</p>
+
+<p>
+  <strong>Stat:</strong>
+  <%= @profile.stat %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @profile.score %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>

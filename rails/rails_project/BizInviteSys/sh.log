@@ -1,0 +1,18 @@
+-- create_table("educations", {:force=>true})
+   -> 0.1443s
+-- create_table("judgments", {:force=>true})
+   -> 0.1006s
+-- create_table("personal_details", {:force=>true})
+   -> 0.0923s
+-- create_table("profiles", {:force=>true})
+   -> 0.1087s
+-- create_table("skills", {:force=>true})
+   -> 0.1089s
+-- create_table("users", {:force=>true})
+   -> 0.1088s
+-- add_index("users", ["email"], {:name=>"index_users_on_email", :unique=>true})
+   -> 0.1088s
+-- add_index("users", ["remember_token"], {:name=>"index_users_on_remember_token"})
+   -> 0.1088s
+-- initialize_schema_migrations_table()
+   -> 0.2261s

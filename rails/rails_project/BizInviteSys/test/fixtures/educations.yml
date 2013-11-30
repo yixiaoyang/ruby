@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  timeZone: MyString
+  degree: MyString
+  description: MyString
+  profile_id: 1
+
+two:
+  timeZone: MyString
+  degree: MyString
+  description: MyString
+  profile_id: 1

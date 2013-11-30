@@ -11,7 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128163828) do
+ActiveRecord::Schema.define(version: 20131130054720) do
+
+  create_table "educations", force: true do |t|
+    t.string   "timeZone"
+    t.string   "degree"
+    t.string   "description"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personal_details", force: true do |t|
+    t.string   "name"
+    t.integer  "age"
+    t.string   "sex"
+    t.string   "email"
+    t.string   "mobile"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", force: true do |t|
+    t.string   "category"
+    t.string   "stat"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skills", force: true do |t|
+    t.string   "category"
+    t.integer  "score"
+    t.string   "description"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
