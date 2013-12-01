@@ -22,8 +22,12 @@ BizInviteSys::Application.routes.draw do
   end
   
   resources :sessions, only:[:new, :create, :destroy]
-
+  
   resources :profiles
+  resources :educations
+  resources :skill_items
+  resources :personal_details
+  resources :skills
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

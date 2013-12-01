@@ -1,0 +1,21 @@
+<% provide(:title, "Education")%>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <%= will_paginate %>
+      <ol>
+        <%= render @educations%>
+      </ol>
+    <%= will_paginate %>
+  </div>
+</div>
+<br>
+
+<%= link_to 'New Education', new_education_path %>

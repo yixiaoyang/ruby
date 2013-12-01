@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<li>
+  <p>
+    <strong>skill_id:</strong>
+    <%= best_in_place @skill_item, :skill_id %>
+  </p>
+  <p>
+    <strong>profile_id:</strong>
+    <%= best_in_place @skill_item, :profile_id %>
+  </p>
+</li>
+
+<%= link_to 'Edit Profile', edit_skill_item_path(@skill_item),:class => "btn btn-large btn-primary"%>
+<%= link_to 'Back', skill_items_path, :class => "btn btn-large btn-primary" %>

@@ -1,0 +1,25 @@
+<li>
+  <div>
+    <p>
+      <strong>TimeZone:</strong>
+      <%= best_in_place education, :timeZone %>
+
+      <br>
+      <strong>Degree:</strong>
+      <%= best_in_place education, :degree %>
+      
+      <br>
+      <strong>Description:</strong>
+      <%= best_in_place education, :description, type: :textarea%>
+  </p>
+  </div>
+  <%= link_to 'Show', education %> |
+  <%= link_to 'Edit', edit_education_path(education) %>
+  <% if current_user.admin? %>
+    | <%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</li>
+
+
+
+

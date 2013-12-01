@@ -1,5 +1,5 @@
 <h1>Listing profiles</h1>
-
+<%= will_paginate %>
 <table>
   <thead>
     <tr>
@@ -25,7 +25,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate %>
 
 <br>
-
 <%= link_to 'New Profile', new_profile_path %>
