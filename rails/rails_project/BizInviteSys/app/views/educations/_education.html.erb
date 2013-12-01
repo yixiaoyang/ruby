@@ -1,16 +1,18 @@
 <li>
-  <div>
+  <div class="best_in_place_div">
     <p>
       <strong>TimeZone:</strong>
       <%= best_in_place education, :timeZone %>
 
       <br>
       <strong>Degree:</strong>
-      <%= best_in_place education, :degree %>
       
+      <%= best_in_place education, :degree, :type => :select,
+                                    :collection => [["Degree", "Degree"],["Master", "Master"],["Doctor", "Doctor"],["Other", "Other"]] %>
+   
       <br>
       <strong>Description:</strong>
-      <%= best_in_place education, :description, type: :textarea%>
+      <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false %>
   </p>
   </div>
   <%= link_to 'Show', education %> |

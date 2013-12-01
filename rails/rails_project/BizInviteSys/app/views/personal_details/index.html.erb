@@ -1,25 +1,23 @@
 <h1>Listing personal_details</h1>
+<% provide(:title, 'All Personal Details')%>
+<div class="row">
+<aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <%= will_paginate %>
+    <ul class="users">
+        <%= render @personal_details %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @personal_details.each do |personal_detail| %>
-      <tr>
-        <td><%= link_to 'Show', personal_detail %></td>
-        <td><%= link_to 'Edit', edit_personal_detail_path(personal_detail) %></td>
-        <td><%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<end>
 
 <br>
-
 <%= link_to 'New Personal detail', new_personal_detail_path %>
+

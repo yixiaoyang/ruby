@@ -1,10 +1,12 @@
 class PersonalDetailsController < ApplicationController
+  respond_to :html, :json
+  
   before_action :set_personal_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /personal_details
   # GET /personal_details.json
   def index
-    @personal_details = PersonalDetail.all
+    @personal_details = PersonalDetail.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /personal_details/1

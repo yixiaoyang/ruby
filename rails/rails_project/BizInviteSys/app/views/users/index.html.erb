@@ -1,13 +1,24 @@
 <% provide(:title, 'All Users')%>
 <h1>All Users</h1>
-<%= will_paginate %>
-<ul class="users">
-    <!-- 1.render 的参数不再是指定局部视图的字符串，而是代表 User 类的 user 变量
-         Rails 会自定寻找一个名为 _user.html.erb 的局部视图
-         
-         2.Rails 会把 @users 当作一系列的 User 对象，遍历这些对象，然后使用 _user.html.erb 渲染每个对象
-    -->
-    <%= render @users %>
-</ul>
-<!-- will_paginate的分页需要调用对象集合的paginate方法 -->
-<%= will_paginate %>
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+
+  <div class="span9 ">
+    <%= will_paginate %>
+    <ul class="users">
+        <!-- 1.render 的参数不再是指定局部视图的字符串，而是代表 User 类的 user 变量
+            Rails 会自定寻找一个名为 _user.html.erb 的局部视图
+            
+            2.Rails 会把 @users 当作一系列的 User 对象，遍历这些对象，然后使用 _user.html.erb 渲染每个对象
+        -->
+        <%= render @users %>
+    </ul>
+    <!-- will_paginate的分页需要调用对象集合的paginate方法 -->
+    <%= will_paginate %>
+  </div>
+
+</div>

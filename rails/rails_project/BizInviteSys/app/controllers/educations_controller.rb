@@ -48,16 +48,9 @@ class EducationsController < ApplicationController
       p @education
       if @education.update(education_params)
         p "1"
-        format.html { 
-          p "update as HTML"
-          redirect_to @education, notice: 'Education was successfully updated.' }
-        format.json {
-          p "update as jscon no content"
-          head :no_content
-          redirect_to educations_url
-        }
+        format.html { redirect_to @education, notice: 'Education was successfully updated.' }
+        format.json { head :no_content }
       else
-        p "2"
         format.html { 
           p "update as HTML2"
           render action: 'edit' }

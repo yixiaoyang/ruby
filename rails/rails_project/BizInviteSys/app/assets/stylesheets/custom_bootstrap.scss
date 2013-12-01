@@ -220,9 +220,11 @@ a.signup_button {
 
  
 /* users list */
+
+/* ul users */
 .users {
   list-style:none;
-  margin: 0;
+  margin: 0px;
   li {
       overflow:auto;
       padding: 10px 0;
@@ -288,7 +290,7 @@ a.signup_button {
 
 
 .best_in_place{
-  input, textarea, select, .uneditable-input {
+  input, select, .uneditable-input {
     border: 1px solid #bbb;
     width: auto;
     margin-bottom: 15px;

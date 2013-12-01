@@ -1,4 +1,22 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Show skills")%>
+<h1>Show skills</h1>
 
-<%= link_to 'Edit', edit_skill_path(@skill) %> |
-<%= link_to 'Back', skills_path %>
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <ol class="users">
+      <%= render @skill%>
+      <%= link_to "All Skils",skills_path%>
+    </ol>
+  </div>
+</div>
+<br>
+
+
+<br>
+<%= link_to 'New Skill', new_skill_path %>

@@ -1,5 +1,5 @@
 <li>
-<span>
+<div class="best_in_place_div">
 <p>
   <strong>skill_id:</strong>
   <%= best_in_place skill_item, :skill_id %>
@@ -8,7 +8,7 @@
   <strong>profile_id:</strong>
   <%= best_in_place skill_item, :profile_id %>
 </p>
-</span>
+<div class="best_in_place_div">
 <span><%= link_to 'Show', skill_item %></span>
 <span><%= link_to 'Edit', edit_skill_item_path(skill_item) %></span>
 <span><%= link_to 'Destroy', skill_item, method: :delete, data: { confirm: 'Are you sure?' } %></span>

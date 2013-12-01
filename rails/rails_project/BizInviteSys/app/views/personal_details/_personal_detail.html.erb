@@ -1,0 +1,27 @@
+<li>
+  <div class="best_in_place_div">
+    <p>
+      <strong>Name:</strong>
+      <%= best_in_place personal_detail, :name %>
+
+      <br>
+      <strong>Age:</strong>
+      <%= best_in_place personal_detail, :age %>
+      
+      <br>
+      <strong>Sex:</strong>
+      <%= best_in_place personal_detail, :sex %>
+
+      <br>
+      <strong>email:</strong>
+      <%= best_in_place personal_detail, :email %>
+      
+      <br>
+      <strong>profile_id:</strong>
+      <%= personal_detail.profile_id %>
+  </p>
+  </div>
+  <%= link_to 'Show', personal_detail %>|
+  <%= link_to 'Edit', edit_personal_detail_path(personal_detail) %>|
+  <%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } %>  
+</li>
