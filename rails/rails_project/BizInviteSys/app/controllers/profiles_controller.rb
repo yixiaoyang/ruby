@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  respond_to :html, :json
+  
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles

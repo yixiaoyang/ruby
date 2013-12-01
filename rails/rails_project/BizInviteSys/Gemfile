@@ -56,6 +56,8 @@ gem 'bootstrap-will_paginate'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'faker'
 
+gem 'jquery-ui-rails'
+gem 'best_in_place', github: 'bernat/best_in_place'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
