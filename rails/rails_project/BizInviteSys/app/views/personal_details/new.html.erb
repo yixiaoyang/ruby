@@ -1,5 +1,22 @@
 <h1>New personal_detail</h1>
 
-<%= render 'form' %>
+<% provide(:title, 'All Personal Details')%>
+<div class="row">
+<aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <ul class="users">
+        <%= render 'form' %>
+    </ul>
+  </div>
+</div>
 
+<end>
+
+<br>
+<%= link_to 'New Personal detail', new_personal_detail_path %>
 <%= link_to 'Back', personal_details_path %>

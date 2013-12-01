@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130134636) do
+ActiveRecord::Schema.define(version: 20131201085839) do
 
   create_table "educations", force: true do |t|
-    t.string   "timeZone"
-    t.string   "degree"
+    t.integer  "degree",      limit: 255
     t.string   "description"
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "stime"
+    t.datetime "etime"
   end
 
   create_table "personal_details", force: true do |t|
     t.string   "name"
     t.integer  "age"
-    t.string   "sex"
+    t.integer  "sex",        limit: 255
     t.string   "email"
     t.string   "mobile"
     t.integer  "profile_id"
@@ -34,8 +35,8 @@ ActiveRecord::Schema.define(version: 20131130134636) do
   end
 
   create_table "profiles", force: true do |t|
-    t.string   "category"
-    t.string   "stat"
+    t.integer  "category",   limit: 255
+    t.integer  "stat",       limit: 255
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(version: 20131130134636) do
   end
 
   create_table "skills", force: true do |t|
-    t.string   "category"
+    t.integer  "category",    limit: 255
     t.integer  "score"
     t.string   "description"
     t.datetime "created_at"

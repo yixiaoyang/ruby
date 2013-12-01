@@ -1,0 +1,8 @@
+<% profiles.each { |p| %>
+  <tr class="danger">
+  <td><%= link_to p.id, p%></td>
+  <td><%=p.stat%></td>
+  <td><%=p.category%></td>
+  <td><%=p.score%></td>
+</tr>
+<% } %>

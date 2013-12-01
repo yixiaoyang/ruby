@@ -1,17 +1,62 @@
-<%= form_for(@personal_detail) do |f| %>
-  <% if @personal_detail.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@personal_detail.errors.count, "error") %> prohibited this personal_detail from being saved:</h2>
+<!--
+All field:
+t.string :name
+t.integer :age
+t.string :sex
+t.string :email
+t.string :mobile
+t.integer :profile_id
+-->
+<div class="inline_form">
+  <%= form_for(@personal_detail, class:"form-horizontal",role:"form") do |f| %>
+    <div class="form_field">
+      <%= render 'shared/error_messages', object: f.object %>
+      
+        <div class="form-group">
+          <%= f.label :name, for:"personal_detail_name", class:"col-sm-2 control-label" %>
+          <%= f.text_field :name, type:"text", class:"form-control", placeholder:"Enter name"%>
+        </div>
+        
+        <!-- radio_button_tag(name, value, checked = false, options = {})  -->
+        <div class="form-group">
+          <%= f.label :sex, class:"col-sm-2 control-label", for:"sex_div"%>
+          <div id="sex_div">
+          <% sex_option_str = '<option value="0">' + SEX_WORDS[0] + '</option>' + 
+                              '<option value="1">' + SEX_WORDS[1] + '</option>' %>
+                            
+           <!--f.select :sex, , class:"form-control"  sex_option_str.html_safe -->
+          <%= f.select :sex, SEX_WORDS_OPTIONS, class:"form-control" %>
+          </div>
+        </div>
+        <!--
+        <%=p  "#{@personal_detail.sex.nil? ? 0 : @personal_detail.sex}" %>
+        -->
+        <!--select_tag(name, option_tags = nil, options = {}) -->
+        <div class="form-group">
+          <%= f.label :age %>
+          <%= f.select :age, (18..99),  class:"form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email , type:"email", class:"form-control", placeholder:"Enter email"%>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :mobile %>
+          <%= f.text_field :mobile, type:"text", class:"form-control", placeholder:"Mobile", maxlength:"13",
+              onkeyup:"this.value=this.value.replace(/\D/g,'')" ,onafterpaste:"this.value=this.value.replace(/\D/g,'')" %>
 
-      <ul>
-      <% @personal_detail.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        </div>
+
+        <!-- TODO: hidden -->
+        <div class="form-group">
+        <%= f.hidden_field :profile_id, :value => "#{rand(10)+2}"%>
+        </div>
+        
+    </div>
+    <div class="actions">
+      <%= f.submit "Save", class:"btn btn-sm btn-primary"%>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

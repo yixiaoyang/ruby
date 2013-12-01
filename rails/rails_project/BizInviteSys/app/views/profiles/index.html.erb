@@ -1,31 +1,24 @@
+<% provide(:title, "Listing profiles")%>
 <h1>Listing profiles</h1>
-<%= will_paginate %>
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Stat</th>
-      <th>Score</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @profiles.each do |profile| %>
-      <tr>
-        <td><%= profile.category %></td>
-        <td><%= profile.stat %></td>
-        <td><%= profile.score %></td>
-        <td><%= link_to 'Show', profile %></td>
-        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate %>
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <%= will_paginate %>
+    <ul class="users">
+    <table class="table table-hover">
+      <%= render 'profiles_item_th'%>
+      <%= render 'profiles_items' %>
+    </table>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>
+<br>
 
 <br>
 <%= link_to 'New Profile', new_profile_path %>

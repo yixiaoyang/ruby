@@ -1,8 +1,13 @@
 class SkillItemsController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json  
+  
+  protect_from_forgery with: :exception
+  include SessionsHelper
   
   before_action :set_skill_item, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_check
+  before_action :admin_user_check, only: [:index]
+  
   # GET /skill_items
   # GET /skill_items.json
   def index

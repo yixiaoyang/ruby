@@ -1,8 +1,13 @@
 class EducationsController < ApplicationController
   respond_to :html, :json
   
+  protect_from_forgery with: :exception
+  include SessionsHelper
+  
   before_action :set_education, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_check
+  before_action :admin_user_check, only: [:index]
+  
   # GET /educations
   # GET /educations.json
   def index
@@ -80,6 +85,6 @@ class EducationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
       # !如果不用安全参数则会出现model forbidden错误
-      params.require(:education).permit(:timeZone, :degree, :description, :profile_id)
+      params.require(:education).permit(:stime, :etime, :degree, :description, :profile_id)
     end
 end

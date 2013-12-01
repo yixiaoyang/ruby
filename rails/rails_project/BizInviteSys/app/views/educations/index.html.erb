@@ -9,12 +9,12 @@
   </aside>
   
   <div class="span9 ">
-    <%= will_paginate %>
-      <ol>
-        <%= render @educations%>
-      </ol>
-    <%= will_paginate %>
-  </div>
+      <%= will_paginate %>
+        <ul class="educations-ul">
+          <%= render @educations%>
+        </ul>
+      <%= will_paginate %>
+    </div>
 </div>
 <br>
 

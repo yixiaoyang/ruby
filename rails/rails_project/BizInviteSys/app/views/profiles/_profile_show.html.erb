@@ -1,0 +1,67 @@
+<div class="profile best_in_place_div"> 
+  <div class="collapse-head">
+    <a href="#collapse1" data-toggle="collapse">
+      <h4>
+        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
+        Resume Infomation
+      </h4>
+    </a>
+  </div>
+  <div class="collapse in" id="collapse1">
+    <p>
+      <strong>Category:</strong>
+      <%= best_in_place @profile, :category %>
+    </p>
+
+    <p>
+      <strong>Stat:</strong>
+      <%= best_in_place @profile, :stat %>
+    </p>
+
+    <p>
+      <strong>Score:</strong>
+      <%= best_in_place @profile, :score %>
+    </p>
+  </div>
+ 
+  
+  <div class="collapse-head">
+    <a href="#collapse2" data-toggle="collapse">
+      <h4>
+      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
+      Personal Infomation
+      </h4>
+    </a>
+  </div>
+  <div class="collapse" id="collapse2">
+     <%= link_to "New", signin_path, :class => "btn btn-link"%><br>
+  </div>
+  
+  
+  <div class="collapse-head">
+    <a href="#collapse3" data-toggle="collapse">
+      <h4>
+      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
+      Education
+      </h4>
+    </a>
+  </div>
+  <div class="collapse" id="collapse3">
+    <%= link_to "New", signin_path, :class => "btn btn-link"%><br>
+  </div>
+  
+  
+  <div class="collapse-head">
+    <a href="#collapse4" data-toggle="collapse">
+    <h4>
+    <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
+    Skills</h4></a>
+  </div>
+  <div class="collapse" id="collapse4">
+    <%= link_to "New", signin_path, :class => "btn btn-link"%><br>
+  </div>
+
+  
+  <%= link_to 'Edit Profile', edit_profile_path(@profile) ,:class => "btn btn-large btn-primary"%>
+  <%= link_to 'Back', profiles_path, :class => "btn btn-large btn-primary" %>
+</div> 

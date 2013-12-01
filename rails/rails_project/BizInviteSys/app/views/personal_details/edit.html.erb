@@ -1,6 +1,21 @@
+<p id="notice"><%= notice %></p>
 <h1>Editing personal_detail</h1>
+<% provide(:title, 'Edit Personal Details')%>
+<div class="row">
+<aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <ul class="users">
+      <%= render 'form' %>
+    </ul>
+  </div>
+</div>
+<end>
 
-<%= render 'form' %>
-
+<br>
 <%= link_to 'Show', @personal_detail %> |
 <%= link_to 'Back', personal_details_path %>

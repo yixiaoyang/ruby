@@ -20,12 +20,23 @@
 # t.creator_id = rand(6)+2 # random created_by [2..7]
 # t.created_at = CREATION_PERIOD.sample
 
-SEX_WORDS = ["male","female"]
-DEGREE_WORDS = ["Bachelor","Master","Doctor"]
-CATEGORY_WORDS = ["Should", "General", "Other"]
-PROFILE_CAT = ["School","Society"]
-PROFILE_STATS = ["Pass","Pending","Reject"]
+# SEX_WORDS = ["male","female"]
+# DEGREE_WORDS = ["Bachelor","Master","Doctor"]
+# CATEGORY_WORDS = ["Should", "General", "Other"]
+# PROFILE_CAT = ["School","Society"]
+# PROFILE_STATS = ["Pass","Pending","Reject"]
+
 namespace :db do
+  desc "Generate Data for Project"
+  task gen_all: :environment do
+    make_users
+    make_personalDetails
+    make_educations
+    make_skills
+    make_skill_items
+    make_profiles
+  end
+  
   desc "Generate Data for Project"
   task populate: :environment do
     make_users
@@ -78,7 +89,7 @@ def make_personalDetails
     # 18..38
     age = rand(20) + 18 
     # 0..1, male, female
-    sex = SEX_WORDS[rand(2)+0]
+    sex = rand(SEX_WORDS.size)
     mobile =  Faker::PhoneNumber.phone_number
     email = Faker::Internet.email
     
@@ -93,10 +104,14 @@ end
 
 def make_educations
   20.times do |n|
-    timeZone = "#{rand(9)+1995}/#{rand(12)+1}-#{rand(8)+2005}/#{rand(12)+1}"
-    degree = DEGREE_WORDS[rand(3)+0]
+    #timeZone = "#{rand(9)+1995}/#{rand(12)+1}-#{rand(8)+2005}/#{rand(12)+1}"
+    # .to_formatted_s(:year_and_month)
+    stime = Time.new(rand(9)+1995, rand(12)+1,1)
+    etime = Time.new(rand(8)+2005, rand(12)+1,1)
+    degree = rand(DEGREE_WORDS.size)
     description =  Faker::Lorem.sentence(word_count=15)
-    Education.create!(timeZone:timeZone,
+    Education.create!(stime:stime,
+                      etime:etime,
                       degree:degree,
                       description:description,
                       profile_id:n)
@@ -107,7 +122,7 @@ end
 def make_skills
   20.times do |n|
     score = rand(10) + 2
-    category = CATEGORY_WORDS[rand(3)+0]
+    category = rand(SKILL_CATEGORY_WORDS.size)+0
     description =  Faker::Lorem.sentence(word_count=15)
     Skill.create!(score:score,
                       category:category,
@@ -127,9 +142,9 @@ end
 
 def make_profiles
   20.times do |n|
-    category = PROFILE_CAT[rand(2)+0]
+    category = rand(PROFILE_CATEGORY_WORDS.size)
     score = rand(10) + 60
-    stat = PROFILE_STATS[rand(3)+0]
+    stat = rand(PROFILE_STATS_WORDS.size)
     Profile.create!(score:score,
                   category:category,
                   stat:stat,

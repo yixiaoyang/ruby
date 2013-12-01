@@ -1,14 +1,15 @@
 <li>
   <div class="best_in_place_div">
     <p>
-      <strong>TimeZone:</strong>
-      <%= best_in_place education, :timeZone %>
+      <strong>Time</strong>
+      <%= education.timeZone %>
+      
 
       <br>
       <strong>Degree:</strong>
       
       <%= best_in_place education, :degree, :type => :select,
-                                    :collection => [["Degree", "Degree"],["Master", "Master"],["Doctor", "Doctor"],["Other", "Other"]] %>
+                                    :collection => [[0, "Bachelor"],[1, "Master"],[2, "Doctor"],[3, "Other"]] %>
    
       <br>
       <strong>Description:</strong>

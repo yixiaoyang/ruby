@@ -9,7 +9,10 @@ BizInviteSys::Application.initialize!
 # email regex
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 SEX_WORDS = ["male","female"]
-DEGREE_WORDS = ["Bachelor","Master","Doctor"]
-CATEGORY_WORDS = ["Should", "General", "Other"]
-PROFILE_CAT = ["School","Society"]
-PROFILE_STATS = ["Pass","Pending","Reject"]
+SEX_WORDS_OPTIONS = [["male",0],["female",1]]
+
+DEGREE_WORDS = ["Bachelor","Master","Doctor","Other"]
+SKILL_CATEGORY_WORDS = ["Should", "General", "Other"]
+PROFILE_CATEGORY_WORDS = ["School","Society"]
+PROFILE_STATS_WORDS = ["Pass","Pending","Reject"]
+

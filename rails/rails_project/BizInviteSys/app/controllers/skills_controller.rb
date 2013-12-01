@@ -1,6 +1,13 @@
-class SkillsController < ApplicationController
+class SkillsController < ApplicationController  
+  respond_to :html, :json  
+  
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_check
+  before_action :admin_user_check, only: [:destroy, :index]                                      
+  
+  protect_from_forgery with: :exception
+  include SessionsHelper
+  
   # GET /skills
   # GET /skills.json
   def index

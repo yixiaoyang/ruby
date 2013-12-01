@@ -1,71 +1,15 @@
 <p id="notice"><%= notice %></p>
-<div class="profile best_in_place_div">  
-  <div class="collapse-head">
-    <a href="#collapse1" data-toggle="collapse">
-      <h4>
-        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-        Resume Infomation
-      </h4>
-    </a>
-  </div>
-  <div class="collapse in" id="collapse1">
-    <p>
-      <strong>Category:</strong>
-      <%= best_in_place @profile, :category %>
-    </p>
+<% provide(:title, "Show profile")%>
+<h1>Show profiles</h1>
 
-    <p>
-      <strong>Stat:</strong>
-      <%= best_in_place @profile, :stat %>
-    </p>
-
-    <p>
-      <strong>Score:</strong>
-      <%= best_in_place @profile, :score %>
-    </p>
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
   </div>
+  </aside>
   
-  <div class="collapse-head">
-    <a href="#collapse2" data-toggle="collapse">
-      <h4>
-      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-      Personal Infomation
-      </h4>
-    </a>
+  <div class="span9 ">
+      <%= render 'profile_show'%>
   </div>
-  <div class="collapse" id="collapse2">
-    <p>
-    Mauris mauris ante, 
-    </p>
-  </div>
-  
-  <div class="collapse-head">
-    <a href="#collapse3" data-toggle="collapse">
-      <h4>
-      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-      Education
-      </h4>
-    </a>
-  </div>
-  <div class="collapse" id="collapse3">
-    <p>
-    Sed non urna.
-    </p>
-  </div>
-  
-  <div class="collapse-head">
-    <a href="#collapse4" data-toggle="collapse">
-    <h4>
-    <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-    Skills</h4></a>
-  </div>
-  <div class="collapse" id="collapse4">
-    <p>
-    Nam enim risus, molestie et
-    </p>
-  </div>
-
-  
-  <%= link_to 'Edit Profile', edit_profile_path(@profile) ,:class => "btn btn-large btn-primary"%>
-  <%= link_to 'Back', profiles_path, :class => "btn btn-large btn-primary" %>
 </div>

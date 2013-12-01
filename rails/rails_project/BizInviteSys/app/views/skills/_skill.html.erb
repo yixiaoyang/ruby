@@ -3,22 +3,28 @@
     <p>
     <strong>ID:</strong>
     <%= skill.id %>
-
-    <br>
+    </p>
+    <p>
     <strong>Category:</strong>
     <%= best_in_place skill, :category %>
 
-    <br>
+    </p>
+    <p>
     <strong>Score:</strong>
     <%= best_in_place skill, :score %>
 
-    <br>
+    </p>
+    <p>
       <strong>Description:</strong>
     <%= best_in_place skill, :description, type: :textarea%>  
     </p>
   </div>
+  
+  <p>
   <%= link_to 'Show', skill %>|
   <%= link_to 'Edit', edit_skill_path(skill) %>|
   <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } %> 
+  </p>
+
 </li>
 

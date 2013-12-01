@@ -74,17 +74,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
   end
-                                
-  def correct_user_check
-    @user = User.find_by(:id => params[:id])
-    if current_user.admin? || current_user?(@user)
-    else
-      flash[:error] = "Access forbidden operation"
-      redirect_to root_path
-    end
-  end
-
-  def admin_user_check
-    redirect_to root_path unless current_user.admin?
-  end
 end

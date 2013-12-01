@@ -1,8 +1,13 @@
 class ProfilesController < ApplicationController
   respond_to :html, :json
   
+  protect_from_forgery with: :exception
+  include SessionsHelper
+  
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_check
+  before_action :admin_user_check, only: [:destroy, :index]
+  
   # GET /profiles
   # GET /profiles.json
   def index

@@ -1,8 +1,12 @@
 class PersonalDetailsController < ApplicationController
   respond_to :html, :json
   
+  protect_from_forgery with: :exception
+  include SessionsHelper
+  
   before_action :set_personal_detail, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_check
+  
   # GET /personal_details
   # GET /personal_details.json
   def index
@@ -15,6 +19,12 @@ class PersonalDetailsController < ApplicationController
   end
 
   # GET /personal_details/new
+  #   "personal_detail"=>{"name"=>"yixiaoyang",
+  #   "age"=>"24",
+  #       "email"=>"hityixaioyang@qq.com",
+  #       "mobile"=>"1234567890123"},
+  #       "sex"=>"0",
+  #       "commit"=>"Save"}
   def new
     @personal_detail = PersonalDetail.new
   end
@@ -71,6 +81,9 @@ class PersonalDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def personal_detail_params
-      params[:personal_detail]
+      if params[:profile_id].nil?
+        params[:profile_id] = 0
+      end
+      params.require(:personal_detail).permit(:name, :age, :email, :mobile, :sex, :profile_id)
     end
 end

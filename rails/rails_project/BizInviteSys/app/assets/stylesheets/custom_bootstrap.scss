@@ -234,7 +234,7 @@ a.signup_button {
       }
       
       div { 
-        float:right;
+        /*float:right;*/
         display:inline;  
       }
   }
@@ -299,5 +299,29 @@ a.signup_button {
 
   input {
     height: auto !important;
+  }
+}
+
+/* educations */
+.educations-ul{
+  list-style: decimal;
+  margin: 0px;
+  li {
+      padding: 10px 0;
+      border-top: 1px solid $grayLighter;
+      &:last-child{
+        border-bottom: 1px solid $grayLighter;
+      }
+     
+  }
+}
+
+
+/* inline form */
+.inline_form{
+  .form-group{
+    width: 100%;
+    margin-bottom: 0px;
+    @include box_sizing;
   }
 }

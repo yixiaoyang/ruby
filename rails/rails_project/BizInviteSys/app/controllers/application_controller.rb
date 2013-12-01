@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     render '/public/404.html'
   end
   
+  # add short format of time 
+  #Time::DATE_FORMATS[:year_and_month] = '%Y.%m'
+  
+  
   if Rails.env.production?
     unless Rails.application.config.consider_all_requests_local
       rescue_from Exception, with: :render_500

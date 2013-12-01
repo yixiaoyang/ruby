@@ -22,5 +22,9 @@ module BizInviteSys
     
     # bootstrap
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+  
+    config.time_zone = 'Beijing'
+    config.active_record.default_timezone = :local
+    
   end
 end
