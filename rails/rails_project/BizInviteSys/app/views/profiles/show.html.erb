@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <% provide(:title, "Show profile")%>
-<h1>Show profiles</h1>
+<h1>Show profile</h1>
 
 <div class="row">
   <aside class="span3">
@@ -10,6 +10,6 @@
   </aside>
   
   <div class="span9 ">
-      <%= render 'profile_show'%>
+      <%= render @profile %>
   </div>
 </div>

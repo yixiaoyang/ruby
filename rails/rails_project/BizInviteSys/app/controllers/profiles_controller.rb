@@ -6,17 +6,25 @@ class ProfilesController < ApplicationController
   
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_check
-  before_action :admin_user_check, only: [:destroy, :index]
-  
+  before_action :admin_user_check, only: [:destroy]
+ 
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.paginate(page: params[:page], per_page: 10)
+    @user = current_user
+    if current_user.admin?
+      @profiles = Profile.paginate(page: params[:page], per_page: 10)
+    else
+      myprofiles = Profile.where(:user_id => current_user.id)
+      p myprofiles
+      @profiles = myprofiles.paginate(page: params[:page], per_page: 10)
+    end
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    #@user = User.find(@profile.user_id)
   end
 
   # GET /profiles/new
@@ -76,6 +84,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:category, :stat, :score)
+      params.require(:profile).permit(:category, :stat, :scorem, :user_id)
     end
 end

@@ -10,17 +10,17 @@
   <div class="collapse in" id="collapse1">
     <p>
       <strong>Category:</strong>
-      <%= best_in_place profile, :category %>
+      <%= best_in_place @profile, :category %>
     </p>
 
     <p>
       <strong>Stat:</strong>
-      <%= best_in_place profile, :stat %>
+      <%= best_in_place @profile, :stat %>
     </p>
 
     <p>
       <strong>Score:</strong>
-      <%= best_in_place profile, :score %>
+      <%= best_in_place @profile, :score %>
     </p>
   </div>
  
@@ -62,11 +62,6 @@
   </div>
 
   
-  <%= link_to 'Back', profiles_path, :class => "btn btn-sm btn-primary" %>|
-  <%= link_to 'Edit Profile', edit_profile_path(profile) ,:class => "btn btn-sm btn-primary"%>|
-  <%= link_to 'Show', profile %>
-  
-  <% if current_user.admin? %>
-    | <%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
-</div>
+  <%= link_to 'Edit Profile', edit_profile_path(@profile) ,:class => "btn btn-large btn-primary"%>
+  <%= link_to 'Back', profiles_path, :class => "btn btn-large btn-primary" %>
+</div> 

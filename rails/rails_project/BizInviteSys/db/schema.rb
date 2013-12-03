@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201085839) do
+ActiveRecord::Schema.define(version: 20131203153729) do
 
   create_table "educations", force: true do |t|
     t.integer  "degree",      limit: 255
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20131201085839) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "skill_items", force: true do |t|
     t.integer  "skill_id"

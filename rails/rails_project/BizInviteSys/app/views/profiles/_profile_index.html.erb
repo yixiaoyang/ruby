@@ -1,0 +1,9 @@
+<% profiles ||= @profiles %>
+<%= will_paginate %>
+<ul class="users">
+<table class="table table-hover">
+  <%= render 'profiles_item_th'%>
+  <%= render 'profiles_items', :profiles => profiles %>
+</table>
+</ul>
+<%= will_paginate %> 

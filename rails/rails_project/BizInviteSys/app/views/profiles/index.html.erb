@@ -1,5 +1,6 @@
 <% provide(:title, "Listing profiles")%>
-<h1>Listing profiles</h1>
+<h1>Listing profiles( <%= @profiles.count %> )</h1>
+
 <div class="row">
   <aside class="span3">
   <div class="aside-left-my-info">
@@ -8,17 +9,12 @@
   </aside>
   
   <div class="span9 ">
-    <%= will_paginate %>
-    <ul class="users">
-    <table class="table table-hover">
-      <%= render 'profiles_item_th'%>
-      <%= render 'profiles_items' %>
-    </table>
-    </ul>
-    <%= will_paginate %>
+    <%= render 'profile_index'%>
+    
+    <br>
+    <%= link_to 'New Profile', new_profile_path %>
   </div>
 </div>
 <br>
 
-<br>
-<%= link_to 'New Profile', new_profile_path %>
+

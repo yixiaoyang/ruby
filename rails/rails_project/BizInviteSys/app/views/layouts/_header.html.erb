@@ -21,12 +21,10 @@
             </a>
             <ul class="dropdown-menu">
               <% if signed_in? %>
-                <li><%= link_to "Resume", "#"%></li> 
-                <li><%= link_to "Profile", user_path(current_user)%></li>
+                <li><%= link_to "My Profiles", profiles_path%></li>
                 <li><%= link_to "Settings", edit_user_path(current_user)%></li>
                 <% if current_user.admin? %>
                   <li class="divider"></li>
-                  <li><%= link_to "profiles", profiles_path%></li>
                   <li><%= link_to "educations", educations_path%></li>
                   <li><%= link_to "skills", skills_path%></li> 
                   <li><%= link_to "skill_items", skill_items_path%></li>

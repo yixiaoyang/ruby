@@ -16,14 +16,16 @@ class UsersController < ApplicationController
   def show
     if @user.nil?
       begin
-        @user = User.find(params[:id])
+        @user = User.find(user_params)
       rescue ActiveRecord::RecordNotFound
         flash[:error] = "User id #{params[:id]} not found"
         redirect_to not_found_url
       else
       end
     end
-    # 显示用户信息
+    
+    @profile = @user.profiles
+    p @profile
   end
   
   
@@ -62,7 +64,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    user = User.find(params[:id])
+    user = User.find(user_params)
     user.destroy
     flash[:success] = "User destroyed"
     redirect_to users_url
