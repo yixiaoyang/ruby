@@ -8,10 +8,14 @@ class ProfilesController < ApplicationController
   before_action :signed_in_check
   before_action :admin_user_check, only: [:destroy]
  
+  def user
+    p User.find_by(:id => self.user_id)
+    User.find_by(:id => self.user_id)
+  end
+  
   # GET /profiles
   # GET /profiles.json
   def index
-    @user = current_user
     if current_user.admin?
       @profiles = Profile.paginate(page: params[:page], per_page: 10)
     else
@@ -24,7 +28,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    #@user = User.find(@profile.user_id)
+    @user = User.find(@profile.user_id)
   end
 
   # GET /profiles/new

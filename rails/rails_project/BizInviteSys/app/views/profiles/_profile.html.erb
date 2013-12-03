@@ -1,4 +1,17 @@
 <div class="profile best_in_place_div"> 
+
+  <div class="collapse-head">
+    <a href="#collapse0" data-toggle="collapse">
+      <h4>
+      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
+      Account
+      </h4>
+    </a>
+  </div>
+  <div class="collapse in" id="collapse0">
+     <%= render @profile.user %>
+  </div>
+  
   <div class="collapse-head">
     <a href="#collapse1" data-toggle="collapse">
       <h4>
@@ -7,7 +20,7 @@
       </h4>
     </a>
   </div>
-  <div class="collapse in" id="collapse1">
+  <div class="collapse " id="collapse1">
     <p>
       <strong>Category:</strong>
       <%= best_in_place @profile, :category %>
@@ -34,7 +47,7 @@
     </a>
   </div>
   <div class="collapse" id="collapse2">
-     <%= link_to "New", signin_path, :class => "btn btn-link"%><br>
+     <%= render @profile.personal_details %>
   </div>
   
   
@@ -47,7 +60,7 @@
     </a>
   </div>
   <div class="collapse" id="collapse3">
-    <%= link_to "New", signin_path, :class => "btn btn-link"%><br>
+    <%= render @profile.educations %>
   </div>
   
   
@@ -58,10 +71,13 @@
     Skills</h4></a>
   </div>
   <div class="collapse" id="collapse4">
-    <%= link_to "New", signin_path, :class => "btn btn-link"%><br>
+    <%= render @profile.skill_items %>
   </div>
 
   
-  <%= link_to 'Edit Profile', edit_profile_path(@profile) ,:class => "btn btn-large btn-primary"%>
+  <%= link_to 'Edit', edit_profile_path(@profile) ,:class => "btn btn-large btn-primary"%>
+  <% if !current_user.admin? %>
+  <%= link_to 'Submit', "#" ,:class => "btn btn-large btn-primary"%>
+  <% end %>
   <%= link_to 'Back', profiles_path, :class => "btn btn-large btn-primary" %>
 </div> 
