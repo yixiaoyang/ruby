@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
-<li>
-  <p>
-    <strong>skill_id:</strong>
-    <%= best_in_place @skill_item, :skill_id %>
-  </p>
-  <p>
-    <strong>profile_id:</strong>
-    <%= best_in_place @skill_item, :profile_id %>
-  </p>
-</li>
+<% provide(:title, "Show Skill Item")%>
+<h1>Show skill Item</h1>
 
-<%= link_to 'Edit Profile', edit_skill_item_path(@skill_item),:class => "btn btn-large btn-primary"%>
-<%= link_to 'Back', skill_items_path, :class => "btn btn-large btn-primary" %>
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <ul class="normal_ul">
+    <table class="table table-hover table-striped table-bordered">
+      <%= render @skill_item%>
+    </table>
+    </ul>
+   
+    <%= link_to 'Back', skill_items_path %>
+  </div>
+</div>
+<br>

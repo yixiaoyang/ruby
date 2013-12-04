@@ -247,7 +247,7 @@ a.signup_button {
   text-align: center;
 }
 
-/* microposts */
+/* profile */
 .profile {
   margin-bottom: 3px;
   display: block;
@@ -266,10 +266,9 @@ a.signup_button {
   }
   .collapse{
     display: block;
-    /*border: 1px solid rgb(240, 240, 240);*/
     padding: 0px 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 10px;
+    padding-bottom: 0px;
     
     margin-top: 0px;
     margin-bottom: 0px;
@@ -278,12 +277,17 @@ a.signup_button {
   
   list-style:none;
   margin-left:0px;
+  ul{
+    margin:0 0 0 0;
+    /*border-bottom: 2px solid $grayLighter;*/
+  }
+  
   li {
     overflow:auto;
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    padding: 2px 0;
+    /*border-top: 1px solid $grayLighter;*/
     &:last-child{
-      border-bottom: 1px solid $grayLighter;
+      /*border-bottom: 1px solid $grayLighter;*/
     }
   }
 }
@@ -324,4 +328,26 @@ a.signup_button {
     margin-bottom: 0px;
     @include box_sizing;
   }
+}
+
+/* nomal ul */
+.normal_ul {
+  list-style:none;
+  margin: 0px;
+  li {
+      overflow:auto;
+      padding: 5px 0;
+      /*&:last-child{
+        border-bottom: 1px solid $grayLighter;
+      }*/
+      
+      div { 
+        /*float:right;*/
+        display:inline;  
+      }
+  }
+}
+
+.td_left{
+  width:80%;
 }

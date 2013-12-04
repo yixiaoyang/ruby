@@ -9,8 +9,11 @@
   </aside>
   
   <div class="span9 ">
-    <ol class="users">
+    <ol class="normal_ul">
+     <table class="table table-hover table-striped table-bordered">
+        <%= render 'shared/shared_profile_item_th'%>
         <%= render @personal_detail %>
+     </table>
     </ol>
   </div>
 </div>

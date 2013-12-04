@@ -1,5 +1,4 @@
-<div class="profile best_in_place_div"> 
-
+<div class="profile best_in_place_div">
   <div class="collapse-head">
     <a href="#collapse0" data-toggle="collapse">
       <h4>
@@ -9,7 +8,11 @@
     </a>
   </div>
   <div class="collapse in" id="collapse0">
+  <ul>
+    <table class="table table-hover table-striped table-bordered"><tr><td>
      <%= render @profile.user %>
+    </td></tr></table>
+  </ul>
   </div>
   
   <div class="collapse-head">
@@ -21,20 +24,9 @@
     </a>
   </div>
   <div class="collapse " id="collapse1">
-    <p>
-      <strong>Category:</strong>
-      <%= best_in_place @profile, :category %>
-    </p>
-
-    <p>
-      <strong>Stat:</strong>
-      <%= best_in_place @profile, :stat %>
-    </p>
-
-    <p>
-      <strong>Score:</strong>
-      <%= best_in_place @profile, :score %>
-    </p>
+  <ul>
+    <%= render 'profile_info'%>
+  </ul>
   </div>
  
   
@@ -42,12 +34,17 @@
     <a href="#collapse2" data-toggle="collapse">
       <h4>
       <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-      Personal Infomation
+      Personal Infomation( <%=@profile.personal_details.count %> )
       </h4>
     </a>
   </div>
   <div class="collapse" id="collapse2">
-     <%= render @profile.personal_details %>
+    <ul>
+      <table class="table table-hover table-striped table-bordered">
+      <%= render 'shared/shared_profile_item_th'%>
+      <%= render @profile.personal_details %>
+      </table>
+    </ul>
   </div>
   
   
@@ -55,12 +52,16 @@
     <a href="#collapse3" data-toggle="collapse">
       <h4>
       <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-      Education
+      Education( <%=@profile.educations.count %> )
       </h4>
     </a>
   </div>
   <div class="collapse" id="collapse3">
+    <ul>
+    <table class="table table-hover table-striped table-bordered">
     <%= render @profile.educations %>
+    </table>
+    </ul>
   </div>
   
   
@@ -68,10 +69,14 @@
     <a href="#collapse4" data-toggle="collapse">
     <h4>
     <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-    Skills</h4></a>
+    Skills( <%=@profile.skill_items.count %> )</h4></a>
   </div>
   <div class="collapse" id="collapse4">
-    <%= render @profile.skill_items %>
+    <ul>
+      <table class="table table-hover table-striped table-bordered">
+      <%= render @profile.skill_items %>
+      </table>
+    </ul>
   </div>
 
   

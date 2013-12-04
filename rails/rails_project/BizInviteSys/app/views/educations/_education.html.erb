@@ -1,9 +1,9 @@
-<li>
+<tr>
+  <td class="td_left">
   <div class="best_in_place_div">
     <p>
       <strong>Time</strong>
       <%= education.timeZone %>
-      
 
       <br>
       <strong>Degree:</strong>
@@ -16,13 +16,14 @@
       <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false %>
   </p>
   </div>
+  </td><td>
   <%= link_to 'Show', education %> |
   <%= link_to 'Edit', edit_education_path(education) %>
   <% if current_user.admin? %>
     | <%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-</li>
-
+  </td>
+</tr>
 
 
 

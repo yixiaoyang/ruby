@@ -17,6 +17,13 @@ class SkillItemsController < ApplicationController
   # GET /skill_items/1
   # GET /skill_items/1.json
   def show
+#     if @skill_item.nil?
+#       @skill_item = SkillItem.find(skill_item_params)
+#     end
+#     @skill = SkillItem.find(@skill_item.skill_id)
+#     rescue ActiveRecord::RecordNotFound
+#       flash[:error] = "Skill items id #{params[:id]} not found"
+#     end
   end
 
   # GET /skill_items/new
@@ -76,6 +83,6 @@ class SkillItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def skill_item_params
-      params[:skill_item]
+      params.require(:skill_item).permit(:skill_id, :profile_id, :id)
     end
 end

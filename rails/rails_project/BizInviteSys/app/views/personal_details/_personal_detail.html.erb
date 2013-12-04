@@ -1,32 +1,39 @@
-<li>
-<%= p personal_detail %>
+<tr>
+  <td class="td_left">
   <div class="best_in_place_div">
-    <p>
-      <strong>Name:</strong>
-      <%= best_in_place personal_detail, :name %>
+    <li>
+    <strong>Name:</strong>
+    <%= best_in_place personal_detail, :name %>
 
-      <br>
-      <strong>Age:</strong>
-      <%= best_in_place personal_detail, :age %>
-      
-      <br>
-      <strong>Sex:</strong>
-      <%= best_in_place personal_detail, :sex %>
+    </li><li>
+    <strong>Age:</strong>
+    <%= best_in_place personal_detail, :age %>
+    
+    </li><li>
+    <strong>Sex:</strong>
+    <%= best_in_place personal_detail, :sex %>
 
-      <br>
-      <strong>Email:</strong>
-      <%= best_in_place personal_detail, :email %>
-      
-      <br>
-      <strong>Mobile:</strong>
-      <%= best_in_place personal_detail, :mobile %>
-      
-      <br>
-      <strong>profile_id:</strong>
-      <%= personal_detail.profile_id %>
-  </p>
+    </li><li>
+    <strong>Email:</strong>
+    <%= best_in_place personal_detail, :email %>
+    
+    </li><li>
+    <strong>Mobile:</strong>
+    <%= best_in_place personal_detail, :mobile %>
+    
+    </li><li>
+    <strong>profile_id:</strong>
+    <%= personal_detail.profile_id %>
+    </li>
   </div>
-  <%= link_to 'Show', personal_detail %>|
-  <%= link_to 'Edit', edit_personal_detail_path(personal_detail) %>|
-  <%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } %>  
-</li>
+  </td>
+  
+  <td>
+    <%= link_to 'Show', personal_detail %>|
+    <%= link_to 'Edit', edit_personal_detail_path(personal_detail) %>|
+    <%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } %>  
+  </td>
+</tr>
+
+
+

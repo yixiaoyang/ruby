@@ -75,7 +75,6 @@ def make_users
     name = "user#{n}"
     email = "user#{n}@biz.com" 
     password = "123456"
-    profile_id = rand()
     User.create!(name:name,
                  email:email,
                  password:password,
@@ -98,7 +97,7 @@ def make_personalDetails
                  sex:sex,
                  email:email,
                  mobile:mobile,
-                 profile_id:n)
+                 profile_id:n+1)
   end
 end
 
@@ -114,7 +113,7 @@ def make_educations
                       etime:etime,
                       degree:degree,
                       description:description,
-                      profile_id:n)
+                      profile_id:n+1)
   end
 end
 
@@ -134,8 +133,8 @@ def make_skill_items
   10.times do |prodile_id|
     6.times do |n|
       skill_id = n;
-      SkillItem.create!(profile_id:prodile_id,
-                    skill_id:n)
+      SkillItem.create!(profile_id:prodile_id+1,
+                    skill_id:n+1)
     end
   end
 end
@@ -148,6 +147,6 @@ def make_profiles
     Profile.create!(score:score,
                   category:category,
                   stat:stat,
-                  user_id:n)
+                  user_id:n+1)
                  end
 end

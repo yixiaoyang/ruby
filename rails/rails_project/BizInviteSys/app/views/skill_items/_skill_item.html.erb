@@ -1,15 +1,23 @@
-<li>
-<div class="best_in_place_div">
-<p>
-  <strong>skill_id:</strong>
-  <%= best_in_place skill_item, :skill_id %>
-  
-  <br>
-  <strong>profile_id:</strong>
-  <%= best_in_place skill_item, :profile_id %>
-</p>
-<div class="best_in_place_div">
-<span><%= link_to 'Show', skill_item %></span>
-<span><%= link_to 'Edit', edit_skill_item_path(skill_item) %></span>
-<span><%= link_to 'Destroy', skill_item, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-</li>
+<% skill ||= skill_item.skill_belongs_to %>
+<tr>
+  <td class="td_left">
+  <li>
+  <div class="best_in_place_div">
+    <strong>skill_id:</strong>
+    <%= best_in_place skill_item, :skill_id %> | 
+    <strong>profile_id:</strong>
+    <%= best_in_place skill_item, :profile_id %> | 
+    <strong>Score:</strong>
+    <b><%= skill.score %><b>
+  </li>
+  </div>
+  </td>
+  <td>
+  <span><%= link_to 'Show', skill_item %></span>
+  <span><%= link_to 'Edit', edit_skill_item_path(skill_item) %></span>
+  <span><%= link_to 'Destroy', skill_item, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+  </td>
+</tr>
+<tr><td colspan="2">
+  <%=render 'skills/skill_for_skill_item',:skill => skill%>
+</td></tr>

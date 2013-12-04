@@ -9,8 +9,10 @@
   
   <div class="span9 ">
     <%= will_paginate %>
-    <ul class="users">
-        <%= render @personal_details %>
+    <ul class="normal_ul">
+    <table class="table table-hover table-striped table-bordered">
+      <%= render @personal_details %>
+    </table>
     </ul>
     <%= will_paginate %>
   </div>
