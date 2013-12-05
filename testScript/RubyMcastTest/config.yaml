@@ -1,0 +1,6 @@
+igmp:
+    max_sock: 127
+    port_start: 5000
+mcast_sender:
+    cnt: 256
+
