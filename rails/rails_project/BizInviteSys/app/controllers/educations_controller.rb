@@ -4,11 +4,14 @@ class EducationsController < ApplicationController
   protect_from_forgery with: :exception
   include SessionsHelper
   include EducationsHelper
-  
+
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_check
   before_action :admin_user_check, only: [:index]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  
+  # 记录上一次的url位置
+  after_action  :save_location
   
   # GET /educations
   # GET /educations.json
