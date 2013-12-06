@@ -2,6 +2,16 @@
   <td class="td_left">
   <div class="best_in_place_div">
     <p>
+      <% if current_user.admin? %>
+        <strong>Username:</strong>
+        <%= education.profile.user.name %>
+        <br>
+        
+        <strong>User ID:</strong>
+        <%= education.profile.user.id %>
+        <br>
+        
+      <% end%>
       <strong>Time</strong>
       <%= education.timeZone %>
 
@@ -13,7 +23,7 @@
    
       <br>
       <strong>Description:</strong>
-      <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false %>
+      <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false, :maxlength => 1000 %>
   </p>
   </div>
   </td><td>

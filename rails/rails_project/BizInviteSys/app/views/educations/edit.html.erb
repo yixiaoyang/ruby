@@ -1,6 +1,28 @@
+<% provide(:title, "Editing education")%>
 <h1>Editing education</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <%= render 'form', :submit_display => "Edit"%>
+    <br>
+    <%= link_to 'New', new_education_path %> |
+    <%= link_to 'Show', @education %> |
+    <%= link_to 'Back', educations_path %>
+  </div>
+</div>
+<br>
 
-<%= link_to 'Show', @education %> |
-<%= link_to 'Back', educations_path %>
+
+
+
+
+
+
+
+

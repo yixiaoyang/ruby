@@ -2,31 +2,13 @@
 <% if object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      <!-- 
-      pluralize(复数化)方法在控制台中默认不可用，不过我们可以引入 ActionView::Helpers::TextHelper 模块加载这个方法：
-        >> include ActionView::Helpers::TextHelper
-        >> pluralize(1, "error")
-        => "1 error"
-        >> pluralize(5, "error")
-        => "5 errors"
-      如上所示，pluralize 方法的第一个参数是整数，返回值是这个数字和第二个参数文本组合在一起正确的单复数形式
-      pluralize 方法是由功能强大的转置器（inflector）实现的，转置器知道怎么处理大多数单词的单复数变换，甚至是一些不规则的变换方式：
-        >> pluralize(2, "woman")
-        => "2 women"
-        >> pluralize(3, "erratum")
-        => "3 errata"
-      所以，使用 pluralize 方法后，如下的代码
-        <%= pluralize(@user.errors.count, "error") %>
-      返回值就是 "0 errors"、"1 error" 或 "2 errors"等，单复数形式取决于错误的数量。这样就可以避免类似 "1 errors" 这种低级的错误了（这是网络中常见的错误之一）。
-      -->
       Error Messages Count <%= pluralize(object.errors.count, "error")%>
+      <!--逐行显示错误信息-->
+      <ul>
+        <% object.errors.full_messages.each do |message| %>
+        <li>#  <%= message %></li>
+        <% end %>
+      </ul>
     </div>
-    
-    <!--逐行显示错误信息-->
-    <ul>
-      <% object.errors.full_messages.each do |message| %>
-      <li>#  <%= message %></li>
-      <% end %>
-    </ul>
   </div>
 <% end %>

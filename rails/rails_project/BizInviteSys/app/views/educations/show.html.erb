@@ -9,13 +9,13 @@
   </aside>
   
   <div class="span9 ">
-    <ol>
+    <ul class="normal_ul">
     <table class="table table-hover table-striped table-bordered">
       <%= render @education%>
     </table>
-    </ol>
     
     <%= link_to 'Edit', edit_education_path(@education) %> |
     <%= link_to 'Back', educations_path %>
+    </ul>
   </div>
 </div>
