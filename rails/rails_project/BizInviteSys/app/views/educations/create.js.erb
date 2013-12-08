@@ -1,0 +1,4 @@
+$('#educations_list table tbody').append("<%= escape_javascript(render(@education, :ajax_view => true)) %>");
+$('#education_new_ajax').remove();
+$('#educations_table_title').replaceWith("Education( <%=current_user.profile.educations.count %> )");
+$("#<%=EducationsController.gen_tr_id(@education.id)%>").fadeIn(400).fadeOut(400).fadeIn(200).fadeOut(200).fadeIn("slow");

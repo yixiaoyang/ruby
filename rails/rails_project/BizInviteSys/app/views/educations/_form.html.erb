@@ -1,28 +1,29 @@
 <% submit_display ||= "Create" %>
-<%= form_for(@education) do |f| %>
-    <div id="normal_form">
-      <%= render 'shared/error_messages', object: f.object %>
-      <ul class="normal_ul">
-        <%= f.label :stime %>
-        <%= f.date_select :stime, :class => 'date-select',
-                                  :order => [:year, :month, :day]%>
-        
-        <%= f.label :eime %>
-        <%= f.date_select :etime, :class => 'date-select',
-                                  :order => [:year, :month, :day]%>
+<%= form_for(@education,remote: @ajax_view) do |f| %>
+  <div id="normal_form">
+    <%= render 'shared/error_messages', object: f.object %>
+    <ul class="normal_ul">        
+      <%= f.label :stime %>
+      <%= f.date_select :stime, :class => 'date-select',
+                                :order => [:year, :month, :day],
+                                :start_year => EDUCATION_START_END_TIME[:syear],
+                                default: 5.years.ago %>
+      
+      <%= f.label :eime %>
+      <%= f.date_select :etime, :class => 'date-select',
+                                :order => [:year, :month, :day]%>
 
-        <%= f.label :degree %>
-        <%= f.select :degree, options_for_select(DEGREE_WORDS_OPTIONS),
-                              :class => 'date-select'%>
-                                  
-        <%= f.label :description %>
-        <%= f.text_area :description, :class=>"form-control" , :rows=>"5", 
-                        :placeholder=> "Your education experience during this time, 1000 words left", :maxlength=>1000 %>
-      </ul>
-    </div>
-
-  <div class="actions">
+      <%= f.label :degree %>
+      <%= f.select :degree, options_for_select(DEGREE_WORDS_OPTIONS),
+                            :class => 'date-select'%>
+                                
+      <%= f.label :description %>
+      <%= f.text_area :description, :class=>"form-control" , :rows=>"5", 
+                      :placeholder=> "Your education experience during this time, 1000 words left", :maxlength=>1000 %>
+    </ul>
     
-    <%= f.submit submit_display,  class:"btn btn-large btn-primary"%>
+    <div class="actions">
+    <%= f.submit submit_display,  class:"btn btn-sm btn-primary"%>
+    </div>
   </div>
 <% end %>

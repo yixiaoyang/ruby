@@ -1,0 +1,2 @@
+$("#<%=EducationsController.gen_tr_id(@destroyed_id)%>").remove();
+$('#educations_table_title').html("Education( <%=current_user.profile.educations.count %> )");

@@ -11,6 +11,8 @@ class Education < ActiveRecord::Base
   
   validates  :stime, presence:true
   validates  :etime, presence:true
+  # 创建时必须有profile_id且此id必须存在
+  validates   :profile_id, presence:true
   
   validates :description, presence:true, length: { maximum: 1000 }
   
@@ -18,7 +20,12 @@ class Education < ActiveRecord::Base
   validates_with StimeBeforeEtimeValidator
 
   def timeZone
-    self.stime.strftime("%Y-%m") + "-" + self.etime.strftime("%Y-%m")
+    self.stime.strftime("%Y-%m") + " ~ " + self.etime.strftime("%Y-%m")
   end
+  
+  def owner
+    self.profile.user
+  end
+  
 end
 

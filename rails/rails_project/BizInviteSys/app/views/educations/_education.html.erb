@@ -1,37 +1,46 @@
-<tr>
+<% ajax_view ||= false %>
+<tr id=<%="#{EducationsController.gen_tr_id(education.id)}"%> >
   <td class="td_left">
   <div class="best_in_place_div">
     <p>
       <% if current_user.admin? %>
         <strong>Username:</strong>
-        <%= education.profile.user.name %>
+        <%= education.owner.name %>
         <br>
         
         <strong>User ID:</strong>
-        <%= education.profile.user.id %>
+        <%= education.owner.id %>
         <br>
         
       <% end%>
       <strong>Time</strong>
       <%= education.timeZone %>
-
       <br>
-      <strong>Degree:</strong>
       
-      <%= best_in_place education, :degree, :type => :select,
-                                    :collection => [[0, "Bachelor"],[1, "Master"],[2, "Doctor"],[3, "Other"]] %>
-   
-      <br>
-      <strong>Description:</strong>
-      <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false, :maxlength => 1000 %>
+ 
+      <% if current_user?( education.owner )%>
+        <strong>Degree:</strong>
+        <%= best_in_place education, :degree, :type => :select,
+                                      :collection => DEGREE_WORDS_OPTIONS_FOR_INPLACE %> <br>
+        <strong>Description:</strong>
+        <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false, :maxlength => 1000%>
+      <% else%>
+        <strong>Degree:</strong>
+        <%= DEGREE_WORDS[education.degree] %> <br>
+        <strong>Description:</strong>
+        <%= education.description%>
+      <% end %>
+
   </p>
   </div>
   </td><td>
-  <%= link_to 'Show', education %> |
-  <%= link_to 'Edit', edit_education_path(education) %>
-  <% if current_user.admin? %>
-    | <%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
+  <% if current_user?(education.owner) or current_user.admin? %>
+    <%= link_to 'Show', education %>
+    <% if current_user?(education.owner) %> |
+      <%= link_to 'Edit', edit_education_path(education) %>
+      <%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
+    <% end %>
+  <%end%>
   </td>
 </tr>
 

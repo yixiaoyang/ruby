@@ -24,8 +24,7 @@ class UsersController < ApplicationController
       end
     end
     
-    @profile = @user.profiles
-    p @profile
+    @profile = @user.profile
   end
   
   
