@@ -12,4 +12,8 @@ module PersonalDetailsHelper
       redirect_back_or @personal_detail
     end
   end
+  
+  def self.gen_tr_id(id)
+    "personal_detail_tr_id_#{id}"
+  end
 end

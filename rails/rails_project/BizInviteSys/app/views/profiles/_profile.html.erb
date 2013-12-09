@@ -42,19 +42,23 @@
     <div id="personal_detail_list">
       <ul>
         <table class="table table-hover table-striped table-bordered">
+        <tbody>
         <%= render 'shared/shared_profile_item_th'%>
         <% if @profile.personal_detail %>
-          <%= render @profile.personal_detail %>
+          <%= render @profile.personal_detail, :ajax_view => true %>
         <%end%>
+        </tbody>
         </table>
       </ul>
     </div>
     
-    <div id="new_personal_detail_ajax">
+    <div id="new_personal_detail_ajax_link">
       <p class="profile_link">
-      <% if current_user?(@profile.user) %>
-      <%= link_to 'New', new_personal_detail_path(:format => :js, :ajax_view => true), :remote => true%>
-      <% end%>
+      <%if @profile.personal_detail.nil? %>
+        <% if current_user?(@profile.user) %>
+          <%= link_to 'New', new_personal_detail_path(:format => :js, :ajax_view => true), :remote => true%>
+        <% end%>
+      <% end %>
       </p>
     </div>
   </div>
@@ -72,7 +76,9 @@
     <div id="educations_list">
       <ul>
       <table class="table table-hover table-striped table-bordered">
+      <tbody>
       <%= render @profile.educations,  :ajax_view => true %>
+      </tbody>
       </table>
       </ul>
     </div>

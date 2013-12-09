@@ -1,22 +1,27 @@
-<h1>New personal_detail</h1>
+<% p 'viewhere'%>
+<% @ajax_view ||= false %>
+<% provide(:title, "New Personal Details")%>
+<p id="notice"><%= notice %></p>
 
-<% provide(:title, 'All Personal Details')%>
-<div class="row">
-<aside class="span3">
-  <div class="aside-left-my-info">
-    <%= render 'shared/my_info' %>
+<% if @ajax_view %>
+  <div id="new_form_ajax">
+  <%= render 'form'%>
   </div>
-  </aside>
-  
-  <div class="span9 ">
-    <ul class="users">
+<%else%>
+  <h1>New personal_detail</h1>
+  <div class="row">
+  <aside class="span3">
+    <div class="aside-left-my-info">
+      <%= render 'shared/my_info' %>
+    </div>
+    </aside>
+    
+    <div class="span9 ">
+      <div id="personal_detail_new_form">
         <%= render 'form' %>
-    </ul>
+       <%= link_to 'Back', personal_detail_path ,  class:"btn btn-sm btn-primary"%>
+       </div>
+    </div>
   </div>
-</div>
-
-<end>
-
-<br>
-<%= link_to 'New Personal detail', new_personal_detail_path %>
-<%= link_to 'Back', personal_detail_path %>
+<%end%>
+<% p 'viewhere'%>

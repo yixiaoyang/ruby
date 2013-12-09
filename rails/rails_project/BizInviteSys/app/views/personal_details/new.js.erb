@@ -1,0 +1,4 @@
+$("<div id='personal_detail_new_ajax'><%= escape_javascript render(file: 'personal_details/new.html.erb')
+%></div>").insertAfter('#personal_detail_list');
+$('#personal_detail_new_ajax').hide().slideDown();
+$('#new_personal_detail_ajax_link').hide();

@@ -7,8 +7,9 @@ t.string :email
 t.string :mobile
 t.integer :profile_id
 -->
+<% submit_display ||= "Create" %>
 <div class="inline_form">
-  <%= form_for(@personal_detail, class:"form-horizontal",role:"form") do |f| %>
+  <%= form_for(@personal_detail, class:"form-horizontal", role:"form", remote: @ajax_view) do |f| %>
     <div class="form_field">
       <%= render 'shared/error_messages', object: f.object %>
       
@@ -56,7 +57,7 @@ t.integer :profile_id
         
     </div>
     <div class="actions">
-      <%= f.submit "Save", class:"btn btn-sm btn-primary"%>
+      <%= f.submit submit_display, class:"btn btn-sm btn-primary"%>
     </div>
   <% end %>
 </div>

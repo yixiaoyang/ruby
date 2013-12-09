@@ -8,7 +8,7 @@ class PersonalDetail < ActiveRecord::Base
   validates   :sex, presence:true, inclusion: { in: 0...SEX_WORDS.size }, numericality: true
   
   # 创建时必须有profile_id且此id必须存在
-  validates   :profile_id, presence:true, numericality: true
+  validates   :profile_id, presence:true, numericality: true, uniqueness:true
   
   # all email downcase
   before_save { self.email = email.downcase }

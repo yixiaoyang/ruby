@@ -46,4 +46,4 @@ EDUCATION_START_END_TIME = {syear:1960, smonth:1, sday:1}
 # form 
 AGE_MIN = 16
 AGE_MAX = 100
-
+AGE_OPTIONS_FOR_INPLACE = Array.new(AGE_MAX-AGE_MIN+1){|i| [i+AGE_MIN, (i+AGE_MIN).to_s]}

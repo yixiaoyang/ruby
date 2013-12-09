@@ -55,7 +55,6 @@ class EducationsController < ApplicationController
     end
     
     @education.profile_id = current_user.profile.id
-    p @education
     @ajax_view = params[:ajax_view]
     
     respond_to do |format|
