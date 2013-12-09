@@ -11,7 +11,11 @@
     <%= will_paginate %>
     <ul class="normal_ul">
     <table class="table table-hover table-striped table-bordered">
-      <%= render @personal_details %>
+      <% if current_user.admin? %>
+        <%= render @personal_details %>
+      <% else%>
+        <%= render @personal_detail %>
+      <% end %>
     </table>
     </ul>
     <%= will_paginate %>

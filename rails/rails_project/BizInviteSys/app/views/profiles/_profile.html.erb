@@ -34,17 +34,29 @@
     <a href="#collapse2" data-toggle="collapse">
       <h4>
       <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-      Personal Infomation( <%=@profile.personal_details.count %> )
+      Personal Infomation
       </h4>
     </a>
   </div>
   <div class="collapse" id="collapse2">
-    <ul>
-      <table class="table table-hover table-striped table-bordered">
-      <%= render 'shared/shared_profile_item_th'%>
-      <%= render @profile.personal_details %>
-      </table>
-    </ul>
+    <div id="personal_detail_list">
+      <ul>
+        <table class="table table-hover table-striped table-bordered">
+        <%= render 'shared/shared_profile_item_th'%>
+        <% if @profile.personal_detail %>
+          <%= render @profile.personal_detail %>
+        <%end%>
+        </table>
+      </ul>
+    </div>
+    
+    <div id="new_personal_detail_ajax">
+      <p class="profile_link">
+      <% if current_user?(@profile.user) %>
+      <%= link_to 'New', new_personal_detail_path(:format => :js, :ajax_view => true), :remote => true%>
+      <% end%>
+      </p>
+    </div>
   </div>
   
   

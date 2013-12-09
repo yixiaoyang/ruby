@@ -1,37 +1,84 @@
 <tr>
   <td class="td_left">
   <div class="best_in_place_div">
-    <li>
-    <strong>Name:</strong>
-    <%= best_in_place personal_detail, :name %>
+     <% if current_user.admin? %>
+      <li> 
+      <strong>Username:</strong>
+      <%= personal_detail.owner.name %>
+      </li><li>  
+      <strong>User ID:</strong>
+      <%= personal_detail.owner.id %>
+      </li><li>
+      <strong>profile_id:</strong>
+      <%= personal_detail.profile_id %>
+      </li>
+    <% end %>
+    
+    <% if current_user?( personal_detail.owner )%>
+      <li>
+      <strong>Name:</strong>
+      <%= best_in_place personal_detail, :name %>
+      </li>
+      
+      <li>
+      <strong>Age:</strong>
+      <%= best_in_place personal_detail, :age %>
+      </li>
+      
+      <li>
+      <strong>Sex:</strong>
+      <%= best_in_place personal_detail, :sex, :type => :select,
+                                      :collection => SEX_WORDS_OPTIONS_FOR_INPLACE %>
+      </li>
+      
+      <li>
+      <strong>Email:</strong>
+      <%= best_in_place personal_detail, :email %>
+      </li>
+      
+      <li>
+      <strong>Mobile:</strong>
+      <%= best_in_place personal_detail, :mobile %>
+      </li>
+    <% else %>
+    <!-- Readonly -->
+      <li>
+      <strong>Name:</strong>
+      <%=personal_detail.name %>
 
-    </li><li>
-    <strong>Age:</strong>
-    <%= best_in_place personal_detail, :age %>
-    
-    </li><li>
-    <strong>Sex:</strong>
-    <%= best_in_place personal_detail, :sex %>
+      </li><li>
+      <strong>Age:</strong>
+      <%=personal_detail.age %>
+      
+      </li><li>
+      <strong>Sex:</strong>
+      <%=personal_detail.sex %>
 
-    </li><li>
-    <strong>Email:</strong>
-    <%= best_in_place personal_detail, :email %>
-    
-    </li><li>
-    <strong>Mobile:</strong>
-    <%= best_in_place personal_detail, :mobile %>
-    
-    </li><li>
-    <strong>profile_id:</strong>
-    <%= personal_detail.profile_id %>
-    </li>
+      </li><li>
+      <strong>Email:</strong>
+      <%=personal_detail.email %>
+      
+      </li><li>
+      <strong>Mobile:</strong>
+      <%=personal_detail.mobile %>
+      
+      </li><li>
+      <strong>profile_id:</strong>
+      <%= personal_detail.profile_id %>
+      </li>
+    <% end %>
   </div>
   </td>
   
   <td>
-    <%= link_to 'Show', personal_detail %>|
-    <%= link_to 'Edit', edit_personal_detail_path(personal_detail) %>|
-    <%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } %>  
+    <% if current_user?(personal_detail.owner) or current_user.admin? %>
+      <%= link_to 'Show', personal_detail %>
+    <% end %>
+    
+    <% if current_user?(personal_detail.owner) %> |
+      <%= link_to 'Edit', edit_personal_detail_path(personal_detail) %>|
+      <%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } %>  
+    <% end %>
   </td>
 </tr>
 

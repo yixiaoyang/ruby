@@ -51,7 +51,7 @@ class EducationsController < ApplicationController
     @education = Education.new(education_params)
     if current_user.profile.nil?
       flash[:error] = "You should new a profile"
-      redirect_back_or educations_url
+      redirect_back_or profiles_url
     end
     
     @education.profile_id = current_user.profile.id
@@ -76,7 +76,7 @@ class EducationsController < ApplicationController
   def update
     respond_to do |format|
       if @education.update(education_params)
-        format.html { redirect_back_or @education }
+        format.html { redirect_to @education }
         format.json { head :no_content }
       else
         format.html { 

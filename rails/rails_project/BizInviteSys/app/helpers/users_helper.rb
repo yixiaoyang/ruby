@@ -11,4 +11,13 @@ module UsersHelper
     # alt 属性值是用户的名字（对视觉障碍人士使用的屏幕阅读器很友好）
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+  
+  def correct_user_check
+    @user = User.find_by(:id => params[:id])
+    if current_user.admin? || current_user?(@user)
+    else
+      flash[:error] = "Access forbidden operation"
+      redirect_to root_path
+    end
+  end
 end

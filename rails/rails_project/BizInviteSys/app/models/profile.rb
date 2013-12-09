@@ -4,7 +4,7 @@ class Profile < ActiveRecord::Base
   
   # 一份profile内容的组成
   has_many  :skill_items
-  has_many  :personal_details
+  has_one   :personal_detail
   has_many  :educations
 
 end

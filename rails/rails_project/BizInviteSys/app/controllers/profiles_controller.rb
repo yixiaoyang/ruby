@@ -1,3 +1,5 @@
+# TODO:权限限定
+
 class ProfilesController < ApplicationController
   respond_to :html, :json
   

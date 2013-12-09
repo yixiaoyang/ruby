@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   protect_from_forgery with: :exception
   include SessionsHelper
+  include UsersHelper
  
   # 登录检测的先前过滤器
   before_action :signed_in_check, only:[:edit, :update, :show, :index, :destroy]
@@ -30,6 +31,7 @@ class UsersController < ApplicationController
   
   ###
   def create
+    # TODO:对应的profile建立，事务处理
     # 使用安全的参数
     @user = User.new(user_params)
     if @user.save

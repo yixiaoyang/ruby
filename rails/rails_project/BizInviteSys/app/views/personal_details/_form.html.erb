@@ -34,7 +34,7 @@ t.integer :profile_id
         <!--select_tag(name, option_tags = nil, options = {}) -->
         <div class="form-group">
           <%= f.label :age %>
-          <%= f.select :age, (18..99),  class:"form-control" %>
+          <%= f.select :age, (AGE_MIN..AGE_MAX),  class:"form-control" %>
         </div>
         
         <div class="form-group">
