@@ -23,7 +23,7 @@
       </h4>
     </a>
   </div>
-  <div class="collapse " id="collapse1">
+  <div class="collapse in  " id="collapse1">
   <ul>
     <%= render 'profile_info'%>
   </ul>
@@ -38,7 +38,7 @@
       </h4>
     </a>
   </div>
-  <div class="collapse" id="collapse2">
+  <div class="collapse in " id="collapse2">
     <div id="personal_detail_list">
       <ul>
         <table class="table table-hover table-striped table-bordered">
@@ -53,9 +53,9 @@
     </div>
     
     <div id="new_personal_detail_ajax_link">
-      <p class="profile_link">
+      <p class="profile_link" id="new_personal_detail_link">
       <%if @profile.personal_detail.nil? %>
-        <% if current_user?(@profile.user) %>
+        <% if current_user?(@profile.user) and !current_user.admin? %>
           <%= link_to 'New', new_personal_detail_path(:format => :js, :ajax_view => true), :remote => true%>
         <% end%>
       <% end %>
@@ -72,7 +72,7 @@
       </h4>
     </a>
   </div>
-  <div class="collapse" id="collapse3">
+  <div class="collapse in " id="collapse3">
     <div id="educations_list">
       <ul>
       <table class="table table-hover table-striped table-bordered">
@@ -85,7 +85,7 @@
     
     <div id="new_education_ajax">
       <p class="profile_link">
-      <% if current_user?(@profile.user) %>
+      <% if current_user?(@profile.user) and !current_user.admin?%>
       <%= link_to 'New', new_education_path(:format => :js, :ajax_view => true), :remote => true%>
       <% end%>
       </p>
@@ -99,7 +99,7 @@
     <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
     Skills( <%=@profile.skill_items.count %> )</h4></a>
   </div>
-  <div class="collapse" id="collapse4">
+  <div class="collapse in " id="collapse4">
     <ul>
       <table class="table table-hover table-striped table-bordered">
       <%= render @profile.skill_items %>
@@ -108,9 +108,9 @@
   </div>
 
   
-  <%= link_to 'Edit', edit_profile_path(@profile) ,:class => "btn btn-large btn-primary"%>
+  <%= link_to 'Edit', edit_profile_path(@profile) ,:class => "btn btn-sm btn-primary"%> 
   <% if !current_user.admin? %>
-  <%= link_to 'Submit', "#" ,:class => "btn btn-large btn-primary"%>
+  <%= link_to 'Submit', "#" ,:class => "btn btn-sm btn-primary"%> 
   <% end %>
-  <%= link_to 'Back', profiles_path, :class => "btn btn-large btn-primary" %>
+  <%= link_to 'Back', profiles_path, :class => "btn btn-sm btn-primary" %>
 </div> 

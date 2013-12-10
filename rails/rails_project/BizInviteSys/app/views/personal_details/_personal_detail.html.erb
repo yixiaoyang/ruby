@@ -72,16 +72,16 @@
   </div>
   </td>
   
-  <td>
-    <% if current_user?(personal_detail.owner) or current_user.admin? %>
-      <%= link_to 'Show', personal_detail %>
-    <% end %>
-    
-    <% if current_user?(personal_detail.owner) %> |
-      <%= link_to 'Edit', edit_personal_detail_path(personal_detail) %>|
-      <%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } , remote: ajax_view %>  
-    <% end %>
-  </td>
+  <% if current_user?(personal_detail.owner)%>
+    <td>
+      <% if ajax_view %>
+        <%= link_to 'Show', personal_detail %> | 
+      <% end %>
+      <%= link_to 'Edit', edit_personal_detail_path(personal_detail) %> | 
+      <%= link_to 'Destroy', personal_detail, method: :delete, data: { confirm: 'Are you sure?' } , remote: ajax_view %> 
+    </td>
+  <% end %>
+  
 </tr>
 
 

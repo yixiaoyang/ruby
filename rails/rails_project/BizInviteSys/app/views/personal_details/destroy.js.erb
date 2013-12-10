@@ -1,3 +1,7 @@
 $("#<%=PersonalDetailsHelper.gen_tr_id(@destroyed_id)%>").remove();
 $('#personal_detail_new_ajax').remove();
 $('#new_personal_detail_ajax_link').slideDown();
+
+/* 显示New链接 */
+$('#new_personal_detail_link').html("<%= escape_javascript link_to 'New', new_personal_detail_path(:format => :js, :ajax_view => true), :remote => true%>");
+$('#new_personal_detail_ajax_link').show();

@@ -44,7 +44,10 @@ class PersonalDetailsController < ApplicationController
         @personal_detail.profile_id = current_user.profile.id
         @ajax_view = params[:ajax_view]
       else
-        redirect_to current_user.profile.personal_detail
+        respond_to do |format|
+          format.html { redirect_to current_user.profile, :flash => { :error => @error} }
+          format.js
+        end
       end
     end
   end
@@ -61,10 +64,9 @@ class PersonalDetailsController < ApplicationController
         @personal_detail = PersonalDetail.new(personal_detail_params)
         @personal_detail.profile_id = current_user.profile.id
         @ajax_view = params[:ajax_view]
-        
         respond_to do |format|
           if @personal_detail.save
-            format.html { redirect_to @personal_detail, notice: 'Personal detail was successfully created.' }
+            format.html { redirect_to @personal_detail, :flash => { :success => 'Personal detail was successfully created.'} }
             format.json { render action: 'show', status: :created, location: @personal_detail }
             format.js
           else
@@ -75,8 +77,10 @@ class PersonalDetailsController < ApplicationController
         end
       end
     else
-      flash[:notice] = 'Personal Detail Existed'
-      redirect_to current_user.profile.personal_detail
+      respond_to do |format|
+        format.html { redirect_to current_user.profile.personal_detail, error: @error }
+        format.js
+      end
     end
   end
 
@@ -85,7 +89,7 @@ class PersonalDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @personal_detail.update(personal_detail_params)
-        format.html { redirect_to @personal_detail, notice: 'Personal detail was successfully updated.' }
+        format.html { redirect_to @personal_detail, :flash => { :success => 'Personal detail was successfully updated.'} } 
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -100,7 +104,7 @@ class PersonalDetailsController < ApplicationController
     @destroyed_id = @personal_detail.id
     @personal_detail.destroy
     respond_to do |format|
-      format.html { redirect_to personal_details_url, notice: 'Personal Detail Item Destroyed' }
+      format.html { redirect_to personal_details_url, :flash => { :success => 'Personal Detail Item Destroyed'}  }
       format.json { head :no_content }
       format.js
     end
@@ -114,24 +118,24 @@ class PersonalDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def personal_detail_params
-      params.require(:personal_detail).permit(:name, :age, :email, :mobile, :sex, :profile_id)
+      params.require(:personal_detail).permit(:name, :age, :email, :mobile, :sex)
     end
     
     def new_allowed?
       if current_user.admin?
-        flash[:error] = "Access Forbidden"
-        redirect_back_or not_found_url
+        @error = "Access Forbidden"
+        #redirect_to not_found_url
         logger.info("Not Allowed Admin user")
         return false
       else
         if current_user.profile.nil?
-          flash[:error] = "You should new a profile"
-          redirect_back_or profiles_url
+          @error = "You should new a profile"
+          #redirect_to profiles_url
           logger.info("User have No profile")
           return false
         end
       end
-      logger.info("new_allowed?  true")
+      logger.info("new_allowed? true")
       true
     end
 end

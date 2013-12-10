@@ -1,5 +1,6 @@
 <%if @personal_detail.nil? %>
-  alert('Create Failed');
+<% err_msg ||= 'Create Failed' %>
+  alert(<%=err_msg%>);
 <%else%>
   $('#personal_detail_list table tbody').append("<%= escape_javascript(render(@personal_detail, :ajax_view => true)) %>");
   $('#personal_detail_new_ajax').remove();

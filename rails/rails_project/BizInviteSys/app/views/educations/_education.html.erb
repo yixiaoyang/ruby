@@ -33,15 +33,18 @@
 
   </p>
   </div>
-  </td><td>
-  <% if current_user?(education.owner) or current_user.admin? %>
-    <%= link_to 'Show', education %>
-    <% if current_user?(education.owner) %> |
-      <%= link_to 'Edit', edit_education_path(education) %>
-      <%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
-    <% end %>
-  <%end%>
   </td>
+  
+   <% if current_user?(education.owner) %>
+    <td>
+      <% if ajax_view %>
+        <%= link_to 'Show', education %> | 
+      <%end%>
+      <%= link_to 'Edit', edit_education_path(education) %> | 
+      <%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
+    </td>
+  <% end %>
+  
 </tr>
 
 
