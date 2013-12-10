@@ -1,5 +1,5 @@
 class PersonalDetail < ActiveRecord::Base
-  belongs_to  :profile
+  belongs_to  :profile, dependent: :destroy
   
   validates   :name, presence:true, length: { maximum: 64 }
   

@@ -7,14 +7,14 @@ class StimeBeforeEtimeValidator < ActiveModel::Validator
 end
 
 class Education < ActiveRecord::Base
-  belongs_to  :profile
+  belongs_to  :profile,dependent: :destroy
   
   validates  :stime, presence:true
   validates  :etime, presence:true
   # 创建时必须有profile_id且此id必须存在
   validates   :profile_id, presence:true, numericality: true
   
-  validates :description, presence:true, length: { maximum: 1000 }
+  validates :description, presence:true, length: { maximum: DESCRIPTION_LEN_MAX }
   
   # 自定义验证器验证时间段
   validates_with StimeBeforeEtimeValidator
