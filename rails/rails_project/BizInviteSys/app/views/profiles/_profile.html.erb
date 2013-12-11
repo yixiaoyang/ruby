@@ -105,9 +105,17 @@
       <%= render @profile.skill_items %>
       </table>
     </ul>
+    
+    <!-- Button to trigger modal -->
+    <a href="#skill_slt_modal" role="button" class="btn" data-toggle="modal">Select my Skills</a>
+    <%= render 'skills_slt_modal'%>
+
   </div>
 
   
+  <br>
+  <HR width="100%" color=#7c7c7c SIZE=2>
+  <br>
   <%= link_to 'Edit', edit_profile_path(@profile) ,:class => "btn btn-sm btn-primary"%> 
   <% if !current_user.admin? %>
   <%= link_to 'Submit', "#" ,:class => "btn btn-sm btn-primary"%> 

@@ -1,0 +1,22 @@
+<!-- 传参@profile，skills-->
+<!-- Modal -->
+<div id="skill_slt_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" width="50%">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">All Skills</h3>
+  </div>
+  <div class="modal-body">
+    <ul class="normal_ul">
+    <table class="table table-hover table-striped table-bordered">
+      <% (0...SKILL_CATEGORY_WORDS.size).each {|idx|  %>
+        <%= render 'skills/skill_for_modal', :skills =>  Skill.find(:all, :conditions => [ "category = ?", idx], :order => "id ASC"),
+                                             :category => idx %>
+      <% } %>
+    </table>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save</button>
+  </div>
+</div>

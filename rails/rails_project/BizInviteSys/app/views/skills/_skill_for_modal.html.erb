@@ -1,0 +1,30 @@
+<tr><td colspan="2"><b><%=SKILL_CATEGORY_WORDS[category]%><b></td></tr>
+
+<% if skills.nil? %>
+  <tr colspan="2"><td><b>No Skills Data<b></td></tr>
+<% else %>
+  <%skills.each{ |skill| %>
+    <tr>
+      <td class="td_left">
+      <div>
+        <strong>ID:</strong>
+        <%= skill.id %> | 
+        <strong>Category:</strong>
+        <span class="<%="badge #{SKILL_CATEGORY_STYLES[skill.category]}"%>">
+        <%= SKILL_CATEGORY_WORDS[skill.category] %></span> |  
+        <strong>Score:</strong>
+        <span class="badge badge-info"><%= skill.score %></span>
+        <br>
+        <strong>Description:</strong>
+        <%= skill.description %>  
+      </div>
+      
+      </td><td>
+      <%= link_to 'Mark', skill, :class => "btn btn-sm btn-primary" %>
+      <%= link_to 'Unmark', skill, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-sm "%>
+      </td>
+    </tr>
+  <%}%>
+<% end %>
+
+
