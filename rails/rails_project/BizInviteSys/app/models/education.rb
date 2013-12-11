@@ -7,7 +7,7 @@ class StimeBeforeEtimeValidator < ActiveModel::Validator
 end
 
 class Education < ActiveRecord::Base
-  belongs_to  :profile,dependent: :destroy
+  belongs_to  :profile
   
   validates  :stime, presence:true
   validates  :etime, presence:true

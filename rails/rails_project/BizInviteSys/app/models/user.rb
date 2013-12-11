@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # 一个用户有多个profile，每个profile在用户被删除后都自动被删除
-  has_one :profile, dependent: :destroy
+  has_one :profile,dependent: :destroy
   
   # check name
   validates :name, presence:true, length: { maximum: 64 }
