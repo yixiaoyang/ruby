@@ -31,8 +31,6 @@ class UsersController < ApplicationController
   
   ###
   def create
-    # TODO:对应的profile建立，事务处理
-    # 使用安全的参数
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Creat Account Success,Welcome #{@user[:name]}!"
@@ -44,8 +42,6 @@ class UsersController < ApplicationController
   end
   
   def edit
-    # 因为correct_check过滤器中定义了@user，这里不需要重复查询了
-    # @user = User.find_by(params[:id])
     p "edit controller"
   end
   

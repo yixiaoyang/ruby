@@ -65,13 +65,56 @@ class SkillItemsController < ApplicationController
     end
   end
 
+  def renew
+    @error = nil
+    
+    skill_ids = params[:skill_ids].map {|s| s.to_i }
+    profile_id = params[:profile_id]
+    
+    profile = Profile.find(profile_id)
+    old_skill_ids = profile.skill_ids_all
+    
+    del_skill_ids = old_skill_ids - skill_ids
+    new_skill_ids = skill_ids - old_skill_ids
+    
+    #if Rails.env.development? 
+      p skill_ids
+      p old_skill_ids
+      p del_skill_ids
+      p new_skill_ids
+    #end 
+    
+    ActiveRecord::Base.transaction do  
+      begin
+        # add new items
+        new_skill_ids.each { |skill_id|
+          item = SkillItem.new(:skill_id => skill_id, :profile_id => profile_id)
+          item.save!
+        }
+        # delete old items
+        del_skill_ids.each { |skill_id|
+          item = SkillItem.find_by(:skill_id => skill_id, :profile_id => profile_id)
+          item.destroy unless item.nil?
+        }
+      rescue Exception => ex  
+        @error = "Skill_items saved failed, msg :#{ex.message}"
+        logger.error(@error)
+      end  
+    end  
+    
+    respond_to do |format|
+      format.html { redirect_to skill_items_url }
+      format.js { render 'renew.js.erb',:action => :renew, :del_skill_ids => del_skill_ids, :new_skill_ids => new_skill_ids }
+    end
+  end
+  
   # DELETE /skill_items/1
   # DELETE /skill_items/1.json
   def destroy
     @skill_item.destroy
     respond_to do |format|
       format.html { redirect_to skill_items_url }
-      format.json { head :no_content }
+      format.js { head :no_content }
     end
   end
 

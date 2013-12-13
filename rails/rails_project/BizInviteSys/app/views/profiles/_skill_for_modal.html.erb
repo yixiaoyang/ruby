@@ -5,10 +5,9 @@
 <% else %>
   <%skills.each{ |skill| %>
     <tr>
-      <td class="td_left">
+      <td class="td_left" id="skill_lst_modal">
       <div>
-        <strong>ID:</strong>
-        <%= skill.id %> | 
+        <strong>ID:</strong><span class="badge"> <%= skill.id %></span> |  
         <strong>Category:</strong>
         <span class="<%="badge #{SKILL_CATEGORY_STYLES[skill.category]}"%>">
         <%= SKILL_CATEGORY_WORDS[skill.category] %></span> |  
@@ -20,8 +19,12 @@
       </div>
       
       </td><td>
-      <%= link_to 'Mark', skill, :class => "btn btn-sm btn-primary" %>
-      <%= link_to 'Unmark', skill, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-sm "%>
+       <!--<%= link_to 'Mark', skill, :class => "btn btn-sm btn-primary" %>-->
+      <% if !my_skill_ids.nil? and my_skill_ids.include?(skill.id) %>
+        <%= check_box_tag "skill_ids[]", skill.id, :checked => true %>
+      <%else%>
+        <%= check_box_tag "skill_ids[]", skill.id%>  
+      <%end%>
       </td>
     </tr>
   <%}%>

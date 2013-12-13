@@ -25,7 +25,12 @@ BizInviteSys::Application.routes.draw do
   
   resources :profiles
   resources :educations
-  resources :skill_items
+  resources :skill_items do
+    member do
+      get :renew
+    end
+  end
+  
   resources :personal_details
   resources :skills
   

@@ -5,18 +5,24 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">All Skills</h3>
   </div>
+  
+  <%= form_for :skill_item, :method => :get, :remote => true, :url => renew_skill_item_path do |f| %>
   <div class="modal-body">
     <ul class="normal_ul">
     <table class="table table-hover table-striped table-bordered">
       <% (0...SKILL_CATEGORY_WORDS.size).each {|idx|  %>
-        <%= render 'skills/skill_for_modal', :skills =>  Skill.find(:all, :conditions => [ "category = ?", idx], :order => "id ASC"),
-                                             :category => idx %>
+        <%= render 'skill_for_modal', :skills =>  Skill.where("category = ?", idx).order("id ASC"),
+                                             :category => idx, 
+                                             :my_skill_ids => @profile.skill_ids(idx) %>
       <% } %>
     </table>
     </ul>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save</button>
+    <%= link_to 'Close', "#" ,:class => "btn",  "data-dismiss" => "modal", "aria-hidden" => "true"%> 
+    
+    <%= hidden_field_tag :profile_id, @profile.id%>
+    <%= f.submit 'Save', :class => "btn btn-primary"%>
   </div>
+  <% end %>
 </div>

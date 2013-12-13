@@ -26,5 +26,7 @@ module BizInviteSys
     config.time_zone = 'Beijing'
     config.active_record.default_timezone = :local
     
+    config.assets.logger = false
+    config.assets.logger = nil
   end
 end

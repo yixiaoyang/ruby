@@ -32,7 +32,7 @@ DEGREE_WORDS = ["Bachelor","Master","Doctor","Other"]
 DEGREE_WORDS_OPTIONS = mk_options(DEGREE_WORDS)
 DEGREE_WORDS_OPTIONS_FOR_INPLACE= mk_options(DEGREE_WORDS,true)
 
-SKILL_CATEGORY_WORDS = ["Should", "General", "Other"]
+SKILL_CATEGORY_WORDS = ["Important", "General", "Other"]
 SKILL_CATEGORY_STYLES =["badge-important","badge-warning","badge-success"]
 SKILL_CATEGORY_WORDS_OPTIONS = mk_options(SKILL_CATEGORY_WORDS)
 

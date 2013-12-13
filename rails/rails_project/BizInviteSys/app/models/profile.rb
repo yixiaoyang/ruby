@@ -8,4 +8,20 @@ class Profile < ActiveRecord::Base
 
   has_many  :skill_items,dependent: :destroy
   has_many  :skills, through: :skill_items
+  
+  # 返回所有已有技能项的id数组
+  def skill_ids(category=0)
+    ids = []
+    self.skills.each{ |skill| 
+      ids.push(skill.id) unless (skill.category != category)
+    }
+    ids
+  end
+  
+  # 返回所有已有技能项的id数组
+  def skill_ids_all
+    ids = []
+    self.skills.each{ |skill|  ids.push(skill.id) }
+    ids
+  end
 end
