@@ -15,6 +15,7 @@ class Profile < ActiveRecord::Base
     self.skills.each{ |skill| 
       ids.push(skill.id) unless (skill.category != category)
     }
+    p ids
     ids
   end
   

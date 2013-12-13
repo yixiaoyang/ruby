@@ -97,14 +97,16 @@
     <a href="#collapse4" data-toggle="collapse">
     <h4>
     <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block"></span>
-    Skills( <%=@profile.skill_items.count %> )</h4></a>
+    <span id="skill_item_table_title">Skills( <%=@profile.skill_items.count %> )</span></h4></a>
   </div>
   <div class="collapse in " id="collapse4">
-    <ul>
-      <table class="table table-hover table-striped table-bordered">
-      <%= render @profile.skill_items %>
-      </table>
-    </ul>
+    <div id="skill_items_list">
+      <ul>
+        <table class="table table-hover table-striped table-bordered">
+        <%= render @profile.skill_items, :ajax_view => true %>
+        </table>
+      </ul>
+     </div>
     
     <!-- Button to trigger modal -->
     <a href="#skill_slt_modal" role="button" class="btn" data-toggle="modal">Select my Skills</a>

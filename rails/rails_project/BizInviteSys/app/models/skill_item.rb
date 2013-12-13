@@ -6,4 +6,8 @@ class SkillItem < ActiveRecord::Base
   
   # skill_id和profile_id两列唯一
   validates   :skill_id, presence:true, numericality: true, :uniqueness => { :scope => :profile_id }
+  
+  def owner
+    self.profile.user
+  end
 end

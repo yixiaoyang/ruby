@@ -1,23 +1,31 @@
 <% skill ||= skill_item.skill %>
-<tr>
+<% ajax_view ||= false%>
+
+<tr id=<%="#{SkillItemsController.gen_tr_id(skill_item.id)}"%> >
   <td class="td_left">
   <li>
   <div class="best_in_place_div">
     <strong>skill_id:</strong>
-    <%= best_in_place skill_item, :skill_id %> | 
+    <%= skill_item.skill_id %> | 
     <strong>profile_id:</strong>
-    <%= best_in_place skill_item, :profile_id %> | 
+    <%= skill_item.profile_id %> | 
     <strong>Score:</strong>
     <b><%= skill.score %><b>
   </li>
   </div>
   </td>
-  <td>
-  <span><%= link_to 'Show', skill_item %></span>
-  <span><%= link_to 'Edit', edit_skill_item_path(skill_item) %></span>
-  <span><%= link_to 'Destroy', skill_item, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-  </td>
+
+   <% if current_user?(skill_item.owner) %>
+    <td>
+      <% if ajax_view %>
+        <span><%= link_to 'Show', skill_item %></span> | 
+      <%end%>
+      <span><%= link_to 'Edit', edit_skill_item_path(skill_item) %></span> | 
+      <span><%= link_to 'Destroy', skill_item, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
+    </td>
+  <% end %>
+
 </tr>
-<tr><td colspan="2">
+<tr id=<%="#{SkillItemsController.gen_tr_id(skill_item.id)}"%> ><td colspan="2">
   <%=render 'skills/skill_for_skill_item',:skill => skill%>
 </td></tr>

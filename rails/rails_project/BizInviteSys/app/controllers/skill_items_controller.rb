@@ -39,16 +39,28 @@ class SkillItemsController < ApplicationController
   # POST /skill_items.json
   def create
     @skill_item = SkillItem.new(skill_item_params)
-
-    respond_to do |format|
-      if @skill_item.save
-        format.html { redirect_to @skill_item, notice: 'Skill item was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @skill_item }
-      else
+    if params[:profile_id].nil?
+      flash[:error] = "Profile not found";
+      respond_to do |format|
         format.html { render action: 'new' }
         format.json { render json: @skill_item.errors, status: :unprocessable_entity }
+        format.js{render 'create.js.erb', succeed:false}
+      end
+    else
+      respond_to do |format|
+        if @skill_item.save
+          format.html { redirect_to @skill_item, notice: 'Skill item was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @skill_item }
+          format.js{render 'create.js.erb', succeed:true}
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @skill_item.errors, status: :unprocessable_entity }
+          format.js{render 'create.js.erb', succeed:false}
+        end
       end
     end
+
+    
   end
 
   # PATCH/PUT /skill_items/1
@@ -67,6 +79,8 @@ class SkillItemsController < ApplicationController
 
   def renew
     @error = nil
+    @deled_skill_item_ids = []
+    @newed_skill_item_ids = []
     
     skill_ids = params[:skill_ids].map {|s| s.to_i }
     profile_id = params[:profile_id]
@@ -76,7 +90,7 @@ class SkillItemsController < ApplicationController
     
     del_skill_ids = old_skill_ids - skill_ids
     new_skill_ids = skill_ids - old_skill_ids
-    
+
     #if Rails.env.development? 
       p skill_ids
       p old_skill_ids
@@ -89,11 +103,13 @@ class SkillItemsController < ApplicationController
         # add new items
         new_skill_ids.each { |skill_id|
           item = SkillItem.new(:skill_id => skill_id, :profile_id => profile_id)
-          item.save!
+          item.save! 
+          @newed_skill_item_ids.push(item.id) unless item.nil?
         }
         # delete old items
         del_skill_ids.each { |skill_id|
           item = SkillItem.find_by(:skill_id => skill_id, :profile_id => profile_id)
+          @deled_skill_item_ids.push(item.id) unless item.nil?
           item.destroy unless item.nil?
         }
       rescue Exception => ex  
@@ -111,11 +127,20 @@ class SkillItemsController < ApplicationController
   # DELETE /skill_items/1
   # DELETE /skill_items/1.json
   def destroy
+    @destroy_id = @skill_item.id
     @skill_item.destroy
+    @error = nil
+    @profile = current_user.profile
     respond_to do |format|
       format.html { redirect_to skill_items_url }
-      format.js { head :no_content }
+      format.js { render 'destroy.js.erb', :succeed => true }
     end
+  end
+  
+  def self.gen_tr_id(education_id)
+    str =  "skill_items_tr_id_#{education_id}"
+    p str
+    str
   end
 
   private
