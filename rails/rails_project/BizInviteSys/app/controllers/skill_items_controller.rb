@@ -84,20 +84,12 @@ class SkillItemsController < ApplicationController
     
     skill_ids = params[:skill_ids].map {|s| s.to_i }
     profile_id = params[:profile_id]
-    
-    profile = Profile.find(profile_id)
-    old_skill_ids = profile.skill_ids_all
+    @profile = Profile.find(profile_id)
+    old_skill_ids = @profile.skill_ids_all
     
     del_skill_ids = old_skill_ids - skill_ids
     new_skill_ids = skill_ids - old_skill_ids
 
-    #if Rails.env.development? 
-      p skill_ids
-      p old_skill_ids
-      p del_skill_ids
-      p new_skill_ids
-    #end 
-    
     ActiveRecord::Base.transaction do  
       begin
         # add new items
@@ -118,9 +110,14 @@ class SkillItemsController < ApplicationController
       end  
     end  
     
+     #if Rails.env.development? 
+      p "deleted :#{@deled_skill_item_ids}"
+      p "added:#{@newed_skill_item_ids}"
+    #end 
+    
     respond_to do |format|
       format.html { redirect_to skill_items_url }
-      format.js { render 'renew.js.erb',:action => :renew, :del_skill_ids => del_skill_ids, :new_skill_ids => new_skill_ids }
+      format.js { render 'renew.js.erb'}
     end
   end
   
@@ -130,19 +127,22 @@ class SkillItemsController < ApplicationController
     @destroy_id = @skill_item.id
     @skill_item.destroy
     @error = nil
-    @profile = current_user.profile
     respond_to do |format|
       format.html { redirect_to skill_items_url }
       format.js { render 'destroy.js.erb', :succeed => true }
     end
   end
   
-  def self.gen_tr_id(education_id)
-    str =  "skill_items_tr_id_#{education_id}"
-    p str
-    str
+  def self.gen_tr_id(id)
+    "skill_items_tr_id_#{id}"
   end
-
+  def self.gen_tr_id2(id)
+    "skill_items_tr_id_#{id}_2"
+  end
+  def self.gen_slt_id(id)
+    "skill_items_slt_id_#{id}"
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_skill_item

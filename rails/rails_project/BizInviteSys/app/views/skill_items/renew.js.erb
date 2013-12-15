@@ -1,1 +1,16 @@
- 
+<%if @error.nil? %>
+  <%@deled_skill_item_ids.each{|id| %>
+    $('#<%=SkillItemsController.gen_tr_id(id)%>').remove();
+    /*$('#<%=SkillItemsController.gen_tr_id2(id)%>').remove();*/
+  <%}%>
+             
+  <%@newed_skill_item_ids.each{|id|%>
+    $('#skill_items_list table tbody').append("<%= escape_javascript(render SkillItem.find(id), :ajax_view => true)%>");
+    $('#<%=SkillItemsController.gen_tr_id(id)%>').fadeIn(400).fadeOut(400).fadeIn(200).fadeOut(200).fadeIn("slow");
+  <%}%>  
+                              
+  $('#skill_slt_modal').modal('hide');  
+  $('#skill_item_table_title').html("Skills( <%=current_user.profile.skill_items.count %> )");
+<% else %>
+  alert("Save Failed:<%=@error%>");
+<%end%>
