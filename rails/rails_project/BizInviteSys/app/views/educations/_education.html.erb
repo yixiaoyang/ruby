@@ -3,7 +3,7 @@
   <td class="td_left">
   <div class="best_in_place_div">
     <p>
-      <% if current_user.admin? %>
+      <% if current_user.admin? and Rails.env.development? %>
         <strong>Username:</strong>
         <%= education.owner.name %>
         <br>

@@ -130,6 +130,9 @@ class SkillItemsController < ApplicationController
   def destroy
     @destroy_id = @skill_item.id
     @profile = @skill_item.profile
+    
+    @skill = @skill_item.skill
+    
     @skill_item.destroy
     @error = nil
     
@@ -137,7 +140,7 @@ class SkillItemsController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to skill_items_url }
-      format.js { render 'destroy.js.erb', :succeed => true }
+      format.js { render 'destroy.js.erb', :succeed => true}
     end
   end
   

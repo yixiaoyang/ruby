@@ -20,6 +20,7 @@ def mk_options(arr, for_best_in_place=false)
 end
 
 # 自定义全局常量区域
+# 改进：！！！使用yaml配置文件代替！！！
 
 # email regex
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -39,7 +40,8 @@ SKILL_CATEGORY_WORDS_OPTIONS = mk_options(SKILL_CATEGORY_WORDS)
 PROFILE_CATEGORY_WORDS = ["School","Society"]
 PROFILE_CATEGORY_WORDS_OPTIONS = mk_options(PROFILE_CATEGORY_WORDS)
 
-PROFILE_STATS_WORDS = ["Pass","Pending","Reject"]
+# 未投递，已投递（未审核），通过（不能在），未决，未通过
+PROFILE_STATS_WORDS = ["Undelivered","Delivered","Pass","Pending","Reject"]
 PROFILE_STATS_WORDS_OPTIONS = mk_options(PROFILE_STATS_WORDS)
 
 EDUCATION_START_END_TIME = {syear:1960, smonth:1, sday:1}

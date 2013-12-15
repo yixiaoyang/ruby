@@ -3,17 +3,17 @@
   <tr><td>
     <li>
       <strong>Category:</strong>
-      <%= best_in_place @profile, :category %>
+      <%= PROFILE_CATEGORY_WORDS[@profile.category] %>
     </li>
 
     <li>
       <strong>Stat:</strong>
-      <%= best_in_place @profile, :stat %>
+      <%= PROFILE_STATS_WORDS[@profile.stat] %>
     </li>
 
     <li>
       <strong>Score:</strong>
-      <%= best_in_place @profile, :score %>
+      <%= @profile.score %>
     </li>
   </td></tr>
   </div>

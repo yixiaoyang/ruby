@@ -2,7 +2,7 @@
 <tr id=<%="#{PersonalDetailsHelper.gen_tr_id(personal_detail.id)}"%> >
   <td class="td_left">
   <div class="best_in_place_div">
-     <% if current_user.admin? %>
+     <% if current_user.admin? and Rails.env.development? %>
       <li> 
       <strong>Username:</strong>
       <%= personal_detail.owner.name %>
@@ -54,7 +54,7 @@
       
       </li><li>
       <strong>Sex:</strong>
-      <%=personal_detail.sex %>
+      <%=SEX_WORDS[personal_detail.sex] %>
 
       </li><li>
       <strong>Email:</strong>
