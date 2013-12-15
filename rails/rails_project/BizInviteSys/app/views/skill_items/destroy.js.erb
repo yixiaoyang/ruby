@@ -1,7 +1,6 @@
 <%if @error.nil? %>
   $(<%=escape_javascript("#{SkillItemsController.gen_tr_id( @destroy_id )}")%>).remove();
-  /*为什么他不工作？ $('#skill_item_table_title').replaceWith("Skills( <%= current_user.profile.skill_items.count.to_s %> )");*/
-  $('#skill_item_table_title').html("Skills( <%=current_user.profile.skill_items.count %> )");
+  $('#skill_item_table_title').html("Skills( <%=@profile.skill_items.count %> )");
 <% else %>
   alert("Destroy Failed:#{@error}");
 <%end%>

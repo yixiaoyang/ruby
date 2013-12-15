@@ -103,15 +103,19 @@
     <div id="skill_items_list">
       <ul>
         <table class="table table-hover table-striped table-bordered">
-        <%= render @profile.skill_items, :ajax_view => true %>
+          <% (0...SKILL_CATEGORY_WORDS.size).each {|idx|  %>
+          <%= render 'profiles/skill_for_profile', :skills =>  @profile.skills.where("category = ?", idx).order("id ASC"),
+                                          :category => idx %>
+          <% } %>
         </table>
       </ul>
      </div>
     
     <!-- Button to trigger modal -->
+    <% if current_user?(@profile.user) %>
     <a href="#skill_slt_modal" role="button" class="btn" data-toggle="modal">Select my Skills</a>
     <%= render 'skills_slt_modal'%>
-
+    <%end%>
   </div>
 
   

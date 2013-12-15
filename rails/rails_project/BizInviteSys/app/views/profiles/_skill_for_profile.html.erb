@@ -1,0 +1,52 @@
+<tr>
+<td colspan="2"><b><%=SKILL_CATEGORY_WORDS[category]%><b></td>
+</tr>
+<% if skills.nil? %>
+  <tr colspan="2"><td><b>No Skills Data<b></td></tr>
+<% else %>
+  <%skills.each{ |skill| %>
+    <%skill_item = @profile.skill_item_with_skillId(skill.id)%>
+    
+    <% if skill_item.nil?%>
+    <tr>
+    <% else%>
+    <tr id=<%="#{SkillItemsController.gen_tr_id(skill_item.id)}"%> >
+    <%end%>
+      <td class="td_left">
+      <div>
+        <strong>ID:</strong>
+        <span class="badge"> <%= skill.id %></span> |  
+        
+        <strong>Category:</strong>
+        <span class="<%="badge #{SKILL_CATEGORY_STYLES[skill.category]}"%>">
+        <%= SKILL_CATEGORY_WORDS[skill.category] %></span> |  
+        
+        <strong>Score:</strong>
+        <span class="badge badge-info"><%= skill.score %></span>
+        
+        <br>
+        <strong>Description:</strong>
+        <%= skill.description %>  
+      </div>
+      
+      </td>
+
+      <!--
+      <a data-confirm="Are you sure?" data-method="delete" data-remote="true" href="/skill_items/<%=@profile.skill_item_with_skillId(skill.id)%>" rel="nofollow">
+      Destroy
+      </a>
+      -->
+      <% if current_user?(skill_item.owner) %>
+      <% unless skill_item.nil?%>
+      <td>
+      <%= link_to 'Destroy', skill_item_path(skill_item),
+                                   method: :delete, data: { confirm: 'Are you sure?' },
+                                   remote: true  %>
+      </td>
+      <%end%>
+      <%end%>
+    </tr>
+  <%}%>
+<% end %>
+
+

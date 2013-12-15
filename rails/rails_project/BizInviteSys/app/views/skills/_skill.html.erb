@@ -1,25 +1,50 @@
+<% ajax_view ||= false %>
+
 <tr>
   <td class="td_left">
   <div class="best_in_place_div">
-    <li>
-    <strong>ID:</strong>
-    <%= skill.id %>
-    </li><li>
-    <strong>Category:</strong>
-    <%= best_in_place skill, :category %>
-    </li><li>
-    <strong>Score:</strong>
-    <%= best_in_place skill, :score %>
-    </li><li>
-    <strong>Description:</strong>
-    <%= best_in_place skill, :description, type: :textarea%>  
-    </li>
+    <% if ajax_view%>
+      <li>
+      <strong>ID:</strong>
+      <%= skill.id %>
+      </li><li>
+      <strong>Category:</strong>
+      <%= best_in_place skill, :category %>
+      </li><li>
+      <strong>Score:</strong>
+      <%= best_in_place skill, :score %>
+      </li><li>
+      <strong>Description:</strong>
+      <%= best_in_place skill, :description, type: :textarea%>  
+      </li>
+      
+    <% else %>
+      <li>
+      <strong>ID:</strong>
+      <span class="badge"> <%= skill.id %></span> |  
+    
+      <strong>Category:</strong>
+      <span class="<%="badge #{SKILL_CATEGORY_STYLES[skill.category]}"%>">
+      <%= SKILL_CATEGORY_WORDS[skill.category] %></span> |  
+    
+      <strong>Score:</strong>
+      <span class="badge badge-info"><%= skill.score %></span>
+      
+      </li><li>
+      <strong>Description:</strong>
+      <%= skill.description%>  
+      </li>
+    <%end%>
+    
   </div>
   
-  </td><td>
+  </td>
+  
+
+  <td>
   <%= link_to 'Show', skill %>|
   <%= link_to 'Edit', edit_skill_path(skill) %>|
-  <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } , remote: ajax_view %>
   </td>
 </tr>
 

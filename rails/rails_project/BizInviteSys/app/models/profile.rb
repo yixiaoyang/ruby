@@ -25,4 +25,10 @@ class Profile < ActiveRecord::Base
     self.skills.each{ |skill|  ids.push(skill.id) }
     ids
   end
+  
+  def skill_item_with_skillId(skill_id)
+    skill_item = SkillItem.find_by(:skill_id => skill_id, :profile_id=> self.id)
+    p skill_item
+    skill_item
+  end
 end

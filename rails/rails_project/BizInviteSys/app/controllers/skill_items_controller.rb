@@ -3,10 +3,14 @@ class SkillItemsController < ApplicationController
   
   protect_from_forgery with: :exception
   include SessionsHelper
+  include SkillItemsHelper
   
   before_action :set_skill_item, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_check
   before_action :admin_user_check, only: [:index]
+  
+  before_action :correct_user_check, only: [:edit, :update, :destroy]
+  before_action :others_view_forbidden, only:[:show]
   
   # GET /skill_items
   # GET /skill_items.json
@@ -125,6 +129,7 @@ class SkillItemsController < ApplicationController
   # DELETE /skill_items/1.json
   def destroy
     @destroy_id = @skill_item.id
+    @profile = @skill_item.profile
     @skill_item.destroy
     @error = nil
     respond_to do |format|

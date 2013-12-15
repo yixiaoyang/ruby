@@ -3,7 +3,7 @@ class SkillsController < ApplicationController
   
   before_action :set_skill, only: [ :show, :edit, :update, :destroy]
   before_action :signed_in_check
-  before_action :admin_user_check, only: [:destroy, :edit. :update]                                      
+  before_action :admin_user_check, only: [:destroy, :edit, :update]                                      
   
   protect_from_forgery with: :exception
   include SessionsHelper
