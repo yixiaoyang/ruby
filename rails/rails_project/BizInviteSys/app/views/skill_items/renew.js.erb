@@ -3,7 +3,9 @@
   tab_div.empty();
   
   <% (0...SKILL_CATEGORY_WORDS.size).each {|idx|  %>
-    tab_div.append("<%= escape_javascript(render 'profiles/skill_for_profile', :skills =>  @profile.skills.where(:category => idx).order("id ASC"), :category => idx) %>");
+    <% skills = @profile.skills.where("category = ?", idx).order("id ASC")%>
+    <% sum = skills.sum(:score) %>
+    tab_div.append("<%= escape_javascript(render 'profiles/skill_for_profile', :skills =>  skills, :category => idx, :sum => sum) %>");
   <% } %>
   
   $('#skill_slt_modal').modal('hide');  

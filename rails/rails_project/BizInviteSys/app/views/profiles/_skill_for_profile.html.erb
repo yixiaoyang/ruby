@@ -1,5 +1,11 @@
 <tr>
-<td colspan="2"><b><%=SKILL_CATEGORY_WORDS[category]%><b></td>
+<td colspan="2">
+<b>Category:</b>
+<span><%= SKILL_CATEGORY_WORDS[category] %></span>
+ | 
+<b>Score:</b>
+<%=sum%>
+</td>
 </tr>
 <% if skills.nil? %>
   <tr colspan="2"><td><b>No Skills Data<b></td></tr>

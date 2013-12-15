@@ -31,4 +31,10 @@ class Profile < ActiveRecord::Base
     p skill_item
     skill_item
   end
+  
+  def update_score
+    self.score = self.skills.sum(:score);
+    self.save
+    self.score
+  end
 end

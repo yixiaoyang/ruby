@@ -104,8 +104,11 @@
       <ul>
         <table class="table table-hover table-striped table-bordered">
           <% (0...SKILL_CATEGORY_WORDS.size).each {|idx|  %>
-          <%= render 'profiles/skill_for_profile', :skills =>  @profile.skills.where("category = ?", idx).order("id ASC"),
-                                          :category => idx %>
+          <% skills = @profile.skills.where("category = ?", idx).order("id ASC")%>
+          <% sum = skills.sum(:score) %>
+          <%= render 'profiles/skill_for_profile', :skills => skills ,
+                                          :category => idx,
+                                          :sum => sum%>
           <% } %>
         </table>
       </ul>

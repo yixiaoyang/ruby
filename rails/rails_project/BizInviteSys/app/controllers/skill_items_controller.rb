@@ -51,6 +51,9 @@ class SkillItemsController < ApplicationController
         format.js{render 'create.js.erb', succeed:false}
       end
     else
+      @profile = Profile.find(params[:profile_id]) unless @profile.nil?
+      @profile.update_score
+      
       respond_to do |format|
         if @skill_item.save
           format.html { redirect_to @skill_item, notice: 'Skill item was successfully created.' }
@@ -113,11 +116,8 @@ class SkillItemsController < ApplicationController
         logger.error(@error)
       end  
     end  
-    
-     #if Rails.env.development? 
-      p "deleted :#{@deled_skill_item_ids}"
-      p "added:#{@newed_skill_item_ids}"
-    #end 
+
+    @profile.update_score
     
     respond_to do |format|
       format.html { redirect_to skill_items_url }
@@ -132,6 +132,9 @@ class SkillItemsController < ApplicationController
     @profile = @skill_item.profile
     @skill_item.destroy
     @error = nil
+    
+    @profile.update_score
+    
     respond_to do |format|
       format.html { redirect_to skill_items_url }
       format.js { render 'destroy.js.erb', :succeed => true }
