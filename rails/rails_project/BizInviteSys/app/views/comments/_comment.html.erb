@@ -1,0 +1,39 @@
+<% ajax_view ||= false %>
+
+<tr id=<%="#{EducationsController.gen_tr_id(comment.id)}"%> >
+  <td class="td_left">
+  <div class="best_in_place_div">
+    <p>
+  
+      <% if current_user?( comment.owner )%>
+         <strong>Score:</strong>
+        <%= best_in_place comment, :score %> <br>
+         <strong>Vluation:</strong>
+        <%= best_in_place comment, :vluation, :type => :textarea, :sanitize => false, :maxlength => VLUATION_LEN_MAX%>
+      <% else%>
+        <strong>Score:</strong>
+        <%= comment.score %>
+        <br>
+        <strong>Vluation:</strong>
+        <%= comment.vluation %>
+      <% end %>
+  </p>
+  </div>
+  </td>
+  <% if !ajax_view %>
+    <td>
+  <%end%>
+   <% if current_user?(comment.owner) %>
+      <% if ajax_view %>
+        <%= link_to 'Show', comment %> | 
+      <%end%>
+      <%= link_to 'Edit', edit_comment_path(comment) %> | 
+      <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
+  <% end %>
+  <% if !ajax_view %>
+    </td>
+  <%end%>
+</tr>
+
+
+

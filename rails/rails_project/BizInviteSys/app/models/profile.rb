@@ -9,6 +9,8 @@ class Profile < ActiveRecord::Base
   has_many  :skill_items,dependent: :destroy
   has_many  :skills, through: :skill_items
   
+  has_many  :comments, dependent: :destroy
+  
   # 返回所有已有技能项的id数组
   def skill_ids(category=0)
     ids = []

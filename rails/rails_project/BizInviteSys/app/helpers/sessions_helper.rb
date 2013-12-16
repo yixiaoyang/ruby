@@ -77,6 +77,8 @@ module SessionsHelper
   end
 
   def admin_user_check
-    redirect_to root_path unless current_user.admin?
+    if current_user.nil? or !current_user.admin?
+      redirect_to root_path
+    end
   end
 end

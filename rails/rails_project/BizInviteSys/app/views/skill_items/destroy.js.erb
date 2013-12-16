@@ -1,12 +1,11 @@
 <%if @error.nil? %>
   $(<%=escape_javascript("#{SkillItemsController.gen_tr_id( @destroy_id )}")%>).remove();
-
-  # 重新计算分数
+  
   var score_span = $("#score_<%=@skill.category%>");
   score_span.html((parseInt(score_span.text())-<%=@skill.score%>).toString());
   
   $('#skill_item_table_title').html("Skills( <%=@profile.skill_items.count %> )");
   $('#skill_item_table_title').html("Skills( <%=@profile.skill_items.count %> )");
-<% else %>
+  <% else %>
   alert("Destroy Failed:#{@error}");
 <%end%>

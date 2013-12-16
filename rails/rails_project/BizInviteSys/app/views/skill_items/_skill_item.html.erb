@@ -22,15 +22,19 @@
   </div>
   </td>
 
+  <% if !ajax_view %>
+  <td>
+  <%end%>
    <% if current_user?(skill_item.owner) %>
-    <td>
       <% if !ajax_view %>
         <span><%= link_to 'Show', skill_item %></span> | 
       <%end%>
       <!--<span><%= link_to 'Edit', edit_skill_item_path(skill_item) %></span> | -->
       <span><%= link_to 'Destroy', skill_item, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
-    </td>
   <% end %>
+  <% if !ajax_view %>
+  </td>
+  <%end%>
 
 </tr>
 <!--

@@ -35,6 +35,7 @@ namespace :db do
     make_skills
     make_skill_items
     make_profiles
+    make_comments
   end
   
   desc "Generate Data for Project"
@@ -62,23 +63,34 @@ namespace :db do
   task profiles:  :environment do
     make_profiles
   end
+  
+  desc "Generate comments for Project"
+  task comments:  :environment do
+    make_comments
+  end
+  
 end
 
 def make_users
-  User.create!(name:"User",
-               email:"user@biz.com",
+  5.times do |n|
+    name = "user#{n}"
+    User.create!(name:name,
+               email:"#{name}@biz.com",
                password:"123456",
                password_confirmation:"123456",
-               # 把第一个用户设置为管理员
                admin:true)
-  50.times do |n|
+  end
+  
+  50.times do |m|
+    n = m+5
     name = "user#{n}"
     email = "user#{n}@biz.com" 
     password = "123456"
     User.create!(name:name,
                  email:email,
                  password:password,
-                 password_confirmation:password )
+                 password_confirmation:password,
+                 admin:false)
   end
 end
 
@@ -149,4 +161,16 @@ def make_profiles
                   stat:stat,
                   user_id:n+1)
                  end
+end
+
+def make_comments
+  20.times do |n|
+    score = rand(50) + 50
+    vluation =  Faker::Lorem.sentence(word_count=15)
+    user_id = rand(5)+1
+    Comment.create!(score:score,
+                  vluation:vluation,
+                  profile_id:n+1,
+                  user_id:user_id)
+  end
 end

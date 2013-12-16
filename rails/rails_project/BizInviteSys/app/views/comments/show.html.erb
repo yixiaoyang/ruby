@@ -1,0 +1,21 @@
+<% provide(:title, "Comment")%>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <ul class="normal_ul">
+    <table class="table table-hover table-striped table-bordered">
+      <%= render @comment%>
+    </table>
+    
+    <%= link_to 'Edit', edit_comment_path(@comment) %> |
+    <%= link_to 'Back', comments_path %>
+    </ul>
+  </div>
+</div>
