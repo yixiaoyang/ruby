@@ -1,10 +1,12 @@
 <% ajax_view ||= false %>
 
-<tr id=<%="#{EducationsController.gen_tr_id(comment.id)}"%> >
+<tr id=<%="#{CommentsController.gen_tr_id(comment.id)}"%> >
   <td class="td_left">
   <div class="best_in_place_div">
     <p>
-  
+      <strong>Writer:</strong>
+      <%=link_to comment.user.name, comment.user %> | <%=mail_to comment.user.email %><br>
+      
       <% if current_user?( comment.owner )%>
          <strong>Score:</strong>
         <%= best_in_place comment, :score %> <br>
@@ -20,19 +22,16 @@
   </p>
   </div>
   </td>
-  <% if !ajax_view %>
-    <td>
-  <%end%>
+
    <% if current_user?(comment.owner) %>
-      <% if ajax_view %>
-        <%= link_to 'Show', comment %> | 
-      <%end%>
+    <td>
+    <% if !ajax_view %>
+      <%= link_to 'Show', comment %> | 
       <%= link_to 'Edit', edit_comment_path(comment) %> | 
-      <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
-  <% end %>
-  <% if !ajax_view %>
+    <%end%>
+    <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
     </td>
-  <%end%>
+  <% end %>
 </tr>
 
 

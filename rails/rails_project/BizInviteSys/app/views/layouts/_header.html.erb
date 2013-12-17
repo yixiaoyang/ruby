@@ -25,10 +25,11 @@
                 <li><%= link_to "Settings", edit_user_path(current_user)%></li>
                 <% if current_user.admin? %>
                   <li class="divider"></li>
-                  <li><%= link_to "educations", educations_path%></li>
-                  <li><%= link_to "skills", skills_path%></li> 
-                  <li><%= link_to "skill_items", skill_items_path%></li>
-                  <li><%= link_to "personal_details", personal_details_path%></li>
+                  <li><%= link_to "Educations", educations_path%></li>
+                  <li><%= link_to "Skills", skills_path%></li> 
+                  <li><%= link_to "Skill_items", skill_items_path%></li>
+                  <li><%= link_to "Personal_details", personal_details_path%></li>
+                  <li><%= link_to "Comments", comments_path%></li> 
                 <%end%>
                 <li class="divider"></li>
                 <li><%= link_to "Sign out", signout_path, method: "delete" %></li>

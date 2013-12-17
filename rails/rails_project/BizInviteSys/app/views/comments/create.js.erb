@@ -1,0 +1,9 @@
+<%if @comment.nil? %>
+  alert('Create Failed');
+<% else %>
+  $('#comments_list table tbody').append("<%= escape_javascript(render(@comment, :ajax_view => true)) %>");
+  $('#_ajax_comment_new_form').remove();
+  $('#comment_table_title').html("Comments( <%=@profile.comments.count%> by Administrator )");
+  $("#<%=CommentsController.gen_tr_id(@comment.id)%>").fadeIn(400).fadeOut(400).fadeIn(200).fadeOut(200).fadeIn("slow");
+<%end%>
+                                                     

@@ -11,6 +11,5 @@
  *= require_self
  *= require bootstrap_and_overrides
  *= require color-me-sass/_color-me-sass.scss
- *= require jquery.ui.all
  *= require_tree .
  */

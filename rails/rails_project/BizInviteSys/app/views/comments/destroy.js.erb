@@ -1,0 +1,7 @@
+<%if !@error.nil? %>
+  alert('Create Failed');
+<% else %>
+  $('#comment_table_title').html("Comments( <%=@profile.comments.count%> by Administrator )");
+  $("#<%=CommentsController.gen_tr_id(@comment_id)%>").remove();
+<%end%>
+                                                     

@@ -1,0 +1,5 @@
+<%if @error.nil? %>
+  $("<div id='_ajax_comment_new_form'><%= escape_javascript render(file: 'comments/new.html.erb') %></div>").insertAfter('#comments_list');
+<%else%>
+  alert("Create form failed. <%=@error%>");
+<%end%>

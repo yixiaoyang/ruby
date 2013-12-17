@@ -1,33 +1,36 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%submit_display ||= "Create"%>
+<%= form_for(@comment, remote: @ajax_view) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <ul class="normal_ul">
+      <div class="field">        
+      <%= f.label :score %>
+      <%= f.number_field :score, :min => 0, :max => 100  %>
+      </div>
+      <div class="field">
+      <%= f.label :vluation %>
+      <%= f.text_area :vluation, :rows=>"4", :maxlength => VLUATION_LEN_MAX %>
+      </div>
+  <!--
   <div class="field">
-    <%= f.label :score %><br>
-    <%= f.number_field :score %>
-  </div>
-  <div class="field">
-    <%= f.label :vluation %><br>
-    <%= f.text_field :vluation %>
-  </div>
-  <div class="field">
-    <%= f.label :profile_id %><br>
+    <%= f.label :profile_id %>
     <%= f.number_field :profile_id %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
+    <%= f.label :user_id %>
     <%= f.number_field :user_id %>
   </div>
+  -->
+    <%= f.hidden_field :profile_id %>
+    <%= f.hidden_field :user_id %>
+  </ul>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit submit_display,  class:"btn btn-sm btn-primary"%>
+    <% if @ajax_view %>
+       <!-- f.submit :Cancel,  class:"btn btn-sm btn-primary", :action => :cancel, :type => 'button' -->
+       <%= button_tag "Cancel",:type => 'button',:class => "btn btn-sm btn-primary", 
+                               :onclick => "$('#_ajax_comment_new_form').remove();" %>
+    <% else%>
+     <%= f.submit "Cancel",  class:"btn btn-sm btn-primary",  :type => 'reset' %>
+    <% end%>
   </div>
 <% end %>

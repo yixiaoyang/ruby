@@ -1,6 +1,24 @@
+<% provide(:title, "Comment Edit")%>
+<p id="notice"><%= notice %></p>
 <h1>Editing comment</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <aside class="span3">
+  <div class="aside-left-my-info">
+    <%= render 'shared/my_info' %>
+  </div>
+  </aside>
+  
+  <div class="span9 ">
+    <ul class="normal_ul">
+      <%= render 'form', :submit_display=>"Update" %>
+      <%= link_to 'Show', @comment %> |
+      <%= link_to 'Back', comments_path %>
+    </ul>
+  </div>
+</div>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+
+
+
+

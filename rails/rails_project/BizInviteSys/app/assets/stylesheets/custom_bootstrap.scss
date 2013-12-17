@@ -386,3 +386,21 @@ a.signup_button {
   top: -1px;
   position: relative;
 }
+
+/*comment form */
+.comments_zone{
+  background: $grayLighter;
+  .comment_link{
+    margin-left: 10px;
+  }
+  #_ajax_comment_new_form{
+    padding: 4px;
+    border: 1px solid $grayLight;
+    border-collapse: separate;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
