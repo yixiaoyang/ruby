@@ -5,11 +5,15 @@ class ProfilesController < ApplicationController
   
   protect_from_forgery with: :exception
   include SessionsHelper
+  include ProfilesHelper
   
   before_action :set_profile, only: [:show, :edit, :update, :destroy, :update_stat]
   before_action :signed_in_check
-  before_action :admin_user_check, only: [:destroy]
+  before_action :admin_user_check, only: [:destroy, :update_stat]
  
+  before_action :correct_user_check, only: [:edit, :update]
+  before_action :others_view_forbidden, only:[:show]
+  
   def user
     p User.find_by(:id => self.user_id)
     User.find_by(:id => self.user_id)
