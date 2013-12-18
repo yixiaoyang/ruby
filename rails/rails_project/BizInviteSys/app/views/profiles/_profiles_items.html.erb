@@ -1,8 +1,8 @@
 <% profiles.each { |p| %>
   <tr>
     <td><%= link_to p.id, p%></td>
-    <td><%=p.stat%></td>
-    <td><%=p.category%></td>
+    <td><%=PROFILE_CATEGORY_WORDS[p.category]%></td>
     <td><%=p.score%></td>
+    <td><span class="badge badge-important"><%=PROFILE_STATS_WORDS[p.stat]%></span></td>
   </tr>
 <% } %>

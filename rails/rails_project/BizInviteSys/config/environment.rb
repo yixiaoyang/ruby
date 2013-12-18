@@ -37,7 +37,7 @@ SKILL_CATEGORY_WORDS = ["Important", "General", "Other"]
 SKILL_CATEGORY_STYLES =["badge-important","badge-warning","badge-success"]
 SKILL_CATEGORY_WORDS_OPTIONS = mk_options(SKILL_CATEGORY_WORDS)
 
-PROFILE_CATEGORY_WORDS = ["School","Society"]
+PROFILE_CATEGORY_WORDS = ["School Invitation","Society Invitation"]
 PROFILE_CATEGORY_WORDS_OPTIONS = mk_options(PROFILE_CATEGORY_WORDS)
 
 # 未投递，已投递（未审核），通过（不能在），未决，未通过

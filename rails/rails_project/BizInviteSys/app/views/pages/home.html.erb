@@ -11,7 +11,7 @@
         <% if current_user.profile.nil? %>
         <h4>Your profile not <a href="<%=new_profile_path%>">Created</a><h4>
         <% else %>
-        <h4>Stat of my profile: <a href="<%=profile_path(current_user.profile.id)%>"><%=PROFILE_STATS_WORDS[current_user.profile.stat]%></a><h4>
+        <h4>Stat of my profile: <a href="<%=profile_path(current_user.profile.id)%>"><span class="badge badge-important"><%=PROFILE_STATS_WORDS[current_user.profile.stat]%></span></a><h4>
         <% end %>
       </section>
     </span>
