@@ -2,36 +2,31 @@
 <tr id=<%="#{EducationsController.gen_tr_id(education.id)}"%> >
   <td class="td_left">
   <div class="best_in_place_div">
-    <p>
       <% if current_user.admin? and Rails.env.development? %>
-        <strong>Username:</strong>
+        <li><strong>Username:</strong>
         <%= education.owner.name %>
-        <br>
-        
+        </li><li>        
         <strong>User ID:</strong>
-        <%= education.owner.id %>
-        <br>
+        <%= education.owner.id %></li>
       <% end%>
-      
+      <li> 
       <strong>Time</strong>
       <%= education.timeZone %>
       <br>
+      </li>
       
- 
       <% if current_user?( education.owner )%>
-        <strong>Degree:</strong>
+        <li> <strong>Degree:</strong>
         <%= best_in_place education, :degree, :type => :select,
-                                      :collection => DEGREE_WORDS_OPTIONS_FOR_INPLACE %> <br>
-        <strong>Description:</strong>
-        <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false, :maxlength => 1000%>
+                                      :collection => DEGREE_WORDS_OPTIONS_FOR_INPLACE %></li>
+        <li><strong>Description:</strong>
+        <%= best_in_place education, :description,  :display_as => :description, :type => :textarea, :sanitize => false, :maxlength => 1000%></li>
       <% else%>
-        <strong>Degree:</strong>
-        <%= DEGREE_WORDS[education.degree] %> <br>
-        <strong>Description:</strong>
-        <%= education.description%>
+        <li><strong>Degree:</strong>
+        <%= DEGREE_WORDS[education.degree] %> </li>
+        <li><<strong>Description:</strong>
+        <%= education.description%></li>
       <% end %>
-
-  </p>
   </div>
   </td>
   

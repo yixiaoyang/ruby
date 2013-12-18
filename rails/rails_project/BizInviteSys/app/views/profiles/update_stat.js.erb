@@ -1,0 +1,14 @@
+<%if @error.nil? %>
+  $('#profile_stat_span').html("<%= PROFILE_STATS_WORDS[@profile.stat] %>");
+  $('#update_stat_btn_group').toggleClass('open');
+  $('#update_stat_org_stat').html("<%=PROFILE_STATS_WORDS[@profile.stat]%>");
+  /*escape_javascript(link_to(PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),data: { confirm: 'Are you sure?' }, remote: true))*/
+  $('#update_stat_available_stat').empty();
+  <% PROFILE_STATS_HASH[@profile.stat].each{|stat| %>
+    var html_str = "<li><%=escape_javascript(link_to(PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),data: { confirm: 'Are you sure?' }, remote: true))%></li>";
+    $('#update_stat_available_stat').append(html_str);
+  <% } %>
+  
+<%else%>
+  alert('<%=@error%>');
+<%end%>

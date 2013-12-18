@@ -1,9 +1,10 @@
 <% @user = user %>
+<% show_del_link ||= false %>
 <li>
 <%= link_to gravatar_for(user), user%> 
 <%= link_to user.name, user %>
-| <%= link_to user.email,"#"%>
-<% if current_user.admin? && !current_user?(user) %>
-  | <%= link_to "delete", user, method: :delete, data:{ confirm:"You sure?" }   %>
+| <%=mail_to user.email %>
+<% if current_user.admin? && !current_user?(user) && show_del_link %>
+| <%= link_to "delete", user, method: :delete, data:{ confirm:"You sure?" }   %>
 <% end %>
 </li>

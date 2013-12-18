@@ -42,28 +42,24 @@
     <div id="personal_detail_list">
       <ul>
         <table class="table table-hover table-striped table-bordered">
-        <tbody>
-        <%= render 'shared/shared_profile_item_th'%>
-        <% if @profile.personal_detail %>
-          <%= render @profile.personal_detail, :ajax_view => true %>
-        <%end%>
-        </tbody>
+          <tbody>
+          <%= render 'shared/shared_profile_item_th'%>
+          <% if @profile.personal_detail %>
+            <%= render @profile.personal_detail, :ajax_view => true %>
+          <% end %>
+          </tbody>
         </table>
       </ul>
     </div>
-    
     <div id="new_personal_detail_ajax_link">
       <p class="profile_link" id="new_personal_detail_link">
-      <%if @profile.personal_detail.nil? %>
-        <% if current_user?(@profile.user) and !current_user.admin? %>
-          <%= link_to 'New', new_personal_detail_path(:format => :js, :ajax_view => true), :remote => true%>
-        <% end%>
-      <% end %>
+        <% if @profile.personal_detail.nil? and current_user?(@profile.user) and !current_user.admin? %>
+            <%= link_to 'New', new_personal_detail_path(:format => :js, :ajax_view => true), :remote => true%>
+        <% end %>
       </p>
     </div>
   </div>
-  
-  
+
   <div class="collapse-head">
     <a href="#collapse3" data-toggle="collapse">
       <h4>
@@ -122,9 +118,7 @@
   </div>
 
   
-  <br>
-  <HR width="100%" color=#4f4f4f SIZE=4>
-  <br>
+  <HR width="100%" color=#c0c0c0 SIZE=4>
   
   <% if current_user.admin? %>
     <div class="comments_zone">
@@ -145,6 +139,29 @@
         <p class="comment_link">
           <%=link_to 'New', new_comment_path(:format => :js, :ajax_view => true, :profile_id => @profile.id), :remote => true%>
         </p>
+      </div>
+    </div>
+    
+    <HR width="100%" color=#c0c0c0 SIZE=4>
+    <br>
+    
+        
+    
+    <div class="operations_zone">
+      <span><%= link_to 'All Profiles', profiles_path, :class => "btn btn-sm btn-primary"%></span>
+      <div class="btn-group" id="update_stat_btn_group">
+        <button type="button" class="btn btn-danger" id="update_stat_org_stat"><%=PROFILE_STATS_WORDS[@profile.stat]%></button>
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+          <span class="sr-only">Select</span>
+        </button>
+        <ul class="dropdown-menu" role="menu" id="update_stat_available_stat">
+          <!-- show next available status -->
+          <% PROFILE_STATS_HASH[@profile.stat].each{|stat| %>
+            <li><%= link_to PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),
+                                                       data: { confirm: 'Are you sure?' }, remote: true %></li>
+          <% } %>
+        </ul>
       </div>
     </div>
   <% else %>

@@ -23,7 +23,11 @@ BizInviteSys::Application.routes.draw do
   
   resources :sessions, only:[:new, :create, :destroy]
   
-  resources :profiles
+  resources :profiles do
+    member do
+      get :update_stat
+    end
+  end
   resources :educations
   resources :skill_items do
     member do

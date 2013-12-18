@@ -15,7 +15,7 @@
             
             2.Rails 会把 @users 当作一系列的 User 对象，遍历这些对象，然后使用 _user.html.erb 渲染每个对象
         -->
-        <%= render @users %>
+        <%= render @users, :show_del_link => true %>
     </ul>
     <!-- will_paginate的分页需要调用对象集合的paginate方法 -->
     <%= will_paginate %>

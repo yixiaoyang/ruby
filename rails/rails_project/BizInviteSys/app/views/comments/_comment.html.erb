@@ -3,21 +3,24 @@
 <tr id=<%="#{CommentsController.gen_tr_id(comment.id)}"%> >
   <td class="td_left">
   <div class="best_in_place_div">
-    <p>
+      <li>
       <strong>Writer:</strong>
-      <%=link_to comment.user.name, comment.user %> | <%=mail_to comment.user.email %><br>
+      <%=link_to comment.user.name, comment.user %> | <%=mail_to comment.user.email %></li>
+      
+      <li><strong>Last Update on:</strong>
+      <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %></li>
       
       <% if current_user?( comment.owner )%>
-         <strong>Score:</strong>
-        <%= best_in_place comment, :score %> <br>
-         <strong>Vluation:</strong>
-        <%= best_in_place comment, :vluation, :type => :textarea, :sanitize => false, :maxlength => VLUATION_LEN_MAX%>
+        <li><strong>Score:</strong>
+        <%= best_in_place comment, :score %> </li>
+        <li><strong>Vluation:</strong>
+        <%= best_in_place comment, :vluation, :type => :textarea, :sanitize => false, :maxlength => VLUATION_LEN_MAX%></li>
       <% else%>
-        <strong>Score:</strong>
+        <li><strong>Score:</strong>
         <%= comment.score %>
-        <br>
+        </li><li>
         <strong>Vluation:</strong>
-        <%= comment.vluation %>
+        <%= comment.vluation %></li>
       <% end %>
   </p>
   </div>
@@ -27,8 +30,8 @@
     <td>
     <% if !ajax_view %>
       <%= link_to 'Show', comment %> | 
-      <%= link_to 'Edit', edit_comment_path(comment) %> | 
     <%end%>
+    <%= link_to 'Edit', edit_comment_path(comment) %> | 
     <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: ajax_view  %>
     </td>
   <% end %>

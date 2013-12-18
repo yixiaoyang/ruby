@@ -41,7 +41,16 @@ PROFILE_CATEGORY_WORDS = ["School","Society"]
 PROFILE_CATEGORY_WORDS_OPTIONS = mk_options(PROFILE_CATEGORY_WORDS)
 
 # 未投递，已投递（未审核），通过（不能在），未决，未通过
-PROFILE_STATS_WORDS = ["Undelivered","Delivered","Pass","Pending","Reject"]
+PROFILE_STATS_WORDS = ["Undelivered","Delivered","1st Interview","2nd Interview","Passed","Reject"]
+PROFILE_STATS_HASH = {
+  0 => [1], # Undelivered->Delivered, current_stat => {next_available_stats}
+  1 => [2,3,4,5],
+  2 => [3,4,5],
+  3 => [4,5],
+  4 => [1,5], #Passed => {Reject}
+  5 => [1]  #Reject => {Delivered}
+}
+
 PROFILE_STATS_WORDS_OPTIONS = mk_options(PROFILE_STATS_WORDS)
 
 EDUCATION_START_END_TIME = {syear:1960, smonth:1, sday:1}

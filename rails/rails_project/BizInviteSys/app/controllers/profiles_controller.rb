@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   protect_from_forgery with: :exception
   include SessionsHelper
   
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :update_stat]
   before_action :signed_in_check
   before_action :admin_user_check, only: [:destroy]
  
@@ -72,6 +72,24 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # update status of profile
+  def update_stat
+    @stat = params[:stat]
+    if @stat.nil?
+      @error = "Update status failed"
+      p "error:!!!!! "
+    else
+      @profile.stat = @stat
+      respond_to do |format|
+        if @profile.update_attributes(:stat => @stat)
+          format.js{}
+        else
+          format.js{}
+        end
+      end  
+    end
+  end
+  
   # DELETE /profiles/1
   # DELETE /profiles/1.json
   def destroy
