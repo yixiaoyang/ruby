@@ -1,29 +1,13 @@
+<% display_show ||= :Create %>
 <%= form_for(@profile) do |f| %>
-  <% if @profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field" id="profile_create_form">
+    <li><%= f.label :category %></li>
+    <li><%= f.select :category, PROFILE_CATEGORY_WORDS_OPTIONS, class:"form-control" %></li>
+  </div>
 
-      <ul>
-      <% @profile.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :category %><br>
-    <%= f.text_field :category %>
-  </div>
-  <div class="field">
-    <%= f.label :stat %><br>
-    <%= f.text_field :stat %>
-  </div>
-  <div class="field">
-    <%= f.label :score %><br>
-    <%= f.number_field :score %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <br>
+    <%= f.submit display_show, class:"btn btn-sm btn-primary"%>
   </div>
 <% end %>

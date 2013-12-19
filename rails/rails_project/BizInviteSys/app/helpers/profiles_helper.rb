@@ -14,9 +14,7 @@ module ProfilesHelper
     unless current_user?(@profile.user) or current_user.admin?
       flash[:error] = "Access forbidden operation"
       if  current_user.profile.nil?
-        redirect_to profiles_path
-      else
-        redirect_to current_user.profile        
+        redirect_to profiles_path       
       end
     end
   end

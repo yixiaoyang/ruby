@@ -4,11 +4,19 @@
   $('#update_stat_org_stat').html("<%=PROFILE_STATS_WORDS[@profile.stat]%>");
   
   $('#update_stat_available_stat').empty();
-  <% PROFILE_STATS_HASH[@profile.stat].each{|stat| %>
-    var html_str = "<li><%=escape_javascript(link_to(PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),data: { confirm: 'Are you sure?' }, remote: true))%></li>";
-    $('#update_stat_available_stat').append(html_str);
-  <% } %>
   
+  <% if current_user.admin?%>
+    <% PROFILE_STATS_HASH[@profile.stat].each{|stat| %>
+      var html_str = "<li><%=escape_javascript(link_to(PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),data: { confirm: 'Are you sure to submit your profile?' }, remote: true))%></li>";
+      $('#update_stat_available_stat').append(html_str);
+    <% } %>
+  <% else %>
+    <% PROFILE_STATS_USER_HASH[@profile.stat].each{|stat| %>
+      var html_str = "<li><%=escape_javascript(link_to(PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),data: { confirm: 'Are you sure to submit your profile?' }, remote: true))%></li>";
+      $('#update_stat_available_stat').append(html_str);
+    <% } %>
+  <% end%>
+
 <%else%>
   alert('<%=@error%>');
 <%end%>

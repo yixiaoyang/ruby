@@ -4,6 +4,11 @@
   var score_span = $("#score_<%=@skill.category%>");
   score_span.html((parseInt(score_span.text())-<%=@skill.score%>).toString());
   
+  var score_info = $("#profile_score_info");
+  if (score_info.length != 0) {
+    score_info.html("<%= @profile.score %>");
+  }
+  
   $('#skill_item_table_title').html("Skills( <%=@profile.skill_items.count %> )");
   $('#skill_item_table_title').html("Skills( <%=@profile.skill_items.count %> )");
   <% else %>

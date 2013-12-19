@@ -7,9 +7,9 @@ class ProfilesController < ApplicationController
   include SessionsHelper
   include ProfilesHelper
   
-  before_action :set_profile, only: [:show, :edit, :update, :destroy, :update_stat]
   before_action :signed_in_check
-  before_action :admin_user_check, only: [:destroy, :update_stat]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :update_stat]
+  before_action :admin_user_check, only: [:destroy]
  
   before_action :correct_user_check, only: [:edit, :update]
   before_action :others_view_forbidden, only:[:show]
@@ -23,10 +23,9 @@ class ProfilesController < ApplicationController
   # GET /profiles.json
   def index
     if current_user.admin?
-      @profiles = Profile.paginate(page: params[:page], per_page: 10)
+      @profiles = Profile.where("stat > ?",0).paginate(page: params[:page], per_page: 10)
     else
       myprofiles = Profile.where(:user_id => current_user.id)
-      p myprofiles
       @profiles = myprofiles.paginate(page: params[:page], per_page: 10)
     end
   end
@@ -34,12 +33,17 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @user = User.find(@profile.user_id)
+    begin
+     @user = User.find(@profile.user_id)
+    rescue ActiveRecord::RecordNotFound
+       redirect_to not_found_path
+    end
   end
 
   # GET /profiles/new
   def new
     @profile = Profile.new
+    @profile.user_id = current_user.id
   end
 
   # GET /profiles/1/edit
@@ -50,7 +54,7 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
-
+    @profile.user_id = current_user.id
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
@@ -79,18 +83,22 @@ class ProfilesController < ApplicationController
   # update status of profile
   def update_stat
     @stat = params[:stat]
+    p @stat
     if @stat.nil?
       @error = "Update status failed"
-      p "error:!!!!! "
     else
-      @profile.stat = @stat
-      respond_to do |format|
-        if @profile.update_attributes(:stat => @stat)
-          format.js{}
-        else
-          format.js{}
-        end
-      end  
+      if !current_user.admin? and @stat!="0" and @stat!="1"
+        @error = "Access Forbidden"
+      else
+        @profile.stat = @stat
+        respond_to do |format|
+          if @profile.update_attributes(:stat => @stat)
+            format.js{}
+          else
+            format.js{}
+          end
+        end  
+      end
     end
   end
   
@@ -107,11 +115,15 @@ class ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find(params[:id])
+      begin
+        @profile = Profile.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to not_found_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:category, :stat, :scorem, :user_id)
+      params.require(:profile).permit(:category, :stat, :score, :user_id)
     end
 end

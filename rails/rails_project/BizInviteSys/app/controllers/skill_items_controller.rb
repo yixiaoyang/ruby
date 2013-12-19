@@ -66,8 +66,6 @@ class SkillItemsController < ApplicationController
         end
       end
     end
-
-    
   end
 
   # PATCH/PUT /skill_items/1

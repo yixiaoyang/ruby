@@ -8,6 +8,11 @@
     tab_div.append("<%= escape_javascript(render 'profiles/skill_for_profile', :skills =>  skills, :category => idx, :sum => sum) %>");
   <% } %>
   
+  var score_info = $("#profile_score_info");
+  if (score_info.length != 0) {
+    score_info.html("<%= @profile.score %>");
+  }
+  
   $('#skill_slt_modal').modal('hide');  
   $('#skill_item_table_title').html("Skills( <%=@profile.skill_items.count %> )");
 <% else %>

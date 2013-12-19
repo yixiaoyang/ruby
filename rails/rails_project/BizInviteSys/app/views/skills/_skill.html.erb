@@ -3,7 +3,7 @@
 <tr>
   <td class="td_left">
   <div class="best_in_place_div">
-    <% if ajax_view%>
+    <% if ajax_view and current_user.admin? %>
       <li>
       <strong>ID:</strong>
       <%= skill.id %>
@@ -42,9 +42,12 @@
   
 
   <td>
-  <%= link_to 'Show', skill %>|
-  <%= link_to 'Edit', edit_skill_path(skill) %>|
-  <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } , remote: ajax_view %>
+    
+  <%= link_to 'Show', skill %>
+  <% if current_user.admin? %>
+    <span> | </span><%= link_to 'Edit', edit_skill_path(skill) %>
+    <span> | </span><%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } , remote: ajax_view %>
+  <% end%>
   </td>
 </tr>
 

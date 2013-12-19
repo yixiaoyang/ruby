@@ -78,6 +78,7 @@ module SessionsHelper
 
   def admin_user_check
     if current_user.nil? or !current_user.admin?
+      flash[:error] = "Access Forbidden"
       redirect_to root_path
     end
   end

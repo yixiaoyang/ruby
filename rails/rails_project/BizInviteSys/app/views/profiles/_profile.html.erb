@@ -145,30 +145,37 @@
     <HR width="100%" color=#c0c0c0 SIZE=4>
     <br>
     
-        
-    
-    <div class="operations_zone">
+  <% end %>   
+  
+  <div class="operations_zone">
+    <% if current_user.admin?%>
       <span><%= link_to 'All Profiles', profiles_path, :class => "btn btn-sm btn-primary"%></span>
-      <div class="btn-group" id="update_stat_btn_group">
-        <button type="button" class="btn btn-danger" id="update_stat_org_stat"><%=PROFILE_STATS_WORDS[@profile.stat]%></button>
-        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-          <span class="sr-only">Select</span>
-        </button>
-        <ul class="dropdown-menu" role="menu" id="update_stat_available_stat">
-          <!-- show next available status -->
+    <%else%>
+      <span><%= link_to 'My Profile', profiles_path, :class => "btn btn-sm btn-primary"%></span>
+      <%= link_to 'Edit', edit_profile_path(@profile) ,:class => "btn btn-sm btn-primary"%>
+    <%end%>
+    
+    <div class="btn-group" id="update_stat_btn_group">
+      <button type="button" class="btn btn-danger" id="update_stat_org_stat"><%=PROFILE_STATS_WORDS[@profile.stat]%></button>
+      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">Select</span>
+      </button>
+      <ul class="dropdown-menu" role="menu" id="update_stat_available_stat">
+        <!-- show next available status -->
+        <% if current_user.admin?%>
           <% PROFILE_STATS_HASH[@profile.stat].each{|stat| %>
             <li><%= link_to PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),
-                                                       data: { confirm: 'Are you sure?' }, remote: true %></li>
+                                                       data: { confirm: 'Are you sure to submit your profile?' }, remote: true %></li>
           <% } %>
-        </ul>
-      </div>
+        <% else %>
+          <% PROFILE_STATS_USER_HASH[@profile.stat].each{|stat| %>
+            <li><%= link_to PROFILE_STATS_WORDS[stat], update_stat_profile_path(:format => :js, :ajax_view => true, :stat => stat),
+                                                     data: { confirm: 'Are you sure to submit your profile?' }, remote: true %></li>
+          <% } %>
+        <% end%>
+        
+      </ul>
     </div>
-  <% else %>
-    <%= link_to 'Edit', edit_profile_path(@profile) ,:class => "btn btn-sm btn-primary"%> 
-    <% if !current_user.admin? %>
-    <%= link_to 'Submit', "#" ,:class => "btn btn-sm btn-primary"%> 
-    <% end %>
-    <%= link_to 'Back', profiles_path, :class => "btn btn-sm btn-primary" %>
-  <% end %>
+  </div>
 </div> 

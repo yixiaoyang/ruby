@@ -40,15 +40,26 @@ SKILL_CATEGORY_WORDS_OPTIONS = mk_options(SKILL_CATEGORY_WORDS)
 PROFILE_CATEGORY_WORDS = ["School Invitation","Society Invitation"]
 PROFILE_CATEGORY_WORDS_OPTIONS = mk_options(PROFILE_CATEGORY_WORDS)
 
+PROFILE_STAT_STYLES = ["badge-inverse","badge-info","badge-warning","badge-important","badge-success",""]
 # 未投递，已投递（未审核），通过（不能在），未决，未通过
 PROFILE_STATS_WORDS = ["Undelivered","Delivered","1st Interview","2nd Interview","Passed","Reject"]
+# for admin
 PROFILE_STATS_HASH = {
-  0 => [1], # Undelivered->Delivered, current_stat => {next_available_stats}
+  0 => [2,3,4,5], # Undelivered->Delivered, current_stat => {next_available_stats}
   1 => [2,3,4,5],
   2 => [3,4,5],
   3 => [4,5],
   4 => [1,5], #Passed => {Reject}
   5 => [1]  #Reject => {Delivered}
+}
+# for normal user
+PROFILE_STATS_USER_HASH = {
+  0 => [1], 
+  1 => [0],
+  2 => [0],
+  3 => [0],
+  4 => [0],
+  5 => [0] 
 }
 
 PROFILE_STATS_WORDS_OPTIONS = mk_options(PROFILE_STATS_WORDS)

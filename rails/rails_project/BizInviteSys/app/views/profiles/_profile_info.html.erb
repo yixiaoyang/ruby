@@ -8,12 +8,12 @@
 
     <li>
       <strong>Stat:</strong>
-      <span id="profile_stat_span" class="badge badge-important"><%= PROFILE_STATS_WORDS[@profile.stat] %></span>
+      <span id="profile_stat_span" class="<%="badge #{PROFILE_STAT_STYLES[@profile.stat]}"%>"><%= PROFILE_STATS_WORDS[@profile.stat] %></span>
     </li>
 
     <li>
       <strong>Score:</strong>
-      <%= @profile.score %>
+      <span id="profile_score_info"><%= @profile.score %></span>
     </li>
   </td></tr>
   </div>
