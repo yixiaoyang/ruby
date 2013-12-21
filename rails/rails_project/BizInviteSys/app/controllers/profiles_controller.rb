@@ -29,8 +29,18 @@ class ProfilesController < ApplicationController
     direction ||= "asc"
     sort_str = sort + " " + direction
     
+    # search conditions
+    stat_gt = params[:stat_gt]
+    stat_eq = params[:stat_eq]
+    if stat_eq.nil?
+      stat_gt ||= "0"
+      stat_conditions =  ['stat > ?', stat_gt];
+    else
+      stat_conditions = ['stat = ?', stat_eq];
+    end
+    
     if current_user.admin?
-      profiles = Profile.where("stat > ?",0)
+      profiles = Profile.where(stat_conditions)
       @profiles = profiles.order(sort_str).paginate(page: params[:page], per_page: 10)
     else
       myprofiles = Profile.where(:user_id => current_user.id).order(sort_str)

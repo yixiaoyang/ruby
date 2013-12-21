@@ -18,6 +18,7 @@ class Profile < ActiveRecord::Base
   validates   :score, presence:true, numericality: true
   validates   :category, presence:true, numericality: true
   validates   :stat, presence:true, numericality: true
+  validates   :user_id, presence:true, numericality: true, uniqueness:true
   
   def init
     self.user_id ||= 0

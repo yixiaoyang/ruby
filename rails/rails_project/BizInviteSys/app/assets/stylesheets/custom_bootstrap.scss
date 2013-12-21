@@ -240,7 +240,7 @@ a.signup_button {
   }
 }
 
-.img_404{
+.img_404 .img_home{
   align:center;
   ertical-align: top;
   margin-bottom: 3px;
@@ -394,7 +394,7 @@ a.signup_button {
 
 /*comment form */
 .comments_zone{
-  background: $grayLighter;
+  background: $successBackground;
   .comment_link{
     margin-left: 10px;
   }
@@ -413,4 +413,8 @@ a.signup_button {
 .btn-group{
   position: absolute;
   margin-left: 5px;
+}
+
+.jumbotron{
+  text-align:center;
 }

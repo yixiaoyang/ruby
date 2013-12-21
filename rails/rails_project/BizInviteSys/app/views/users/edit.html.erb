@@ -28,19 +28,13 @@
         <%= f.label :password %>
         <%= f.password_field :password %>
         
-        <!--
-        生成代码：
-          <label for="user_password_confirmation">Confirmation</label>
-          <input id="user_password_confirmation" name="user[password_confirmation]" type="password" />
-          <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create my account" />
-        -->
         <%= f.label :password_confirmation, "Confirmation"%>
         <%= f.password_field :password_confirmation%>
       
         <!--
         使用 form_for(@user) 构建表单时，如果 @user.new_record? 返回 true 则发送 POST 请求，否则就发送 PATCH 请求
         -->
-        <%= f.submit "Save Changes", class:"btn btn-large btn-primary"%>
+        <%= f.submit "Save Changes", class:"btn btn btn-primary"%>
       <% end %>
 
       

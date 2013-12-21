@@ -17,16 +17,10 @@
       <%= f.label :password %>
       <%= f.password_field :password %>
       
-      <!--
-       生成代码：
-         <label for="user_password_confirmation">Confirmation</label>
-         <input id="user_password_confirmation" name="user[password_confirmation]" type="password" />
-         <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create my account" />
-      -->
       <%= f.label :password_confirmation, "Confirmation"%>
       <%= f.password_field :password_confirmation%>
       
-      <%= f.submit "Create my account", class:"btn btn-large btn-primary"%>
+      <%= f.submit "Create my account", class:"btn btn btn-primary"%>
     <% end %>
   </div>
 </div>

@@ -1,4 +1,7 @@
 <%= provide(:title, @title) %>
+
+<div class="jumbotron">
+  
 <% if signed_in? %>
   <div class="row">
     <aside class="span3">
@@ -8,16 +11,26 @@
     </aside>
     <span class="span9">
       <section>
+        <% if current_user.admin?%>
+          All delivered profiles:
+          <a href="<%=profiles_path(:stat_eq => 1)%>">more</a>
+        <% end%>
         <% if current_user.profile.nil? %>
         <h4>Your profile not <a href="<%=new_profile_path%>">Created</a><h4>
         <% else %>
-        <h4>Stat of my profile: <a href="<%=profile_path(current_user.profile.id)%>"><span class="badge badge-important"><%=PROFILE_STATS_WORDS[current_user.profile.stat]%></span></a><h4>
+        <h4>Stat of my profile: <a href="<%=profile_path(current_user.profile.id)%>">
+          <span class="badge badge-important"><%=PROFILE_STATS_WORDS[current_user.profile.stat]%></span>
+        </a><h4>
         <% end %>
       </section>
     </span>
   </div>
 <% else %>
-  <h3>We're Waiting for Your </h3><br>
-  <%= link_to "Sign In Now!", signin_path, :class => "btn btn-large btn-primary"%><br>
+  <ul class="normal_ul">
+  <li><%=image_tag("home_invitation2.jpg", class: "img_home")%></li>
+  <li><%= link_to "Sign In", signin_path, :class => "btn btn btn-primary"%>
+  <%= link_to "Sign Up Now!", signup_path, :class => "btn btn btn-primary"%></li>
+  </ul>
 <% end %>
 
+</div>

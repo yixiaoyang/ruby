@@ -1,0 +1,22 @@
+<% if current_user.admin?%>
+<li> 
+  <strong>ID:</strong>
+  <%= @user.id %>
+</li>
+<% end %>
+<li>
+  <strong>Name:</strong>
+  <%=@user.name %>
+</li><li>
+  <strong>Email:</strong>
+  <%=mail_to @user.email %>
+</li>
+<li>
+  <strong>Profile Status:</strong>
+  <% if @user.profile.nil? %>
+  <h4>Profile not Created<h4>
+  <% else %>
+   <a href="<%=profile_path(@user.profile.id)%>"><span class="badge badge-important"><%=PROFILE_STATS_WORDS[@user.profile.stat]%>
+   </span></a> <a href="<%=profile_path(@user.profile.id)%>">more...<a>
+  <% end %>
+</li>

@@ -12,7 +12,9 @@
     <%= render 'profile_index'%>
     
     <br>
-    <%= link_to 'New Profile', new_profile_path %>
+    <%if !current_user.admin? and current_user.profile.nil? %>
+      <%= link_to 'New Profile', new_profile_path %>
+    <%end%>
   </div>
 </div>
 <br>
