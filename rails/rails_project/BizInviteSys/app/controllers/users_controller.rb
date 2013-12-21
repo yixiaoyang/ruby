@@ -67,6 +67,40 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def forgot_passwd
+  end
+  
+  def email_notify
+    if current_user.nil?
+      email = user_params[:email] unless user_params.nil?
+      if email.nil? or email.length==0
+        @error = "Set you email please"
+      else
+        begin
+          users = User.where("email = ?", email).limit(1)
+          if users.nil? or users.size == 0
+            @error = "User email #{email} not found"
+          end
+        rescue ActiveRecord::RecordNotFound
+          @error = "User email #{email} not found"
+        end
+      end
+      
+      if @error.nil?
+        # send mail
+        Notifier.email_user(users[0])
+        flash[:success] = "Password sent to your email #{email}, please check your mailbox"
+        p "send email ok"
+        redirect_to signin_path
+      else
+        flash[:error] = @error
+        redirect_to forgot_passwd_path
+      end
+    end
+
+  end
+  
+  
   private
   # 使用健壮参数而非User.find_by(params[:id]);
   def user_params

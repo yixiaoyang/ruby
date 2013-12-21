@@ -1,0 +1,14 @@
+<% provide(:title, "Forgot Password")%>
+<h1>Find Password</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <ul class="normal_ul">
+      <%= form_for(:user, url:users_email_notify_path) do |f| %>
+        <li><%= f.label "Confirm your email to reset password" %>
+        </li><li><%= f.text_field :email ,type:"email", class:"form-control", placeholder:"Enter your register email"%></li><li>
+        <%= f.submit "Send Email Now", class:"btn btn btn-primary"%></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -28,5 +28,30 @@ module BizInviteSys
     
     config.assets.logger = false
     config.assets.logger = nil
+    
+    # mailer
+    # Don't care if the mailer can't send
+    config.action_mailer.raise_delivery_errors = true
+    # Gmail SMTP server setup
+    config.action_mailer.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :user_name => "ee",
+      :password => 'ee',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true
+    }
+    
+    #ActionMailer::Base.smtp_settings = {
+    #    :address              => "smtp.163.com",
+    #    :port                 => 25,
+    #    :domain               => "163.com",
+    #    :user_name            => "hityixiaoyang",
+    #    :password             => "123456",
+    #    :authentication       => "plain",
+    #    :enable_starttls_auto => true
+    #}
+  
   end
 end

@@ -9,17 +9,17 @@ BizInviteSys::Application.routes.draw do
   
   match '/about',     to: 'pages#about',      via: 'get'
   match '/home',      to: 'pages#home',       via: 'get'
+  
   match '/signup',    to: 'users#new',        via: 'get'
+  match '/forgot_passwd',     to: 'users#forgot_passwd',        via: 'get'
+  match '/users/email_notify',to: 'users#email_notify',        via: 'post'
+  
   match '/signin',    to: 'sessions#new',     via: 'get'
   match '/signout',   to: 'sessions#destroy',     via: 'delete'
   
   match '/not_found',   to: 'pages#404',      via: 'get'
   
-  resources :users do
-    member do
-      get :status
-    end
-  end
+  resources :users
   
   resources :sessions, only:[:new, :create, :destroy]
   
