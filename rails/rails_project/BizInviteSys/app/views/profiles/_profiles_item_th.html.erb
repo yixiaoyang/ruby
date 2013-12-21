@@ -1,8 +1,21 @@
 <thead>
   <tr>
     <th>ID</th>
-    <th>Category</th>
-    <th>Score</th>
-    <th>Status</th>
+    <th>
+      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block">
+      </span><%=sortable :category, "Category"%>
+    </th>
+    <th>
+      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block">
+      </span><%=sortable :score, "Score"%>
+    </th>
+    <th>
+      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block">
+      </span> <%=sortable :stat, "Status"%>
+    </th>
+    <th>
+      <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" style="display:inline-block">
+      </span><%=sortable :updated_at, "Last Update"%> 
+    </th>
   </tr>
 </thead>

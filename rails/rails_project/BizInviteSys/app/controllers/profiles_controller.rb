@@ -22,10 +22,18 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
+    # sort string
+    sort = params[:sort]
+    direction = params[:direction]
+    sort ||= "id"
+    direction ||= "asc"
+    sort_str = sort + " " + direction
+    
     if current_user.admin?
-      @profiles = Profile.where("stat > ?",0).paginate(page: params[:page], per_page: 10)
+      profiles = Profile.where("stat > ?",0)
+      @profiles = profiles.order(sort_str).paginate(page: params[:page], per_page: 10)
     else
-      myprofiles = Profile.where(:user_id => current_user.id)
+      myprofiles = Profile.where(:user_id => current_user.id).order(sort_str)
       @profiles = myprofiles.paginate(page: params[:page], per_page: 10)
     end
   end
