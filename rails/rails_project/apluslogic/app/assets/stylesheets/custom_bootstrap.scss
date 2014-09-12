@@ -1,0 +1,428 @@
+@import "color-me-sass/color-me-sass";
+
+/* mixins, variables, etc. */
+$grayMediumLight: #eaeaea;
+
+/* universal */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+/* header */
+.navbar{
+  max-height: 30px;
+}
+#header_logo_text{
+  color: #FFFF3e;
+  font-size: 20pt;
+}
+
+#header-top-right-menus{
+  max-height: 30px;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: $grayLight;
+  a {
+    color: $gray;
+    &:hover {
+      color: $grayDarker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+/* mixins, variables, etc. */
+$grayMediumLight: #eaeaea;
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* miscellaneous */
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
+
+/* sidebar */
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+  
+  ul {
+    float: left;
+    list-style: none;
+    margin: 0px 0px;
+    li {
+      float: left;
+      margin-left: 0px;
+      margin-right: 5px;
+      padding-left: 0px;
+      padding-right: 10px;
+      
+      strong{
+        font-size: 1.4em;
+      }
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+
+/* forms */
+input, textarea, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+ }
+ 
+
+/* Sign up button */
+a.signup_button {
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 300px;
+  color: #fff;
+  background: #006400;
+  font-size: 100%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+
+/* Round corners */
+.round {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+}
+
+
+ 
+/* users list */
+
+/* ul users */
+.users {
+  list-style:none;
+  margin: 0px;
+  li {
+      overflow:auto;
+      padding: 10px 0;
+      border-top: 1px solid $grayLighter;
+      &:last-child{
+        border-bottom: 1px solid $grayLighter;
+      }
+      
+      div { 
+        /*float:right;*/
+        display:inline;  
+      }
+  }
+}
+
+.img_404 .img_home{
+  align:center;
+  ertical-align: top;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+/* profile */
+.profile {
+  margin-bottom: 3px;
+  display: block;
+  a{
+    text-decoration: none;
+  }
+
+  .collapse-head{
+    display: block;
+    padding: 0px 0px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    
+    border: 1px solid rgb(200, 200, 200);
+    position: relative;
+    font-weight: bold;
+  }
+  .collapse{
+    display: block;
+    padding: 0px 8px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  
+  list-style:none;
+  margin-left:0px;
+  ul{
+    margin:0 0 0 0;
+    /*border-bottom: 2px solid $grayLighter;*/
+  }
+  
+  li {
+    overflow:auto;
+    padding: 2px 0;
+    /*border-top: 1px solid $grayLighter;*/
+    &:last-child{
+      /*border-bottom: 1px solid $grayLighter;*/
+    }
+  }
+}
+
+#profile_create_form{
+  #profile_category{
+    width: 100%;
+  }
+}
+
+.best_in_place{
+  input, select, .uneditable-input {
+    border: 1px solid #bbb;
+    width: auto;
+    margin-bottom: 15px;
+    @include box_sizing;
+  }
+
+  input {
+    height: auto !important;
+  }
+}
+
+/* educations */
+.educations-ul{
+  list-style: decimal;
+  margin: 0px;
+  li {
+      padding: 10px 0;
+      border-top: 1px solid $grayLighter;
+      &:last-child{
+        border-bottom: 1px solid $grayLighter;
+      }
+     
+  }
+}
+
+
+/* inline form */
+.inline_form{
+  .form-group{
+    width: 100%;
+    margin-bottom: 0px;
+    @include box_sizing;
+  }
+}
+
+/* nomal ul */
+.normal_ul {
+  list-style:none;
+  margin: 0px;
+  li {
+      overflow:auto;
+      padding: 5px 0;
+      /*&:last-child{
+        border-bottom: 1px solid $grayLighter;
+      }*/
+      
+      div { 
+        /*float:right;*/
+        display:inline;  
+      }
+  }
+}
+
+.td_left{
+  width:80%;
+}
+
+.normal_form {
+  /*padding: 4px;
+  border: 1px solid #dddddd;
+  border-collapse: separate;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  */
+  
+  input, textarea, .uneditable-input {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+    @include box_sizing;
+  }
+  
+  select{
+    border: 1px solid #cccccc;
+    width:auto;
+  }
+}
+
+/* modal */
+#skill_slt_modal{
+  width:50%;
+}
+#skill_lst_modal{
+  width:95%;
+}
+
+.badge{
+  top: -1px;
+  position: relative;
+}
+
+/*comment form */
+.comments_zone{
+  background: $successBackground;
+  .comment_link{
+    margin-left: 10px;
+  }
+  #_ajax_comment_new_form{
+    padding: 4px;
+    border: 1px solid $grayLight;
+    border-collapse: separate;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.btn-group{
+  position: absolute;
+  margin-left: 5px;
+}
+
+.jumbotron{
+  text-align:center;
+}

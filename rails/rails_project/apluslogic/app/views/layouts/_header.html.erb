@@ -1,0 +1,22 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <nav class="round">
+        <span id="header_logo_text"><%= link_to "Apluslogic.Inc", static_pages_home_path%><span>
+        <ul id="header-top-right-menus" class="nav pull-right">
+          <li><%= link_to "Home",  static_pages_home_path %></li>
+          <li><%= link_to "Help",  static_pages_help_path %></li>
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Account
+            </a>
+            <ul class="dropdown-menu">
+                 <li><%= link_to "Sign in", static_pages_home_path%></li>
+                 <li><%= link_to "Sign up", static_pages_help_path%></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
