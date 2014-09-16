@@ -1,0 +1,31 @@
+%header.navbar.navbar-fixed-top.navbar-inverse
+  .navbar-inner
+    .container
+      %nav.round
+        %span#header_logo_text
+          %ul#header-top-right-menus.nav.pull-left
+            %li= link_to "Home",  static_pages_home_path
+            %li#fat-menu.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Products
+              %ul.dropdown-menu
+                %li= link_to "Oscilloscopes", static_pages_home_path
+                %li= link_to "Millimeters", static_pages_help_path
+            %li#fat-menu.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Support
+              %ul.dropdown-menu
+                %li= link_to "Documents", static_pages_home_path
+                %li= link_to "Trial Apply", static_pages_help_path
+            %li= link_to "Blog",  static_pages_home_path
+            %li= link_to "Community",  static_pages_home_path
+          %span
+            %ul#header-top-right-menus.nav.pull-right
+              %li= link_to "About Us",  static_pages_home_path
+              %li= link_to "Join Us",  static_pages_help_path
+              %li#fat-menu.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  Account
+                %ul.dropdown-menu
+                  %li= link_to "Sign in", static_pages_home_path
+                  %li= link_to "Sign up", static_pages_help_path
