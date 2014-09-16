@@ -1,2 +1,17 @@
 %h1 StaticPages#home with haml
 %p Find me in app/views/static_pages/home.html.erb
+
+#carousel-products.carousel.slide{"data-ride" => "carousel"}
+  / Indicators
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-products"}
+    %li{"data-slide-to" => "1", "data-target" => "#carousel-products"}
+  / Wrapper for slides
+  .carousel-inner{:role => "listbox"}
+    .item.active
+      %img{:alt => "Icon", :src => "/assets/products/product1.png"}
+    .item
+      %img{:alt => "Icon", :src => "/assets/products/product2.png"}
+  / Controls
+  %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel-products"} &lsaquo;
+  %a.carousel-control.right{"data-slide" => "next", :href => "#carousel-products"} &rsaquo;
