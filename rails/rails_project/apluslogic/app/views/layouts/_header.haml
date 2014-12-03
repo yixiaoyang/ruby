@@ -9,24 +9,23 @@
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 Products
               %ul.dropdown-menu
-                %li= link_to "Oscilloscopes", static_pages_home_path
-                %li{'data-submenu-id'=>"submenu-patas"}
-                  %a{:href=>static_pages_help_path}Millimeters
-                  #submenu-patas.popover
-                    %h3.popover-title Mil Serises
+                %li{'data-submenu-id'=>"submenu-patas-osci"}
+                  %a{:href=>static_pages_help_path}Oscilloscopes
+                  #submenu-patas-osci.popover
+                    %h3.popover-title Oscilloscopes Serises
                     .popover-content
-                      %h5 Mil 1204A
+                      %p Mil 1204A
                       %img{:src=>"/assets/topbar/logo.png"}
-                      %h5 XDS8000X
+                      %p XDS8000X
                       %img{:src=>"/assets/topbar/logo.png"}
                 %li{'data-submenu-id'=>"submenu-patas"}
                   %a{:href=>"#"}All Products
                   #submenu-patas.popover
                     %h3.popover-title ADS Serises
                     .popover-content
-                      %h5 ADS1000X
+                      %p ADS1000X
                       %img{:src=>"/assets/topbar/logo.png"}
-                      %h5 XDS8000X
+                      %p XDS8000X
                       %img{:src=>"/assets/topbar/logo.png"}
             %li#fat-menu.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
