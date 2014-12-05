@@ -7,12 +7,12 @@ require 'yaml'
 class StockParser
    def initialize(ws,yamlFile)
 	  @format='%-10s %-10s %-10s %-10s %-10s %-16s %-16s %-16s %-16s %-12s %s'
-
-	  config = YAML::load(File.open(yamlFile))
-	  @yamlFile=yamlFile
+	  @reg=Regexp.new('var hq_str_(.*)=\"(.*)\";')
+	 
 	  @ws=ws
+	  @yamlFile=yamlFile
+	  config = YAML::load(File.open(yamlFile))
 	  @prefix=config[@ws]['prefix']
-	  @reg=Regexp.new(config[@ws]['reg'])
 	  @code=config[@ws]['code']
    end
    
@@ -49,7 +49,7 @@ class StockParser
 						@stockData[20]+"/"+@stockData[21],
 						@stockData[10]+"/"+@stockData[11],
 						@stockCode,
-						@stockData[0])
+						@stockData[0].encode("utf-8"))
 	  puts formatStr
    end
    

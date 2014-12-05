@@ -1,4 +1,3 @@
 sina:
     prefix: 'http://hq.sinajs.cn/list='
     code:   'sh000001,sz399001,sz399106,sh601006,sz002065'
-    reg:    'var hq_str_(.*)=\"(.*)\";'
