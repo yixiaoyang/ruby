@@ -1,3 +1,6 @@
 sina:
     prefix: 'http://hq.sinajs.cn/list='
     code:   'sh000001,sz399001,sz399106,sh601006,sz002065'
+yahoo:
+    prefix: 'http://hq.sinajs.cn/list='
+    code:   '002439.sz,002065.sz,399001.sz'

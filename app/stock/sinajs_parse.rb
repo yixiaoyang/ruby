@@ -4,7 +4,7 @@
 require 'open-uri'
 require 'yaml'
 
-class StockParser
+class SinaStockParser
    def initialize(ws,yamlFile)
 	  @format='%-10s %-10s %-10s %-10s %-10s %-16s %-16s %-16s %-16s %-12s %s'
 	  @reg=Regexp.new('var hq_str_(.*)=\"(.*)\";')
@@ -74,6 +74,6 @@ class StockParser
    end
 end
 
-sinaParser=StockParser.new('sina','StockParse.yaml')
+sinaParser=SinaStockParser.new('sina','StockParse.yaml')
 sinaParser.print_hdr
 sinaParser.parse()
